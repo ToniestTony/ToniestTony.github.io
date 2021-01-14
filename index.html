@@ -1,179 +1,46 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>ToniestTony github</title>
+        <title>ToniestTony's Github</title>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
     </head>
     <body>
         <header>
-            <h1>ToniestTony github page</h1>
-            <small>by ToniestTony</small>
+			<ul class="nav">
+				<a href="#"><li class="current"><h2>Home page</h2></li></a>
+				<a href="./jt.html"><li><h2>JT library</h2></li></a>
+			</ul>
         </header>
         
         <main>
             <div id="main">
-                <h2>Go to my new website : <a href="http://www.ynotplay.ca">ynotplay.ca</a> to play my newest games and see my projects!</h2>
+				<h2>Welcome to my github page!</h2>
+				<br>
+                <h3>Visit <a href="http://www.ynotplay.ca">ynotplay.ca</a> to play my newest games and projects!</h2>
                 <br>
-                <h2>Aller sur mon nouveau site : <a href="http://www.ynotplay.ca">ynotplay.ca</a> pour jouer à mes derniers jeux et voir mes projets!</h2>
-                <br>
-                <h2>!!! This page is outdated !!!</h2>
-                <br>
-                <h2>Welcome to my github!</h2>
-                <br>
-                <p>I am a canadian game and web developper who loves making and learning about games! This website is in english for accessibility, but my first language is french.</p>
-                <br>
-                <p>It's kinda empty right now but here are the links to my games:<p>
+                <p>Here are some github projects:<p>
                 
-                <ul>
+                <ul class="projects">
                     <li><a href="http://trickydungeon.netlify.com">Tricky dungeon</a></li>
                     <li><a href="http://https://quiz-arcade.herokuapp.com/">Arcade quiz (french only)</a></li>
-                    <li>(WIP) <a href="http://bossrush.netlify.com">Boss rush</a></li>
-                    <li>(WIP) <a href="http://flappyupgrade.netlify.com">Flappy upgrade</a></li>
                     <li>(WIP) <a href="http://toniesttony.github.io/text-adventure">Text adventure</a></li>
                     <li>(WIP) <a href="http://toniesttony.github.io/Super-Smash-Js">Super Smash Js</a></li>
                 </ul>
+				
+				<br>
                 
-                <br>
-                
-                <p>If you have any questions or suggestions, you can always <a href = "mailto: antoine30@outlook.com">contact me</a> !</p>
-                
-                <!--
-            <div id="introduction">
-                <h2>Welcome to this game, </h2>
-                <br>
-                <label for="introName">What is your name?</label>
-                <input id="introName" name="introName" type="text">
-                <button class="button buttonBlue" onclick="introVerify()">Normal mode</button><br>
-                <button class="button buttonRed" onclick="introVerify('permadeath')">Permanent Death mode</button><br>
-                <button id="introLoad" class="hide button buttonBlue" onclick="introVerify('load')">Load save file</button><br>
-                <span id="introError"></span>
-            </div>
-            
-            <div class="hide" id="player">
-                <h2 id="playerName"></h2>
-                <p>Health: <span class="outerBar"><span class="innerBar healthBar"></span></span> (<span id="playerHp"></span>/<span id="playerTotalHp"></span>)</p>
-                <p>Attack: <span id="playerWeapon"></span> (<span id="playerAtk"></span>)</p>
-                <p>Defense: <span id="playerArmor"></span> (<span id="playerDef"></span>)</p>
-                <p>Luck: <span id="playerLuck"></span></p>
-                <p>Gold: <span id="playerGold"></span></p>
-                <p>Experience: <span class="outerBar"><span class="innerBar xpBar"></span></span> (<span id="playerXp"></span>/<span id="playerTotalXp"></span>)</p>
-                <p>Level: <span id="playerLevel"></span></p>
-                <p>Mode: <span id="playerMode"></span></p>
-            </div>
-            
-            <div class="hide" id="location">
-                <h2>Location: <span id="locationName1"></span></h2>
-                <p id="locationDesc"></p>
+				<p>I am a canadian game and web developper who loves making and learning about games!</p>
 
-            </div>
-            
-            <div class="hide" id="event">
-                
-                <p id="locationLog"></p><br>
-                
-                <button id="exploreButton" class="button buttonBlue" onclick="explore()">Explore <span id="locationName2"></span></button>
-                <div id="eventsList">
-                    
-                </div><br>
-                
-                <div id="eventActive" class="hide">
-                    <h2 id="eventTitle"></h2><br>
-
-
-                    <div id="eventFirst">
-                        <h3 id="nameFirst"></h3>
-                        
-                        <span id="hpFirstAll" class="hide">
-                            <span class="outerBar"><span class="innerBar healthBar"></span></span> 
-                            <span id="hpFirst"></span>
-                        </span><br>
-                        
-                        <span id="descFirst"></span><br>
-                        <span id="weaponFirst"></span><br>
-                        <span id="armorFirst"></span>
-                    </div>
-
-
-                    <div id="eventSecond">
-                        <h3 id="nameSecond"></h3>
-                        <span id="hpSecondAll" class="hide">
-                            <span class="outerBar"><span class="innerBar enemyBar"></span></span> 
-                            <span id="hpSecond"></span>
-                        </span><br>
-                        <span id="descSecond"></span><br>
-                    </div>
-                    <button id="eventAttack" class="hide button buttonRed" onclick="attack()">Attack</button>
-                    <button id="eventRun" class="hide button buttonRed" onclick="run()">Run</button>
-                    <br>
-
-            </div>
-                <div id="levelUp" class="hide">
-                    <p>Level up! You are now level <b><span id="levelUpNum"></span></b> ! What will you upgrade?</p>
-                    <button id="levelUpHealth" class="button buttonRed" onclick="levelup('health')">Health</button>
-                    
-                    <button id="levelUpStrength" class="button buttonYellow" onclick="levelup('strength')">Strength</button>
-                    
-                    <button id="levelUpLuck" class="button buttonGreen" onclick="levelup('luck')">Luck</button>
-                </div>
-                
-                <div id="heal" class="hide">
-                    
-                </div>
-                
-                <div id="dead" class="hide">
-                    <button id="eventRun" class="hide button buttonRed" onclick="location.reload()">Restart</button>
-                </div>
-                
-        </div>
-            
-            <div class="hide" id="change">
-                <h3>Change location:</h3>
-                
-                
-                
-                <button id="changeUp" class="hide button buttonBlue" onclick="game.firstShown--;game.updateLocations()">^</button>
-                
-                <div id="locationList">
-                    
-                </div>
-                
-                <button id="changeDown" class="hide button buttonBlue" onclick="game.firstShown++;game.updateLocations()">v</button>
-                
-                
-                
-            </div>
-            <div id="saving">
-                
-                <div id="savingInfo" class="hide">
-                <p>Latest version: <span id="savingLatest"></span></p>
-                <p id="savingLog"></p>
-                <p>Save file version: <span id="savingFile"></span></p>
-                </div>
-                
-                <button id="saveButton" class="hide button buttonBlue" onclick="save()">Save</button>
-                
-                <button id="loadButton" class="hide button buttonBlue" onclick="load()">Load</button>
-                
-                <button id="deleteButton" class="hide button buttonRed" onclick="deleteSave()">Delete your save</button>
-                
-                <br><small class="hide" id="saveMessage">Your progress will be saved automatically after you levelled up.</small>
-            </div>
-                -->
         </div>
         </main>
         
         
         <footer>
             <small>
-                Game made by ToniestTony , <a href="https://github.com/ToniestTony">See the github</a>
+                ToniestTony's Github page , <a href="https://github.com/ToniestTony">See the github</a> or <a href = "mailto: antoine30@outlook.com">contact me</a>
             </small>
         </footer>
         <script src="js/jquery-3.2.1.min.js"></script>
-        
-    <script src="js/enemy.js"></script>
-    <script src="js/location.js"></script>
-    <script src="js/generator.js"></script>
-    <script src="js/game.js"></script>
     
     </body>
 </html>
