@@ -4,6 +4,43 @@
     font-family: "Arial";
 }
 
+#can{
+	border:1px solid black;
+	margin-left:auto;
+	margin-right:auto;
+	top:0;
+	left:0;
+}
+
+ul.projects li{
+	list-style:none;
+}
+
+ul.nav a{
+	color:white;
+}
+
+ul.nav a:hover li{
+	text-decoration: underline;
+	
+	
+}
+
+ul.nav{
+	list-style: none;
+	width: 100%;
+}
+
+ul.nav li{
+	display: inline-block;
+	padding:20px;
+}
+
+ul.nav li.current{
+	color:#292929;
+	background-color: white;
+}
+
 h1{
     font-size: 32px;
 }
@@ -21,10 +58,14 @@ body{
     min-height: 100%;
 }
 
+main{
+    margin: 20px;
+}
+
 header{
     background-color: #292929;
     color: white;
-    padding: 20px;
+	padding:2px;
 }
 
 footer{
@@ -33,154 +74,18 @@ footer{
     background-color: #292929;
     color: white;
     padding: 10px;
+	position: fixed;
+    bottom: 0;
 }
 
-footer a{color: lightblue;}
-footer a:visited{color: lightpink;}
+a{color: #f02850;}
+a:visited{color: #f02850;}
+
+footer a{color: #f02850;}
+footer a:visited{color: #f02850;}
 
 header h1{
     display: inline-block;
     border-bottom: 1px solid white;
     margin-right: 15px;
-}
-
-
-
-
-main{
-    margin: 10px;
-}
-
-
-
-#introduction, #player, #location, #event, #change{
-    margin: 10px;
-    margin-bottom: 30px;
-}
-
-/*INTRODUCTION*/
-
-.button{
-    background-color: #2aa0f7;
-    border: 3px solid black;
-    padding: 6px;
-    font-size: 16px;
-}
-
-.buttonBlue{background-color: #2aa0f7;}
-.buttonBlue:hover{background-color: #1d6ca7;}
-
-.buttonGreen{background-color: #4dd03c;}
-.buttonGreen:hover{background-color: #226a19;}
-
-.buttonYellow{background-color: #ffdd23;}
-.buttonYellow:hover{background-color: #b1970c;}
-
-.buttonRed{background-color: #ff3131;}
-.buttonRed:hover{background-color: #b10909;}
-
-.locked{background-color: gray;}
-.locked:hover{background-color: gray;}
-
-
-
-
-#introError{
-    color: red;
-}
-
-
-
-/* MAIN */
-
-.outerBar{
-    display: inline-block;
-    vertical-align: bottom;
-    background-color: #ebebeb;
-    width: 200px;
-    height: 20px;
-    border: 2px solid black;
-}
-
-.innerBar{
-    display: inline-block;
-    vertical-align: bottom;
-    background-color: red;
-    width: 100%;
-    text-align: left;
-    height: 20px;
-}
-
-.healthBar{
-    background-color: red;
-}
-
-.xpBar{
-    background-color: #f2ba00;
-}
-
-#playerName{
-    font-size: 32px;
-    display: inline-block;
-    margin-bottom: 5px;
-    border-bottom: 3px solid black;
-}
-
-
-/* EVENT */
-#eventActive{
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-#eventFirst{
-    border-left: 2px solid black;
-    padding-left: 10px;
-    vertical-align: top;
-    display: inline-block;
-    width: 48%;
-}
-
-#eventSecond{
-    vertical-align: top;
-    display: inline-block;
-    width: 48%;
-}
-
-#eventAttack{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-#levelUp{
-    width: 500px;
-    padding: 5px;
-    border: 3px solid black;
-}
-
-.dmg{
-    color: red;
-    font-weight: bold;
-}
-
-
-.hide{
-    display: none;
-}
-
-#saving{
-    margin-bottom: 50px;
-}
-
-#saving p{
-    font-size: 14px;
-}
-
-
-
-
-footer{
-    position: fixed;
-    bottom: 0;
 }
