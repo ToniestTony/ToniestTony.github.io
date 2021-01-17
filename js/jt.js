@@ -1024,7 +1024,7 @@ var app={
 	setup:function(){
 		//virtual camera active
 		jt.camactive(true);
-		jt.volume(0.5)
+		jt.volume(0.1)
 		//jt.fullscreen(false);
 		player.x=32+(app.room*jt.w());
 		player.y=jt.h()/3;
