@@ -3,13 +3,16 @@
         <meta charset="utf-8">
         <title>ToniestTony's Github</title>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+		
+        <link rel="stylesheet" type="text/css" href="css/editor-styles.css">
     </head>
     <body>
-		<script src="./js/jt_lib15.js"></script>
+		
         <header>
 			<ul class="nav">
 				<a href="./index.html"><li><h2>Home page</h2></li></a>
-				<a href="#"><li class="current"><h2>JT library</h2></li></a>
+				<a href="#"><li class="current"><h2>JT documentation</h2></li></a>
+				<a href="./examples.html"><li><h2>JT examples</h2></li></a>
 			</ul>
         </header>
         
@@ -20,16 +23,4127 @@
 			<br>
 			<p>This is library to make HTML5 2D games with the canvas much easier/faster!</p>
 			<br>
-			<p>Below is an example of a simple game</p>
-			<canvas id="can"></canvas>
+			<p>You can test it out in the editor below (update function only):</p>
+			<!--<button id="last">Last</button>-->
+			<div class="editor">
+				<div class="editor__wrapper">
+					<div class="editor__body">
+						<div id="editorCode" class="editor__code"></div>
+					</div>
+					<div class="editor__footer">
+						<div class="editor__footer--left">
+							<button class="editor__btn editor__run">Run ></button>
+							<button class="editor__btn editor__reset">Blank ></button>
+							<button class="editor__btn editor__test">Default ></button>
+							<br>
+							<p class="small">Basic examples:</p>
+		
+							<button class="editor__btn editor__test2">Mouse test ></button>
+							<button class="editor__btn editor__test3">Collision test ></button>
+						</div>
+						<div class="editor__footer--right">
+							<div id="canDiv" class="editor__console">
+								<canvas id="can"></canvas>
+								<ul class="editor__console-logs"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<br>
+			<h2>Try these interactive examples:</h2>
+			<ul class="table">
+				<li>
+				<p class="name">
+						jt.ratio()
+						<button class="editor__btn editor__add" value='
+//Resize canvas dynamically each frame with a jt.waveY() and reset the camera
+jt.resize(400+jt.waveY()*200,200,true);
+
+//Show ratio with jt.ratio()
+jt.fontSize(18);
+jt.text("Width/Height ratio:",jt.w()/2,jt.h()/2-10,"black","center")
+jt.text(jt.round(jt.ratio(),2),jt.w()/2,jt.h()/2+10,"black","center")'>Test in editor</button>
+					</p>
+					<p class="desc inv">Get the width/height ratio of the canvas</p>
+				</li>
+			</ul>-->
 			<br>
-			<p>You can download the library and a template <a href="https://github.com/ToniestTony/jt_lib">here</a>.</p>
+			<p>Play a lot of games made with the JT library and JT Engine <a href="http://ynotplay.ca/">here</a>
+			<br>
+			<p>Want to try it out? Download the library and a template <a href="https://github.com/ToniestTony/jt_lib">here</a>!</p>
+			<br>
+			<p>Here's the documentation of all available functions organized by type:</p>
+			<ul class="table">
+			
+				<li><a href="#canvas">Canvas</a></li>
+				<li><a href="#loop">Loop</a></li>
+				<li><a href="#assets">Assets</a></li>
+				<li><a href="#sound">Sound</a></li>
+				<li><a href="#draw">Draw</a></li>
+				<li><a href="#math">Math</a></li>
+				<li><a href="#collision">Collision</a></li>
+				<li><a href="#particles">Particles</a></li>
+				<li><a href="#gamepad">Gamepad</a></li>
+				<li><a href="#keyboard">Keyboard</a></li>
+				<li><a href="#mouse">Mouse</a></li>
+				<li><a href="#touch">Touch</a></li>
+				<li><a href="#compatibility">Backward compatibility</a></li>
+				<li><a href="#jte">JTE (Only works in JT Engine)</a></li>
+				
+			</ul>
+			
+			<div class="anchor" id="canvas"></div>
+			
+			<div class="section">
+				<h2>Canvas</h2>
+				<ul>
+				
+				
+				
+				
+					<li class="name">
+						jt.w(w)<br>
+						jt.width(w)
+						<button class="editor__btn editor__add" name="jt.w(w)" value='
+//Pressing Space will resize to 400
+jt.w(150);
+if(jt.keyCheck("space")){
+    jt.w(400);
+}
+
+//Show controls
+jt.fontSize(12);
+jt.text("Press Space to resize",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Resize the width of the canvas</li>
+					
+					
+					
+					
+					<li class="name">
+						jt.h(h)<br>
+						jt.height(h)
+						<button class="editor__btn editor__add" name="jt.h(h)" value='
+//Pressing Space will resize to 200
+jt.h(100);
+if(jt.keyCheck("space")){
+    jt.h(200);
+}
+
+//Show controls
+jt.fontSize(12);
+jt.text("Press Space to resize",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Resize the height of the canvas</li>
+					
+					
+					
+					<li class="name">
+						jt.resize(w,h,camReset)
+						<button class="editor__btn editor__add" value='
+//Pressing Space will resize to 300 and 200
+jt.resize(150,100);
+if(jt.keyCheck("space")){
+    jt.resize(300,200);
+}
+
+//Show controls
+jt.fontSize(12);
+jt.text("Press Space to resize",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Resize the width and height of the canvas (camReset is optional and true by default, it resets the virtual camera after resizing)</li>
+										
+					
+					
+					<li class="name">
+						jt.ratio()
+						<button class="editor__btn editor__add" value='
+//Resize canvas dynamically each frame with a jt.waveY() and reset the camera, pause for 3s with Space
+if(jt.keyPress("space")){
+    setTimeout(function(){jt.pauseJt(false);},2000)
+    jt.pauseJt(true)
+}
+jt.resize(400+jt.waveY()*200,200,true);
+
+//Show ratio with jt.ratio()
+jt.fontSize(12);
+jt.text("Press Space to pause for 2s",jt.w()/2,5,"black","center")
+jt.fontSize(18);
+jt.text("Width/Height ratio:",jt.w()/2,jt.h()/2-10,"black","center")
+jt.text(jt.round(jt.ratio(),2),jt.w()/2,jt.h()/2+10,"black","center")
+jt.text("Width: "+jt.round(jt.w(),0),jt.w()/2,jt.h()/2+50,"black","center")
+jt.text("Height: "+jt.round(jt.h(),0),jt.w()/2,jt.h()/2+70,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get the width/height ratio of the canvas</li>
+					
+					
+					
+					<li class="name">
+						jt.setId(id)
+						<button class="editor__btn editor__add" value='
+//Hold Space to unselect this canvas
+if(jt.keyCheck("space")){
+    jt.setId("");
+}else{
+    jt.setId("can");
+}
+jt.fontSize(14);
+jt.text("This canvas is the one selected",jt.w()/2,5,"black","center");
+jt.text("Hold Space to unselect it",jt.w()/2,20,"black","center");'>Test in editor</button>
+					</li>
+					<li class="desc">Set the html id of the canvas used by JT (Default is "can")</li>
+					
+					
+					
+					
+					<li class="name">
+						jt.smoothing(boolean)
+						<button class="editor__btn editor__add" value='
+//Move with Left and Right
+if(this.smoothX===undefined){this.smoothX=jt.w()/2-25;}
+var walk=false;
+if(jt.keyCheck("left")){
+    this.smoothX-=2;
+    walk=true;
+}
+if(jt.keyCheck("right")){
+    this.smoothX+=2;
+    walk=!walk;
+}
+
+jt.smoothing(true);
+//draw image with smoothing on the left
+jt.image("idle",50,40,100,100)
+//draw image without smoothing on the right
+jt.smoothing(false)
+jt.image("idle",250,40,100,100)
+jt.line(jt.w()/2,30,jt.w()/2,jt.h(),2,"black")
+
+//animation
+if(this.smoothX+25<jt.w()/2){
+    jt.smoothing(true)
+}
+if(walk){
+    jt.anim("walk",this.smoothX,jt.h()-50,50,50)
+}else{
+    jt.image("idle",this.smoothX,jt.h()-50,50,50)
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Press Left and Right to walk",jt.w()/2,5,"black","center")
+jt.text("With smoothing",100,30,"black","center")
+jt.text("Without smoothing",300,30,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Smooth pixels in canvas (Default is false)</li>
+					
+					
+					
+					
+					<li class="name">
+						jt.border(boolean,x,y,color)
+						<button class="editor__btn editor__add" value='
+//Press Up and Down to change border size and Left and Right ro change color
+if(this.borderW===undefined){
+    this.borderW=5;
+    this.borderC=0;
+}
+if(jt.keyPress("up")){
+    this.borderW++;
+}
+if(jt.keyPress("down")){
+    this.borderW--;
+}
+if(jt.keyPress("right")){
+    this.borderC++;
+}
+if(jt.keyPress("left")){
+    this.borderC--;
+}
+var colors=["red","orange","yellow","lime","green","turquoise","blue","purple"]
+this.borderW=jt.stay(this.borderW,0,10)
+this.borderC=jt.wrapIndex(this.borderC,0,colors.length-1)
+
+jt.border(true,this.borderW*2,this.borderW,colors[this.borderC])
+
+//Show controls
+jt.fontSize(14);
+jt.text("Press Up and Down to change border size:",jt.w()/2,50,"black","center")
+jt.text("Border width: "+(this.borderW*2)+" | Border height: "+this.borderW,jt.w()/2,70,"black","center")
+jt.text("Press Left and Right to change border color",jt.w()/2,120,"black","center")
+jt.text("Border color: "+colors[this.borderC],jt.w()/2,140,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Turn on or off canvas border and choose width, height and color (the black outline doesn't count)</li>
+					
+					
+					
+					
+					<li class="name">
+						jt.fullscreen()
+						<button class="editor__btn editor__add" value='
+//fullscreen when pressing Space (this canvas is inside an element so it will not be "fullscreen")
+if(jt.keyCheck("space")){
+	jt.fullscreen()
+}else{
+    jt.resize(400,200);
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Hold Space to be in fullscreen",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Resize canvas to fit browser size</li>
+					
+					
+					
+					
+					<li class="name">
+						jt.revFullscreen()
+						<button class="editor__btn editor__add" value='
+//Reverse fullscreen when pressing Space (this canvas is inside an element so it will not be "fullscreen")
+if(jt.keyCheck("space")){
+	jt.revFullscreen()
+}else{
+    jt.resize(400,200);
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Hold Space to be in reverse fullscreen",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Resize canvas to fit reverse browser size (height is width and width is height)</li>
+					
+					
+					
+					
+					<li class="name">
+						jt.autoResize(boolean,w,h)
+						<button class="editor__btn editor__add" value='
+//Will autoResize once space is released
+if(this.autoResize===undefined){
+	this.autoResize=true;
+	jt.autoResize(true,200,100);
+}
+if(jt.keyCheck("space")){
+	jt.resize(400,200)
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Hold Space to resize",jt.w()/2,5,"black","center")
+jt.text("Release to go back to auto resizing",jt.w()/2,120,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Turn on or off resizing canvas each frame (Default is false)</li>
+					
+					
+					
+					
+					<li class="name">
+						jt.cursor(boolean)
+						<button class="editor__btn editor__add" value='
+//Click to show or hide the cursor, if it is hidden, show a red square
+if(this.cursorVisible===undefined){
+    this.cursorVisible=false;
+}
+if(jt.mousePress()){
+    this.cursorVisible=!this.cursorVisible;
+}
+jt.cursor(this.cursorVisible);
+if(!this.cursorVisible){
+    jt.rect(jt.mX(),jt.mY(),3,3,"red")
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Click to show or hide the cursor",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Show or hide the mouse cursor in the canvas (Default is true)</li>
+				</ul>
+				
+			</div>
+			<br>
+			<div class="anchor" id="loop"></div>
+			<div class="section">
+				<h2>Loop</h2>
+				<ul>
+				
+				
+				
+					<li class="name">
+							jt.alarm(name,time)
+							<button class="editor__btn editor__add" id="alarmVal" value='
+//Check if alarm exists and create if, if not
+if(!jt.isAlarm("red flash")){
+	jt.alarm("red flash",60);
+}
+
+//Check if alarm is done and if it is, delete it, start a new one and turn the background red
+if(jt.checkAlarm("red flash",false)){
+	jt.delAlarm("red flash");
+	jt.shake(10);
+	jt.alarm("red flash,60");
+	jt.bg("red")
+}
+
+//Show text
+jt.fontSize(14);
+jt.text("Flash and shakes every 60 frames",jt.w()/2,5,"black","center")
+var alarms=jt.alarms();
+jt.text("Alarms:",jt.w()/2,jt.h()/2,"black","center")
+for(var alarm in alarms){
+    if(alarms[alarm]!=undefined){
+        jt.text("-"+alarm+" "+alarms[alarm].time,jt.w()/2,120,"black","center")
+    }
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Add an alarm and how much time (in frames) until it's done</li>
+					
+					
+					
+					
+					<li class="name">
+							jt.checkAlarm(name,del)
+							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
+					</li>
+					<li class="desc">Check if an alarm is done and if you delete it</li>
+					
+					
+					
+					
+					<li class="name">
+							jt.delAlarm(name)
+							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
+					</li>
+					<li class="desc">Deletes an alarm</li>
+					
+					
+					
+					
+					<li class="name">
+							jt.isAlarm(name)
+							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
+					</li>
+					<li class="desc">Check if an alarm exists</li>
+										
+					
+					
+					<li class="name">
+							jt.alarms(alarms)
+							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the array of alarms</li>
+					
+					
+					
+					
+					<li class="name">
+							jt.shake(force,duration,reduce)
+							<button class="editor__btn editor__add" value='
+//Shake screen when clicking
+if(jt.mPress()){
+	jt.shake(10,10,1);
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Click anywhere to shake!",jt.w()/2,jt.h()/2-6,"black","center")
+jt.camActive(false);
+jt.text("The cam is not active on this text",jt.w()/2,jt.h()-50,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Shake the canvas (if the cam is active) with force, duration and how much it is reduced each frame</li>
+					
+					
+					
+					
+					<li class="name">
+							jt.combo(arrCombo,reset)<br>
+							jt.checkCombo(arrCombo,reset)
+							<button class="editor__btn editor__add" name="jt.combo(arrCombo,reset)" id="comboVal" value='
+//Create array of keys for the konami code
+var arrCombo=["up","up","down","down","left","right","left","right","b","a","space"];
+
+//Initialize the length and timer of the combo
+if(this.text==undefined){
+	this.text="Do the konami code quicly";
+	jt.comboLength(arrCombo.length);
+	jt.comboTimer(60);
+}
+
+//Reset the combo if Backspace is pressed
+if(jt.kPress("backspace")){
+	jt.resetCombo();
+	this.text="Do the konami code quicly";
+}
+
+//Check the combo
+if(jt.checkCombo(arrCombo,true)){
+	this.text="Konami code entered!"
+}
+
+//Draw text
+jt.fontSize(18);
+jt.text(this.text,jt.w()/2,jt.h()/4,"black","center");
+
+//Draw the current combo
+var comboString="";
+for(var i=0;i<jt.getCombo().length;i++){
+	comboString+=jt.keyName(jt.getCombo()[i])+" ";
+}
+jt.fontSize(10);
+jt.text("Code is: Up,Up,Down,Down,Left,Right,Left,Right,B,A,Space",jt.w()/2,jt.h()-35,"black","center")
+jt.text("Backspace to reset",jt.w()/2,jt.h()-15,"black","center")
+jt.text(comboString,jt.w()/2,jt.h()/4*3,"black","center");'>Test in editor</button>
+					</li>
+					<li class="desc">Check if a combination of keys has been pressed (keyboard only)</li>
+					
+					
+					
+					<li class="name">
+							jt.resetCombo()
+							<button class="editor__btn editor__add" valueId='comboVal'>Test in editor</button>
+					</li>
+					<li class="desc">Reset the current combination of keys pressed (keyboard only)</li>
+					
+					
+					
+					<li class="name">
+							jt.comboTimer(frames)
+							<button class="editor__btn editor__add" valueId='comboVal'>Test in editor</button>
+					</li>
+					<li class="desc">Set the max time allowed between each keys for a combo (keyboard only) (Default is 30 frames)</li>
+					
+					
+					
+					<li class="name">
+							jt.comboLength(len)
+							<button class="editor__btn editor__add" valueId='comboVal'>Test in editor</button>
+					</li>
+					<li class="desc">Set the max number of keys in a combo (keyboard only) (Default is 8)</li>
+					
+					
+					
+					<li class="name">
+							jt.getCombo(len)
+							<button class="editor__btn editor__add" valueId='comboVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get the current combo with a specified length (keyboard only) (Default is max length)</li>
+					
+					
+					
+					<li class="name">
+							jt.fps(fps)
+							<button class="editor__btn editor__add" value='
+//change fps from 15 to 60 with Space
+if(jt.keyPress("space")){
+	if(jt.fps()==15){
+		jt.fps(60)
+	}else{
+		jt.fps(15)
+	}
+}
+//Draw fps
+jt.fontSize(14);
+jt.text("Space to change: "+jt.fps()+" fps",jt.w()/2,jt.h()/4,"black","center")
+
+//Draw a moving square to showcase the fps
+jt.rect(jt.waveYPos()*(jt.w()-50),jt.h()/2,50,50,"green")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the current fps</li>
+					
+					
+					
+					<li class="name">
+							jt.frame(frame)<br>
+							jt.frames(frame)
+							<button class="editor__btn editor__add" name="jt.frame(frame)" value='
+//Click to pause for 2s
+if(jt.mousePress()){
+	jt.pauseJt(true);
+	setTimeout(function(){jt.pauseJt(false)},2000)
+}
+							
+//Draw the current frame
+jt.fontSize(14);
+jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
+jt.text("Current frame: "+jt.frame(),jt.w()/2,jt.h()/2-6,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the current frame</li>
+					
+					
+					
+					<li class="name">
+							jt.sec(sec)
+							<button class="editor__btn editor__add" value='
+//Click to pause for 2s
+if(jt.mousePress()){
+	jt.pauseJt(true);
+	setTimeout(function(){jt.pauseJt(false)},2000)
+}
+
+//Draw the current second
+jt.fontSize(14);
+jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
+jt.text("Seconds passed: "+jt.sec(),jt.w()/2,jt.h()/2-6,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the current second</li>
+					
+					
+					
+					
+					<li class="name">
+							jt.pauseJt(boolean)
+							<button class="editor__btn editor__add" value='
+//Pause with Space and unpause 1 second later (has to use setTimeout since JT is paused)
+if(jt.keyPress("space")){
+	jt.pauseJt(true);
+	setTimeout(function(){jt.pauseJt(false)},1000)
+}
+
+//Show current frame
+jt.fontSize(14);
+jt.text("Pause 1s with Space",jt.w()/2,5,"black","center")
+jt.text(jt.frame(),jt.w()/2,jt.h()/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Pause the update function of JT</li>
+					
+					
+					
+					<li class="name">
+							jt.stopJt(boolean)
+							<button class="editor__btn editor__add" value='
+//Stops with Space and unpause 1 second later (has to use setTimeout since JT is paused), but it will not work because it is stopped and now paused
+if(jt.keyPress("space")){
+	jt.stopJt(true);
+	setTimeout(function(){jt.stopJt(false)},1000)
+}
+
+//Show current frame
+jt.fontSize(14);
+jt.text("Stop with Space",jt.w()/2,5,"black","center")
+jt.text(jt.frame(),jt.w()/2,jt.h()/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Stops the update function of JT and cannot be started again</li>
+					
+					
+					
+					<li class="name">
+							jt.wavePi(num)<br>
+							jt.waveTau(num)
+							<button class="editor__btn editor__add" name="jt.wavePi(num)" value='
+//Click to pause for 2s
+if(jt.mousePress()){
+	jt.pauseJt(true);
+	setTimeout(function(){jt.pauseJt(false)},2000)
+}
+
+//Show wavePi rounded to 2 digits
+jt.fontSize(14);
+jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
+jt.text("jt.wavePi():",jt.w()/2,jt.h()/2-20,"black","center")
+jt.text(jt.round(jt.wavePi(),2),jt.w()/2,jt.h()/2,"black","center")
+
+//Draw a square moving to jt.wavePi() * 25
+jt.rect(jt.w()/2+jt.wavePi()*25,150,20,20,"blue")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the wavePi number, which goes from 0 to Math.PI*2</li>
+					
+					
+					
+					<li class="name">
+							jt.waveX(num)
+							<button class="editor__btn editor__add" value='
+//Click to pause for 2s
+if(jt.mousePress()){
+	jt.pauseJt(true);
+	setTimeout(function(){jt.pauseJt(false)},2000)
+}
+							
+//Show waveX rounded to 2 digits
+jt.fontSize(14);
+jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
+jt.text("jt.waveX():",jt.w()/2,jt.h()/2-20,"black","center")
+jt.text(jt.round(jt.waveX(),2),jt.w()/2,jt.h()/2,"black","center")
+
+//Draw a square moving to jt.waveX() * 50
+jt.rect(jt.w()/2+jt.waveX()*50,150,20,20,"blue")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the waveX number, which goes from 0 to 1 in 1 second</li>
+					
+					
+					
+					<li class="name">
+							jt.waveY(num)
+							<button class="editor__btn editor__add" value='
+//Click to pause for 2s
+if(jt.mousePress()){
+	jt.pauseJt(true);
+	setTimeout(function(){jt.pauseJt(false)},2000)
+}
+							
+//Show waveY rounded to 2 digits
+jt.fontSize(14);
+jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
+jt.text("jt.waveY():",jt.w()/2,jt.h()/2-20,"black","center")
+jt.text(jt.round(jt.waveY(),2),jt.w()/2,jt.h()/2,"black","center")
+
+//Draw a square moving to jt.waveY() * 50
+jt.rect(jt.w()/2+jt.waveY()*50,150,20,20,"blue")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the waveY number, which goes from -1 to 1 then back to -1 in 1 second</li>
+					
+					
+					
+					<li class="name">
+							jt.waveYPos(num)
+							<button class="editor__btn editor__add" value='
+//Click to pause for 2s
+if(jt.mousePress()){
+	jt.pauseJt(true);
+	setTimeout(function(){jt.pauseJt(false)},2000)
+}
+							
+//Show waveY rounded to 2 digits
+jt.fontSize(14);
+jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
+jt.text("jt.waveYPos():",jt.w()/2,jt.h()/2-20,"black","center")
+jt.text(jt.round(jt.waveYPos(),2),jt.w()/2,jt.h()/2,"black","center")
+
+//Draw a square moving to waveYPos() * 100
+jt.rect(jt.w()/2+jt.waveYPos()*100,150,20,20,"blue")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the waveY number, which goes from 0 to 1 then back to 0 in 1 second</li>
+					
+					
+					
+					<li class="name">
+							jt.debug(boolean)<br>
+							jt.debugging(boolean)
+							<button id="debugVal" name="jt.debug(boolean)" class="editor__btn editor__add" value='
+//Turn on or off the debug mode with Space
+if(jt.keyPress("space")){
+	if(jt.debug()){
+		jt.debug(false);
+	}else{
+		jt.debug(true);
+	}
+}
+
+//Add a purple square when clicking in debug
+if(jt.mouseCheck()){
+	jt.addDebug(jt.mX()-20,jt.mY()-20,40,40,"purple");
+}
+
+//Add debug once
+if(this.addedDebug==undefined){
+	this.addedDebug=true;
+	jt.addDebugStay("This is a debug text",jt.w()/2,jt.h()/2+40,"green","center");
+}
+
+//Pressing Backspace will remove all debug objects
+if(jt.keyPress("backspace")){
+	jt.clearDebugs();
+}
+
+//Show debug
+jt.fontSize(14);
+jt.text("Press Space to turn on or off the debug mode",jt.w()/2,5,"black","center")
+jt.text("When in debug, click to show a debug square",jt.w()/2,20,"black","center")
+jt.text("Debug: "+jt.debug(),jt.w()/2,jt.h()/2-6,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the debug mode, which shows debug objects to quickly help in development</li>
+					
+					
+					
+					<li class="name">
+							jt.addDebug(obj)<br>
+							jt.addDebug(x,y,w,h,color,rotation)<br>
+							jt.addDebug(text,x,y,color,textAlign,fontSize,rotation,maxChars,newLineHeight)
+							<button class="editor__btn editor__add" name="jt.addDebug(obj)" valueId="debugVal">Test in editor</button>
+					</li>
+					<li class="desc">Create a debug object for one frame</li>
+					
+					
+					
+					<li class="name">
+							jt.addDebugStay(obj)<br>
+							jt.addDebugStay(x,y,w,h,color,rotation)<br>
+							jt.addDebugStay(text,x,y,color,textAlign,fontSize,rotation,maxChars,newLineHeight)
+							<button class="editor__btn editor__add" name="jt.addDebugStay(obj)" valueId="debugVal">Test in editor</button>
+					</li>
+					<li class="desc">Create a debug object that stays until deleted</li>
+					
+					
+					
+					<li class="name">
+							jt.delDebug()<br>
+							jt.delDebugs()<br>
+							jt.clearDebug()<br>
+							jt.clearDebugs()
+							<button class="editor__btn editor__add" name="jt.delDebug()" valueId="debugVal">Test in editor</button>
+					</li>
+					<li class="desc">Remove all debug objects</li>
+					
+					
+					
+					<li class="name">
+							jt.debugs()
+							<button class="editor__btn editor__add" value='
+//Press Space to delete all debugs objects and reset
+if(jt.keyPress("space")){
+    jt.clearDebugs()
+}
+//Turn debug on
+jt.debug(true);
+
+//Add a debug each frame
+jt.addDebug(100,100,8,8,"red");
+
+//Get length and add a new debugStay each frame
+var len=jt.debugs().length;
+if(len<200){
+	jt.addDebugStay(100+(len%20)*10,jt.floor(len/20)*10+100,8,8,"blue");
+}else{
+	len--;
+}
+
+//Show how many debug objects are active
+jt.fontSize(14);
+jt.text("Press Space to reset",jt.w()/2,5,"black","center");
+jt.text("Number of debugs objects: "+jt.debugs().length,jt.w()/2,50,"black","center");'>Test in editor</button>
+					</li>
+					<li class="desc">Get all debug objects</li>
+					
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="assets"></div>
+			<div class="section">
+				<h2>Assets</h2>
+				<ul>
+				
+				
+				
+					<li class="name">
+						jt.newImage(src,name,x,y,visible)<br>
+						jt.loadImage(src,name,x,y,visible)
+						<button class="editor__btn editor__add" name="jt.newImage(src,name,x,y,visible)" value='
+//Should only be used right after initializing JT and not in the update function
+if(this.loadImage==undefined){
+	this.loadImage=true;
+	jt.newImage("assets/idle.png","idle",jt.w()/2,100,true);
+}
+
+//Draw the image
+jt.image("idle")
+jt.fontSize(14);
+jt.text("Creating a new image and drawing it",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Load image to be drawn later (x,y are optional starting coordinates)</li>
+					
+				
+				
+					<li class="name">
+						jt.newSound(src,name,repeat)<br>
+						jt.loadSound(src,name,repeat)
+						<button class="editor__btn editor__add" name="jt.newSound(src,name,repeat)" value='
+//Should only be used right after initializing JT and not in the update function
+if(this.loadSound==undefined){
+	this.loadSound=true;
+	jt.newSound("assets/jump.mp3","jump",false);
+}
+
+//Play the sound each second
+if(jt.frame()==59){
+	jt.play("jump");
+}
+jt.fontSize(14);
+jt.text("Creating a new sound and play it each second",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Load sound to be played later (repeat so that it will automatically loop)</li>
+					
+				
+				
+					<li class="name">
+						jt.newAnim(src,name,frames,speed,x,y,visible)<br>
+						jt.loadAnim(src,name,frames,speed,x,y,visible)
+						<button class="editor__btn editor__add" name="jt.newAnim(src,name,frames,speed,x,y,visible)" value='
+//Should only be used right after initializing JT and not in the update function
+if(this.loadAnim==undefined){
+	this.loadAnim=true;
+	jt.newAnim("assets/walk.png","walk",2,15,jt.w()/2,100,true);
+}
+
+//Draw the animation
+jt.anim("walk");
+jt.fontSize(14);
+jt.text("Creating a new animation and drawing it",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Load animation to be played later (animation is an image with all frames side by side, you need to specify the number of frames and the speed in fps)</li>
+					
+				
+				
+					<li class="name">
+						jt.images()
+						<button class="editor__btn editor__add" value='
+//Draw image
+jt.image("idle",160,10,80,80);
+
+//Show detail about the image "idle"
+var details=jt.images()["idle"];
+jt.fontSize(14);
+jt.text("Original width: "+details.w,jt.w()/2-100,100,"black","center")
+jt.text("Original height: "+details.h,jt.w()/2+100,100,"black","center")
+jt.fontSize(12);
+jt.text("Image source:",jt.w()/2,140,"black","center")
+jt.text(details.img.src,jt.w()/2,160,"black","center",12,0,70,10)'>Test in editor</button>
+					</li>
+					<li class="desc">Get all images loaded</li>
+					
+				
+				
+					<li class="name">
+						jt.sounds()
+						<button class="editor__btn editor__add" value='
+//Play sound each second
+if(jt.frame()==59){
+	jt.play("jump");
+}
+
+//Show detail about the sound "jump"
+var details=jt.sounds()["jump"];
+jt.fontSize(14);
+jt.text("Name: jump",jt.w()/2,20,"black","center")
+jt.text("Paused: "+details.paused,jt.w()/2,60,"black","center")
+jt.text("Current time: "+jt.round(details.currentTime,2),jt.w()/2,80,"black","center")
+jt.text("Duration: "+jt.round(details.duration,2),jt.w()/2,100,"black","center")
+jt.fontSize(12);
+jt.text("Sound source:",jt.w()/2,140,"black","center")
+jt.text(details.src,jt.w()/2,160,"black","center",12,0,70,10)'>Test in editor</button>
+					</li>
+					<li class="desc">Get all sounds loaded</li>
+					
+				
+				
+					<li class="name">
+						jt.anims()
+						<button class="editor__btn editor__add" value='
+//Press Space to play/pause the animation
+if(jt.keyPress("space")){
+    if(jt.animPaused("walk")){
+        jt.animPlay("walk")
+    }else{
+        jt.animPause("walk")
+    }
+}
+//Draw animation
+jt.anim("walk",160,40,80,80);
+
+//Show detail about the animation "walk"
+var details=jt.anims()["walk"];
+jt.fontSize(14);
+jt.text("Press Space to pause/play the animation",jt.w()/2,5,"black","center")
+jt.text("Paused: "+details.pause,jt.w()/2,130,"black","center")
+jt.text("Frames: "+details.frames,jt.w()/2-120,130,"black","center")
+jt.text("Fps: "+(details.speed*jt.fps()),jt.w()/2+120,130,"black","center")
+jt.fontSize(12);
+jt.text("Image source:",jt.w()/2,155,"black","center")
+jt.text(details.img.src,jt.w()/2,170,"black","center",12,0,70,10)'>Test in editor</button>
+					</li>
+					<li class="desc">Get all animations loaded</li>
+				
+				
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="sound"></div>
+			<div class="section">
+				<h2>Sound</h2>
+				<ul>
+				
+				
+				
+				<li class="name">
+						jt.volume(volume)
+						<button class="editor__btn editor__add" value='
+//Pressing Up and Down will increase and decrease the volume
+var volume=jt.volume();
+if(jt.keyPress("up")){
+	volume+=0.1;
+}else if(jt.keyPress("down")){
+	volume-=0.1;
+}
+volume=jt.stay(volume,0,1);
+jt.volume(volume);
+
+//Play a sound each second
+if(jt.frame()==59){
+	jt.play("jump");
+}
+
+//Show volume
+jt.fontSize(14);
+jt.text("Press Up and Down to control the volume",jt.w()/2,5,"black","center")
+jt.text("Volume: "+jt.round(jt.volume(),1),jt.w()/2,jt.h()/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the volume (from 0 to 1)</li>
+					
+					
+					
+					<li class="name">
+						jt.mute(boolean)
+						<button class="editor__btn editor__add" value='
+//Pressing M will mute or unmute
+if(jt.keyPress("m")){
+	if(jt.mute()){
+		jt.mute(false);
+	}else{
+		jt.mute(true);
+	}
+}
+//Play a sound each second
+if(jt.frame()==59){
+	jt.play("jump");
+}
+
+//Show if muted or note
+jt.fontSize(14);
+jt.text("Press M to mute or unmute",jt.w()/2,5,"black","center")
+jt.text("Mute: "+jt.mute(),jt.w()/2,jt.h()/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the volume (from 0 to 1)</li>
+					
+					
+					
+					<li class="name">
+						jt.play(name)<br>
+						jt.sound(name)
+						<button class="editor__btn editor__add" id="playVal" name="jt.play(name)" value='
+//Pressing R will set the sound to repeat or stop repeating
+if(jt.keyPress("r")){
+	if(jt.repeat("jump")){
+		jt.repeat("jump",false)
+	}else{
+		jt.repeat("jump",true)
+	}
+}
+						
+//Pressing P will play or pause
+if(jt.keyPress("p")){
+	if(jt.sounds()["jump"].paused){
+		jt.play("jump");
+	}else{
+		jt.pause("jump")
+	}
+}
+
+//Pressing Backspace will stop
+if(jt.keyPress("backspace")){
+	jt.stop("jump");
+}
+
+//Pressing Space will stop then play
+if(jt.keyPress("space")){
+	jt.stopPlay("jump");
+}
+
+//Show contols
+jt.fontSize(14);
+jt.text("Paused: "+jt.sounds()["jump"].paused,jt.w()/2,10,"black","center")
+jt.text("Repeat: "+jt.repeat("jump"),jt.w()/2,40,"black","center")
+jt.fontSize(12);
+jt.text("P to Play/Pause",jt.w()/2,120,"black","center")
+jt.text("R to Repeat",jt.w()/2,140,"black","center")
+jt.text("Backspace to Stop",jt.w()/2,160,"black","center")
+jt.text("Space to Stop then Play",jt.w()/2,180,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Play a sound from it's current time</li>
+					
+					
+					
+					<li class="name">
+						jt.pause(name)
+						<button class="editor__btn editor__add" valueId='playVal'>Test in editor</button>
+					</li>
+					<li class="desc">Pause a sound</li>
+					
+					
+					
+					<li class="name">
+						jt.stop(name)
+						<button class="editor__btn editor__add" valueId='playVal'>Test in editor</button>
+					</li>
+					<li class="desc">Pause a sound and set it's current time at 0</li>
+					
+					
+					
+					<li class="name">
+						jt.stopPlay(name)
+						<button class="editor__btn editor__add" valueId='playVal'>Test in editor</button>
+					</li>
+					<li class="desc">Pause a sound and set it's current time at 0 then play it (Best way to ensure a sound will be played from the start)</li>
+					
+					
+					
+					<li class="name">
+						jt.repeat(name,bool)
+						<button class="editor__btn editor__add" valueId='playVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set a sound to repeat</li>
+					
+					
+					
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="draw"></div>
+			<div class="section">
+				<h2>Draw</h2>
+				<h3>When drawing shapes, the x and y coordinates are always for the upper left corner</h3>
+				<br>
+				<ul>
+				
+				
+				
+					<li class="name">
+						jt.cam()
+						<button class="editor__btn editor__add" id="camVal" value='
+//Use the Arrow Keys or WASD to move the camera
+if(jt.keyCheck("up") || jt.keyCheck("w")){
+	jt.cam().y--;
+}
+if(jt.keyCheck("down") || jt.keyCheck("s")){
+	jt.cam().y++;
+}
+if(jt.keyCheck("left") || jt.keyCheck("a")){
+	jt.cam().x--;
+}
+if(jt.keyCheck("right") || jt.keyCheck("d")){
+	jt.cam().x++;
+}
+
+//Press Q to dezoom and E to zoom (using jt.ratio() so the canvas keeps the widht/height ratio)
+if(jt.kCheck("q")){
+	jt.cam().x--;
+	jt.cam().y-=1/jt.ratio();
+	jt.cam().w+=2;
+	jt.cam().h+=2/jt.ratio();
+}
+if(jt.kCheck("e")){
+	jt.cam().x++;
+	jt.cam().y+=1/jt.ratio();
+	jt.cam().w-=2;
+	jt.cam().h-=2/jt.ratio();
+}
+
+//Press Space to reset
+if(jt.kCheck("space")){
+	jt.camReset()
+}
+jt.camActive(true)
+
+//Draw image and red border
+jt.image("idle",150,50,100,100);
+jt.rectB(1,1,jt.w()-2,jt.h()-2,"red")
+
+//Show controls
+jt.camActive(false)
+jt.fontSize(12);
+jt.text("Use the Arrow Keys or WASD to move the camera",jt.w()/2,5,"black","center")
+jt.text("Press Q to dezoom and E to zoom",jt.w()/2,25,"black","center")
+jt.text("Press Space to reset",jt.w()/2,45,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the virtual camera x,y,w and h</li>
+					
+					
+					
+					<li class="name">
+						jt.camReset()<br>
+						jt.camDefault()
+						<button class="editor__btn editor__add" name="camReset()" valueId='camVal'>Test in editor</button>
+					</li>
+					<li class="desc">Reset the virtual camera</li>
+				
+				
+				
+					<li class="name">
+						jt.camActive(boolean)
+						<button class="editor__btn editor__add" id='camActive' value='
+//Holding Space will turn on or off the virtual camera
+var cornerX1=jt.w()-10;
+var cornerY1=0;
+var cornerX2=jt.w();
+var cornerY2=10;
+var cornerCamX=jt.xCam(cornerX1);
+var cornerCamY=jt.yCam(cornerY1);
+if(jt.keyCheck("space")){
+	jt.camActive(true);
+	cornerX1=jt.camX(cornerX1)
+	cornerY1=jt.camY(cornerY1)
+	cornerX2=jt.camX(cornerX2)
+	cornerY2=jt.camY(cornerY2)
+	cornerCamX=jt.xCam(cornerX1);
+    cornerCamY=jt.yCam(cornerY1);
+}
+jt.cam().x=-100;
+jt.cam().y=-200;
+jt.cam().w=800;
+jt.cam().h=400;
+
+//Draw image
+jt.image("idle",150,50,100,100);
+jt.rectB(1,1,jt.w()-2,jt.h()-2,"red")
+
+//Draw corner
+var cam=jt.camActive();
+jt.camActive(false)
+jt.rect(cornerX1,cornerY1,cornerX2-cornerX1,cornerY2-cornerY1,"blue")
+
+//Show controls
+jt.fontSize(12);
+jt.text("Camera Active: "+cam,jt.w()/2,5,"black","center")
+jt.text("Hold Space to turn it on",jt.w()/2,25,"black","center")
+jt.text("Blue corner to non camera:  X: "+cornerX1+" | Y: "+cornerY1,5,175,"black","left")
+jt.text("Blue corner to camera: X: "+cornerCamX+" | Y: "+cornerCamY,5,185,"black","left")
+jt.text("Mouse X and Y",jt.w()-5,jt.h()-30,"black","right")
+jt.text("X: "+jt.mX()+"|Y: "+jt.mY(),jt.w()-5,jt.h()-15,"black","right")'>Test in editor</button>
+					</li>
+					<li class="desc">Turn on or off the virtual camera</li>
+									
+				
+				
+					<li class="name">
+						jt.camX(x)
+						<button class="editor__btn editor__add" valueId='camActive'>Test in editor</button>
+					</li>
+					<li class="desc">Get the camera horizontal value of a non-camera horizontal value</li>
+														
+				
+				
+					<li class="name">
+						jt.camY(y)
+						<button class="editor__btn editor__add" valueId='camActive'>Test in editor</button>
+					</li>
+					<li class="desc">Get the camera vertical value of a non-camera vertical value</li>
+														
+				
+				
+					<li class="name">
+						jt.xCam(x)
+						<button class="editor__btn editor__add" valueId='camActive'>Test in editor</button>
+					</li>
+					<li class="desc">Get the non-camera horizontal value of a camera horizontal value</li>
+														
+				
+				
+					<li class="name">
+						jt.yCam(y)
+						<button class="editor__btn editor__add" valueId='camActive'>Test in editor</button>
+					</li>
+					<li class="desc">Get the non-camera vertical value of a camera vertical value</li>
+					
+					
+					
+					<li class="name">
+						jt.alpha(alpha)
+						<button class="editor__btn editor__add" value='
+//Pressing Up and Down to increase and decrease the alpha
+if(this.alpha==undefined){this.alpha=0.5;}
+if(jt.keyPress("up")){
+	this.alpha+=0.1;
+}else if(jt.keyPress("down")){
+	this.alpha-=0.1;
+}
+this.alpha=jt.stay(jt.round(this.alpha,1),0,1);
+
+//Draw image with alpha
+jt.alpha(this.alpha);
+jt.image("idle",150,50,100,100);
+
+//Show alpha value and controls
+jt.alpha(1)
+jt.fontSize(12);
+jt.text("Alpha: "+this.alpha,jt.w()/2,5,"black","center")
+jt.text("Press Up and Down to conrol the alpha",jt.w()/2,25,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the canvas alpha (transparency from 0 to 1)</li>
+					
+					
+					
+					<li class="name">
+						jt.bg(color)<br>
+						jt.background(color)
+						<button class="editor__btn editor__add" name="jt.bg(color)" value='
+//Pressing Left and Right to change the color
+var colors=["red","orange","yellow","lime","green","turquoise","blue","purple"]
+if(this.colorIndex==undefined){this.colorIndex=0;}
+if(jt.keyPress("left")){
+	this.colorIndex--;
+}else if(jt.keyPress("right")){
+	this.colorIndex++;
+}
+this.colorIndex=jt.wrapIndex(this.colorIndex,0,colors.length-1);
+
+//Draw background
+jt.bg(colors[this.colorIndex])
+
+//Show controls
+jt.fontSize(12);
+jt.rect(50,0,jt.w()-100,45,[255,255,255,0.5]);
+jt.text("Color: "+colors[this.colorIndex],jt.w()/2,5,"black","center")
+jt.text("Press Left and Right to change the color",jt.w()/2,25,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Draw a background color</li>
+					
+					
+					
+					<li class="name">
+						jt.shape(obj)
+						<button class="editor__btn editor__add" value='
+//Creating a rotating red square
+var square={
+	x:50,
+	y:75,
+	w:50,
+	h:50,
+	c:"red",
+	r:jt.waveX()*360,
+	o:5,
+}
+
+//Creating a pulsating yellow circle
+var circle={
+	x:150-jt.waveYPos()*25,
+	y:75-jt.waveYPos()*25,
+	d:50+jt.waveYPos()*50,
+	c:[227,227,0],
+}
+
+//Creating a moving green line (almost looks like a rotating 3d stick)
+var line={
+	x1:250+jt.waveYPos()*100,
+	y1:75,
+	x2:350-jt.waveYPos()*100,
+	y2:125,
+	w:5,
+	c:"green",
+}
+
+
+var lineMouse={
+	x1:jt.w()/2,
+	y1:jt.h()-10,
+	x2:jt.mX(),
+	y2:jt.mY(),
+	w:3,
+	c:"blue",
+}
+
+//Draw the shapes
+jt.shape(square)
+jt.shape(circle)
+jt.shape(line)
+jt.shape(lineMouse)
+
+//Show controls
+jt.fontSize(14);
+jt.text("The blue line will draw towards the mouse",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Draw a shape based on an object</li>
+										
+					
+					
+					<li class="name">
+						jt.point(x,y,color,rotation)
+						<button class="editor__btn editor__add" value='
+//Create black points with the mouse and delete them with space
+if(this.points===undefined){this.points=[];}
+this.points.push({x:jt.mCX()-0.5,y:jt.mCY()-0.5,c:"black"})
+if(this.points.length>600){this.points.splice(0,1);}
+
+if(jt.keyCheck("space")){
+    this.points=[];
+}
+
+//Zoom to see the points
+jt.camActive(true)
+jt.cam().w=40;
+jt.cam().h=20;
+jt.cam().x=180;
+jt.cam().y=90;
+
+//Draw the black points
+for(var i=0;i<this.points.length;i++){
+    var point=this.points[i];
+    jt.point(point.x,point.y,point.c)
+}
+
+//Draw a regular red point, a moving blue point and a rotating green point
+jt.point(jt.w()/2-0.5-15,jt.h()/2-0.5,"red");
+jt.point(jt.w()/2-0.5,jt.h()/2-0.5+jt.waveY()*3,"green");
+jt.point(jt.w()/2-0.5+15,jt.h()/2-0.5,"blue",jt.waveX()*360);
+
+//draw points
+
+//Show controls without the camera zoom
+jt.camActive(false)
+jt.fontSize(14);
+jt.text("The camera is zoomed to better see the points",jt.w()/2,5,"black","center")
+jt.text("Move the mouse around to draw black points",jt.w()/2,25,"black","center")
+jt.text("Press Space to delete all black points",jt.w()/2,45,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Draw a point (1px wide and 1px tall)</li>
+					
+					
+					
+					<li class="name">
+						jt.rect(x,y,w,h,color,rotation)<br>
+						jt.rectB(x,y,w,h,color,rotation,lineW)
+						<button class="editor__btn editor__add" name="jt.rect(x,y,w,h,color,rotation)" value='
+//Draw both types of rectangle separately
+jt.rect(50,75,50,50,"red",30);
+jt.rectB(175,75,50,50,"black",30,5);
+
+//Draw both types of rectangle together
+jt.rect(300,75,50,50,"red",30);
+jt.rectB(300,75,50,50,"black",30,5);
+
+//draw rotating rectangle
+var angle=jt.angleP(jt.w()/2,165,jt.mX(),jt.mY())
+jt.rect(jt.w()/2-25,140,50,50,"blue",angle);
+
+//show controls
+jt.fontSize(14);
+jt.text("Blue rectangle will face towards the mouse",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Draw a rectangle (or it's outline with rectB)</li>
+					
+					
+					
+					<li class="name">
+						jt.circle(x,y,diameter,color)<br>
+						jt.circleB(x,y,diameter,color,lineW)
+						<button class="editor__btn editor__add" name="jt.circle(x,y,diameter,color)" value='
+//Draw both types of circle separately
+jt.circle(50,75,50,[227,227,0]);
+jt.circleB(175,75,50,"black",5);
+
+//Draw both types of circle together
+jt.circle(300,75,50,[227,227,0]);
+jt.circleB(300,75,50,"black",5);
+
+//Draw circle a mouse position
+jt.circle(jt.mX()-25,jt.mY()-25,50,"blue");
+
+//Show controls
+jt.fontSize(14);
+jt.text("The blue circle will be drawn at the mouse",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Draw a circle (or it's outline with circleB)</li>
+					
+					
+					
+					<li class="name">
+						jt.ellipse(x,y,diameterX,diameterY,color,rotation)<br>
+						jt.ellipseB(x,y,diameterX,diameterY,color,rotation,lineW)
+						<button class="editor__btn editor__add" name="jt.ellipse(x,y,diameterX,diameterY,color,rotation)" value='
+//Draw both types of ellipse separately
+jt.ellipse(25,75,100,50,"green",45);
+jt.ellipseB(150,75,100,50,"black",45,5);
+
+//Draw both types of ellipse together
+jt.ellipse(275,75,100,50,"green",45);
+jt.ellipseB(275,75,100,50,"black",45,5);
+
+//Draw ellipse a mouse position
+jt.ellipse(jt.mX()-10,jt.mY()-20,20,40,"blue");
+
+//Show controls
+jt.fontSize(14);
+jt.text("The blue ellipse will be drawn at the mouse",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Draw an ellipse (or it's outline with ellipseB)</li>
+					
+					
+					
+					<li class="name">
+						jt.line(x1,y1,x2,y2,width,color,rotation)
+						<button class="editor__btn editor__add" value='
+jt.line(50,75,100,125,5,"red");
+jt.line(175,75,225,125,5,"orange",jt.waveYPos()*90);
+jt.line(275,75,325,125,5,[227,227,0],jt.waveX()*360);
+
+//Draw rotating line
+var angle=jt.angleP(jt.w()/2,160,jt.mX(),jt.mY())
+jt.line(jt.w()/2-20,160,jt.w()/2+20,160,3,"blue",angle);
+
+//Show controls
+jt.fontSize(14);
+jt.text("The blue line will face towards the mouse",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Draw a line</li>
+					
+					
+					
+					<li class="name">
+						jt.font(fontName,fontSize,color)<br>
+						jt.fontName(name)<br>
+						jt.fontSize(size)
+						<button class="editor__btn editor__add" name="jt.font(fontName,fontSize,color)" value='
+//Press Up and Down to change font size
+var fontSize=jt.fontSize()
+if(jt.keyPress("up")){
+	fontSize++;
+}
+if(jt.keyPress("down")){
+	fontSize--;
+}
+fontSize=jt.stay(fontSize,1,50);
+
+//Show font size
+jt.resize(600,200,true);
+jt.font("Consolas",fontSize);
+jt.text("Up and Down to set size",jt.w()/2,20-fontSize/2,"black","center")
+jt.text("Font size: "+fontSize,jt.w()/2,jt.h()/2-fontSize/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Set the font name and font size (color is optional)</li>
+					
+					
+					
+					<li class="name">
+						jt.text(text,x,y,color,textAlign,fontSize,rotation,maxChars,newLineHeight)<br>
+						jt.textB(text,x,y,color,textAlign,fontSize,rotation,lineW,maxChars,newLineHeight)
+						<button class="editor__btn editor__add" id="textVal" name="jt.text(text,x,y,color,textAlign,fontSize,rotation,maxChars,newLineHeight)" value='
+//Loop through all letters to write
+if(this.longText==undefined){this.longText="Press letters to write here! "}
+var alphabet=["-",",",".","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+if(this.longText.length<150){
+	for(var i=0;i<alphabet.length;i++){
+		var letter=alphabet[i];
+		if(jt.keyPress(letter)){
+			if(jt.keyCheck("shift") && letter!="-" && letter!="," && letter!="."){
+				this.longText+=letter.toUpperCase();
+			}else{
+				this.longText+=letter;
+			}
+		}
+	}
+}
+
+//Special characters
+if(jt.keyPress("space")){
+	this.longText+=" ";
+}
+
+//Erase characters
+if(jt.keyCheck("backspace")){
+	if(this.longText.length>0){
+	    if(jt.keyPress("backspace")){
+		    this.longText=this.longText.slice(0,-1);
+	    }else if(jt.checkAlarm("erase",false)){
+	        this.longText=this.longText.slice(0,-1);
+	        jt.delAlarm("erase");
+	        jt.alarm("erase",3);
+	    }else if(!jt.isAlarm("erase")){
+	        jt.alarm("erase",15);
+	    }
+	}
+}else{
+    jt.delAlarm("erase");
+}
+
+//Erase all
+if(jt.keyPress("enter")){
+	this.longText="";
+}
+
+//Show text and set maximum characters with jt.textW() and jt.textH()
+jt.font("Consolas",18);
+var maxChars=jt.floor((jt.w()-10)/jt.textW("a"));
+var newLineHeight=jt.textH("a")+2;
+jt.text(this.longText,5,5,"black","left",jt.fontSize(),0,maxChars,newLineHeight);
+jt.line(0,jt.h()/2-2,jt.w(),jt.h()/2-2,2,"black");
+jt.textB(this.longText,5,jt.h()/2,"red","left",jt.fontSize(),0,2,maxChars,newLineHeight);
+jt.text(this.longText,5,jt.h()/2,"black","left",jt.fontSize(),0,maxChars,newLineHeight);'>Test in editor</button>
+					</li>
+					<li class="desc">Draw text (all parameters from textAlign are optional, maxChars and newLineHeight are for autoformatting long text)</li>
+					
+					
+					
+					<li class="name">
+						jt.textW(text)
+						<button class="editor__btn editor__add" valueId='textVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get width of text (by default will pass "a")</li>
+					
+					
+					
+					<li class="name">
+						jt.textH()
+						<button class="editor__btn editor__add" valueId='textVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get height of text (it will return font size which is the same)</li>
+					
+					
+					
+					<li class="name">
+						jt.align(align)
+						<button class="editor__btn editor__add" id="alignVal" value='
+//Press Left and Right to change alignment of text, press Up and Down to change text baseLine
+var aligns=["right","center","left"];
+var baseLines=["bottom","alphabetic","middle","hanging","top"];
+if(this.align==undefined){this.align=1};
+if(this.baseLine==undefined){this.baseLine=4};
+if(jt.keyPress("left")){
+	this.align--;
+}
+if(jt.keyPress("right")){
+	this.align++;
+}
+if(jt.keyPress("up")){
+	this.baseLine--;
+}
+if(jt.keyPress("down")){
+	this.baseLine++;
+}
+this.align=jt.stay(this.align,0,aligns.length-1);
+this.baseLine=jt.stay(this.baseLine,0,baseLines.length-1);
+jt.align(aligns[this.align]);
+jt.baseLine(baseLines[this.baseLine]);
+
+//Show text and controls
+jt.resize(600,200,true);
+jt.font("Consolas",14);
+jt.line(0,100,jt.w(),100,1,"red");
+jt.line(jt.w()/2,80,jt.w()/2,120,1,"red");
+jt.text("Align: "+aligns[this.align]+" / BaseLine: "+baseLines[this.baseLine],jt.w()/2,100,"black");
+jt.baseLine("top")
+jt.text("Press Left and Right to change alignment of text",jt.w()/2,160,"black","center");
+jt.text("Press Up and Down to change text baseLine",jt.w()/2,180,"black","center");'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set text alignment</li>
+					
+					
+					
+					<li class="name">
+						jt.baseLine(baseLine)<br>
+						jt.baseline(baseLine)
+						<button class="editor__btn editor__add" name="jt.baseLine(baseLine)" valueId='alignVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set text baseLine</li>
+					
+					
+					
+					<li class="name">
+						jt.image(name,x,y,w,h,rotation,sX,sY,sW,sH)
+						<button class="editor__btn editor__add" value='
+//Press the Arrow Keys to move the image
+if(this.imageX==undefined){this.imageX=50};
+if(this.imageY==undefined){this.imageY=50};
+if(jt.keyCheck("left")){
+	this.imageX--;
+}
+if(jt.keyCheck("right")){
+	this.imageX++;
+}
+if(jt.keyCheck("up")){
+	this.imageY--;
+}
+if(jt.keyCheck("down")){
+	this.imageY++;
+}
+
+//Draw both halves of the image and a rotating larger image
+jt.image("idle",this.imageX,this.imageY,50,100,0,0,0,4,8);
+jt.image("idle",100,50,50,100,0,4,0,4,8);
+jt.image("idle",250,75,100,50,jt.waveX()*360);
+
+//Show controls
+jt.font("Consolas",18);
+jt.text("Press the Arrow Keys to move the image",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set text alignment</li>
+					
+					
+					
+					<li class="name">
+						jt.anim(name,x,y,w,h,rotation)
+						<button class="editor__btn editor__add" id="animVal" value='
+//Press Space to play/pause the animation
+if(jt.keyPress("space")){
+	if(jt.animPaused("walk")){
+		jt.animPlay("walk");
+	}else{
+		jt.animPause("walk");
+	}
+}
+
+//Press Backspace to stop the animation
+if(jt.keyPress("backspace")){
+	jt.animStop("walk");
+}
+
+//Press Left and Right to change the frame with jt.frame() and jt.frames()
+var frame=jt.animFrame("walk");
+if(jt.keyPress("left")){
+	frame--;
+}
+if(jt.keyPress("right")){
+	frame++;
+}
+frame=jt.stay(frame,0,jt.animFrames("walk")-1);
+jt.animFrame("walk",frame);
+
+//Press Up and Down to increase and decrease the speed with jt.speed()
+var speed=jt.animSpeed("walk");
+if(jt.keyPress("up")){
+	speed++;
+}
+if(jt.keyPress("down")){
+	speed--;
+}
+speed=jt.stay(speed,0,60);
+jt.animSpeed("walk",speed);
+
+//Draw animation
+jt.anim("walk",150,10,100,100);
+
+//Show controls and information
+jt.font("Consolas",14);
+jt.text("Paused: "+jt.animPaused("walk")+" / Frame: "+jt.animFrame("walk")+" / Speed: "+jt.round(jt.animSpeed("walk"),2),jt.w()/2,jt.h()-80,"black","center");
+jt.text("Press Space to play/pause and Backspace to stop",jt.w()/2,jt.h()-60,"black","center");
+jt.text("Press Left and Right to change the current frame",jt.w()/2,jt.h()-40,"black","center");
+jt.text("Press Up and Down to change the speed",jt.w()/2,jt.h()-20,"black","center");'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set text alignment</li>
+					
+					
+					
+					<li class="name">
+						jt.animPlay(name)
+						<button class="editor__btn editor__add" valueId='animVal'>Test in editor</button>
+					</li>
+					<li class="desc">Play an animation (unpause it)</li>
+					
+					
+					
+					<li class="name">
+						jt.animPause(name)
+						<button class="editor__btn editor__add" valueId='animVal'>Test in editor</button>
+					</li>
+					<li class="desc">Pause an animation (pause it)</li>
+					
+					
+					
+					<li class="name">
+						jt.animStop(name)
+						<button class="editor__btn editor__add" valueId='animVal'>Test in editor</button>
+					</li>
+					<li class="desc">Stop an animation (pause it and start it back)</li>
+					
+					
+					
+					<li class="name">
+						jt.animStopPlay(name)
+						<button class="editor__btn editor__add" value='
+//Press Backspace to stopPlay the animation
+if(jt.keyPress("backspace")){
+	jt.animStopPlay("walk");
+}
+
+//Press Left and Right to change the frame with jt.frame() and jt.frames()
+var frame=jt.animFrame("walk");
+if(jt.keyPress("left")){
+	frame--;
+}
+if(jt.keyPress("right")){
+	frame++;
+}
+frame=jt.stay(frame,0,jt.animFrames("walk")-1);
+jt.animFrame("walk",frame);
+
+//Press Up and Down to increase and decrease the speed with jt.speed()
+var speed=jt.animSpeed("walk");
+if(jt.keyPress("up")){
+	speed++;
+}
+if(jt.keyPress("down")){
+	speed--;
+}
+speed=jt.stay(speed,0,60);
+jt.animSpeed("walk",speed);
+
+//Draw animation
+jt.anim("walk",150,10,100,100);
+
+//Show controls and information
+jt.font("Consolas",14);
+jt.text("Paused: "+jt.animPaused("walk")+" / Frame: "+jt.animFrame("walk")+" / Speed: "+jt.round(jt.animSpeed("walk"),2),jt.w()/2,jt.h()-80,"black","center");
+jt.text("Press Bckspace to stop then play it",jt.w()/2,jt.h()-60,"black","center");
+jt.text("Press Left and Right to change the current frame",jt.w()/2,jt.h()-40,"black","center");
+jt.text("Press Up and Down to change the speed",jt.w()/2,jt.h()-20,"black","center");'>Test in editor</button>
+					</li>
+					<li class="desc">Stop an animation then play it (pause it and start it back then play it, effectively restarting it)</li>
+					
+					
+					
+					<li class="name">
+						jt.animPaused(name)
+						<button class="editor__btn editor__add" valueId='animVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get animation pause status as a boolean</li>
+										
+					
+					
+					<li class="name">
+						jt.animFrame(name,frame)
+						<button class="editor__btn editor__add" valueId='animVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the current animation frame</li>
+					
+					
+					
+					<li class="name">
+						jt.animFrames(name)
+						<button class="editor__btn editor__add" valueId='animVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get total number of animation frames</li>
+					
+					
+					
+					<li class="name">
+						jt.animSpeed(name,speed)
+						<button class="editor__btn editor__add" valueId='animVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the current animation speed</li>
+					
+					
+					
+					<li class="name">
+						jt.color(col,type)
+						<button class="editor__btn editor__add" value='
+//Use the Arrow Keys to change the RGB value
+if(this.rgb==undefined){this.rgb=[127,127,127];}
+if(this.cursor==undefined){this.cursor=0;}
+if(jt.keyPress("up")){
+	this.cursor--;
+}
+if(jt.keyPress("down")){
+	this.cursor++;
+}
+if(jt.keyCheck("left")){
+	this.rgb[this.cursor]-=2;
+	if(this.rgb[this.cursor]<0){this.rgb[this.cursor]=0;}
+}
+if(jt.keyCheck("right")){
+	this.rgb[this.cursor]+=2;
+	if(this.rgb[this.cursor]>255){this.rgb[this.cursor]=255;}
+}
+this.cursor=jt.stay(this.cursor,0,2);
+
+//Draw colored background, white background and cursor
+jt.bg([this.rgb[0],this.rgb[1],this.rgb[2]])
+jt.rect(40,40,jt.w()-80,jt.h()-80,"white")
+jt.rect(55,102+this.cursor*20,10,10,"black");
+
+//Draw RGB sliders
+jt.fontSize(18);
+jt.text("R: "+this.rgb[0]+"/255",75,100,"red","left");
+jt.rect(180,106,150,4,"black")
+jt.rect(this.rgb[0]/255*150+180-6,102,12,12,"red")
+jt.text("G: "+this.rgb[1]+"/255",75,120,"green","left");
+jt.rect(180,126,150,4,"black")
+jt.rect(this.rgb[1]/255*150+180-6,122,12,12,"green")
+jt.text("B: "+this.rgb[2]+"/255",75,140,"blue","left");
+jt.rect(180,146,150,4,"black")
+jt.rect(this.rgb[2]/255*150+180-6,142,12,12,"blue")
+
+//Draw controls
+jt.fontSize(14);
+jt.text("Press Up and Down to move cursor",jt.w()/2,50,"black","center")
+jt.text("Press Left and Right to move sliders",jt.w()/2,70,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set the default color (type is optional but will specify fill or stroke style, stroke being for outline)</li>
+					
+					
+					
+					<li class="name">
+						jt.scale(scaleX,scaleY,x,y,w,h)
+						<button class="editor__btn editor__add" value='
+//Use Left and Right to move
+if(this.triangleX==undefined){this.triangleX=jt.w()/2}
+if(this.triangleDir==undefined){this.triangleDir=1}
+if(jt.keyCheck("left")){
+	this.triangleX-=2
+	this.triangleDir=-1;
+}
+if(jt.keyCheck("right")){
+	this.triangleX+=2;
+	this.triangleDir=1;
+}
+this.triangleX=jt.stay(this.triangleX,0,jt.w()-80);
+
+//Draw controls
+jt.fontSize(14);
+jt.text("Use jt.scale() to flip images or change sizes",jt.w()/2,20,"black","center");
+jt.text("Press Left and Right to move the triangle",jt.w()/2,40,"black","center");
+
+//Draw triangles
+jt.scale(this.triangleDir,1,this.triangleX,jt.h()/2-10,80,80);
+jt.image("triangle",this.triangleX,jt.h()/2-10,80,80);
+jt.scale(this.triangleDir,1,this.triangleX,jt.h()/2-10,80,80);'>Test in editor</button>
+					</li>
+					<li class="desc">Scale the entire canvas from a specific point (it's important to scale the opposite after so it doesn't keep spinning)</li>
+					
+					
+					
+					<li class="name">
+						jt.rotate(rotation,x,y,w,h)
+						<button class="editor__btn editor__add" value='
+//Use Left and Right to rotate the screen
+if(this.triangleR==undefined){this.triangleR=0}
+if(jt.keyCheck("left")){
+	this.triangleR-=2;
+}
+if(jt.keyCheck("right")){
+	this.triangleR+=2;
+}
+this.triangleR=jt.wrap(this.triangleR,0,360);
+
+//Draw random shapes to rotate, including a square, an image and some diamonds
+jt.bg("lightblue");
+jt.rotate(this.triangleR);
+for(var y=8;y<12;y++){
+    for(var x=15;x<25;x++){
+        jt.rect(x*10+2.5,y*10+2.5,5,5,[0,0,0,0.5],45)
+    }
+}
+jt.image("triangle",jt.w()/2-20,jt.h()/2+20,40,40,90);
+jt.rectB(jt.w()/2-50,jt.h()/2-20,100,40,"red",0,1);
+jt.line(jt.w()/2-10,jt.h()/2,jt.w()/2+10,jt.h()/2,3,"red");
+jt.rotate(-this.triangleR);
+
+//Draw controls
+jt.fontSize(14);
+jt.text("Use jt.rotate() to rotate the canvas or part of it",jt.w()/2,5,"black","center");
+jt.text("Press Left and Right to rotate the canvas",jt.w()/2,25,"black","center");'>Test in editor</button>
+					</li>
+					<li class="desc">Rotate the entire canvas from a specific point (it's important to rotate the opposite after so it doesn't keep spinning)</li>
+					
+					
+					
+					<li class="name">
+						jt.linear(x1,y1,x2,y2,colors,offsets)
+						<button class="editor__btn editor__add" id='gradient' value='
+//Use Up and Down to change the first offset
+if(this.radial==undefined){this.radial=0.5}
+if(jt.keyCheck("up")){
+    this.radial-=0.01;
+}
+if(jt.keyCheck("down")){
+    this.radial+=0.01;
+}
+this.radial=jt.stay(this.radial,0,1);
+
+//Draw the controls, rainbow text with linear gradient and the circle with radial gradient
+var lineStart=-jt.w()+jt.waveX()*jt.w()
+var lineEnd=jt.waveX()*jt.w()+jt.w()
+var colors=[[255,0,0],[255,255,0],[0,255,0],[0,255,255],[0,0,255],[255,0,255],[255,0,0],[255,255,0],[0,255,0],[0,255,255],[0,0,255],[255,0,255],[255,0,0]];
+var rainbowGradient=jt.linear(lineStart,0,lineEnd,0,colors)
+jt.fontSize(48)
+jt.text("Rainbow text!",jt.w()/2,5,rainbowGradient,"center")
+jt.fontSize(14)
+jt.text("Press Up and Down to change the radial gradient",jt.w()/2,60,"black","center")
+var radial=jt.radial(jt.w()/2-50,jt.h()/2-15,100,jt.w()/2-5,jt.h()/2+30,10,[[0,0,0,0],[0,0,0,1]],[this.radial,1])
+jt.circle(jt.w()/2-50,jt.h()/2-15,100,radial)'>Test in editor</button>
+					</li>
+					<li class="desc">Return a linear gradient color (offsets is optional but will allow to control the offsets manually)</li>
+					
+					
+					
+					<li class="name">
+						jt.radial(x1,y1,d1,x2,y2,d2,colors,offsets)
+						<button class="editor__btn editor__add" valueId='gradient'>Test in editor</button>
+					</li>
+					<li class="desc">Return a radial gradient color (offsets is optional but will allow to control the offsets manually)</li>
+					
+					
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="math"></div>
+			<div class="section">
+				<h2>Math</h2>
+				<ul>
+				
+				
+				
+				<li class="name">
+						jt.random(min,max,interval)
+						<button class="editor__btn editor__add" value='
+//Pressing the btn will generate new numbers
+if(this.randoms==undefined){this.randoms=[0,0,0];}
+var btn={x:jt.w()/2-50,y:30,w:100,h:40,c:"grey"};
+if(jt.mIn(btn)){
+	btn.c="lightgrey"
+	if(jt.mPress()){
+		//generate numbers
+		this.randoms=[];
+		this.randoms.push(jt.random(0,1))
+		this.randoms.push(jt.random(0,1,0.1))
+		this.randoms.push(jt.random(1,100))
+		jt.shake(10)
+		jt.stopPlay("jump")
+	}
+}
+
+//Show controls, the button and numbers
+jt.fontSize(14);
+jt.text("Click below to generate random numbers",jt.w()/2,5,"black","center")
+jt.text("0 or 1",jt.w()/6,jt.h()/2+20,"red","center")
+jt.text("0 to 1 in 0.1 interval",jt.w()/2,jt.h()/2+20,"green","center")
+jt.text("0 to 100",jt.w()-jt.w()/6,jt.h()/2+20,"blue","center")
+jt.shape(btn);
+jt.text("Generate",jt.w()/2,42,"black","center")
+jt.fontSize(24);
+jt.text(this.randoms[0],jt.w()/6,jt.h()/2+50,"red","center")
+jt.text(this.randoms[1],jt.w()/2,jt.h()/2+50,"green","center")
+jt.text(this.randoms[2],jt.w()-jt.w()/6,jt.h()/2+50,"blue","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get a random number (interval is optional but will give decimals)</li>
+									
+				
+				
+				<li class="name">
+						jt.odds(min,max,winningValue,losingValue)
+						<button class="editor__btn editor__add" value='
+//Pressing the btn will generate odds results
+if(this.odds==undefined){this.odds=["","",""];}
+var btn={x:jt.w()/2-50,y:30,w:100,h:40,c:"grey"};
+if(jt.mIn(btn)){
+	btn.c="lightgrey"
+	if(jt.mPress()){
+		//generate numbers
+		this.odds[0]=jt.odds(1,2)
+		this.odds[1]=jt.odds(1,4,"You won!","You lost")
+		this.odds[2]=jt.odds(1,8,"You are lucky!","Try again")
+		jt.shake(10)
+		jt.stopPlay("jump")
+	}
+}
+
+//Show controls, the button and numbers
+jt.fontSize(14);
+jt.text("Click below to generate odds results",jt.w()/2,5,"black","center")
+jt.text("Odds of 1/2",jt.w()/6,jt.h()/2+20,"red","center")
+jt.text("Odds of 1/4",jt.w()/2,jt.h()/2+20,"green","center")
+jt.text("Odds of 1/8",jt.w()-jt.w()/6,jt.h()/2+20,"blue","center")
+jt.shape(btn);
+jt.text("Generate",jt.w()/2,42,"black","center")
+
+//Write results
+jt.fontSize(18);
+jt.text("Win: "+this.odds[0],jt.w()/6,jt.h()/2+50,"red","center")
+jt.text(this.odds[1],jt.w()/2,jt.h()/2+50,"green","center")
+jt.text(this.odds[2],jt.w()-jt.w()/6,jt.h()/2+50,"blue","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Return the winning or losing value if the random number generated is the same as the min (so jt.odds(1,3,"Win","Lose") will give "Win" 1 out of 3 times, also by default losingValue is undefined and if losingValue and winningValue are undefined it will return true or false)</li>
+					
+					
+					
+					<li class="name">
+						jt.between(num,min,max)
+						<button class="editor__btn editor__add" value='
+//Press Left and Right to change the number
+if(this.betweenNum==undefined){this.betweenNum=0;}
+if(jt.keyPress("right")){
+	this.betweenNum++;
+}
+if(jt.keyPress("left")){
+	this.betweenNum--;
+}
+
+//Show controls and the number
+jt.fontSize(14);
+jt.text("Press Left and Right to change the number",jt.w()/2,5,"black","center")
+jt.text("Is "+this.betweenNum+" between -2 and 2: "+jt.between(this.betweenNum,-2,2),jt.w()/2,jt.h()/4*3,"black","center")
+jt.fontSize(24);
+jt.text(this.betweenNum,jt.w()/2,jt.h()/2,"black","center")
+jt.text("Minimum",jt.w()/4,jt.h()/2-25,"black","center")
+jt.text("-2",jt.w()/4,jt.h()/2,"black","center")
+jt.text("Maximum",jt.w()/4*3,jt.h()/2-25,"black","center")
+jt.text("2",jt.w()/4*3,jt.h()/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Will return if a number is between a min and a max</li>
+					
+					
+					
+					<li class="name">
+						jt.stay(num,min,max)
+						<button class="editor__btn editor__add" value='
+//Press Left and Right to change the number
+if(this.stayNum==undefined){this.stayNum=0;}
+if(jt.keyPress("right")){
+	this.stayNum++;
+}
+if(jt.keyPress("left")){
+	this.stayNum--;
+}
+this.stayNum=jt.stay(this.stayNum,-2,2)
+
+//Show controls and the number
+jt.fontSize(14);
+jt.text("Press Left and Right to change the number",jt.w()/2,5,"black","center")
+jt.text("It will stay between -2 and 2 with jt.stay()",jt.w()/2,25,"black","center")
+jt.fontSize(24);
+jt.text(this.stayNum,jt.w()/2,jt.h()/2,"black","center")
+jt.text("Minimum",jt.w()/4,jt.h()/2-25,"black","center")
+jt.text("-2",jt.w()/4,jt.h()/2,"black","center")
+jt.text("Maximum",jt.w()/4*3,jt.h()/2-25,"black","center")
+jt.text("2",jt.w()/4*3,jt.h()/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Will return the number that stays between a min and a max</li>
+					
+					
+					
+					<li class="name">
+						jt.wrap(num,min,max)
+						<button class="editor__btn editor__add" value='
+//Press Left and Right to change the number
+if(this.wrapNum==undefined){this.wrapNum=50;}
+if(jt.keyCheck("right")){
+	this.wrapNum++;
+}
+if(jt.keyCheck("left")){
+	this.wrapNum--;
+}
+this.wrapNum=jt.wrap(this.wrapNum,0,100)
+
+//Show controls and the number
+jt.fontSize(14);
+jt.text("Press Left and Right to change the number",jt.w()/2,5,"black","center")
+jt.text("It will wrap around 0 and 100 with jt.wrap()",jt.w()/2,25,"black","center")
+jt.fontSize(24);
+jt.text(this.wrapNum,jt.w()/2,jt.h()/2,"black","center")
+jt.text("Minimum",jt.w()/4,jt.h()/2-25,"black","center")
+jt.text("0",jt.w()/4,jt.h()/2,"black","center")
+jt.text("Maximum",jt.w()/4*3,jt.h()/2-25,"black","center")
+jt.text("100",jt.w()/4*3,jt.h()/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Will return the number that wraps around a min and a max for numbers (numbers that changes by anything,so max+1 will give min+1)</li>
+					
+					
+					
+					<li class="name">
+						jt.wrapIndex(num,min,max)<br>
+						jt.index(num,min,max)
+						<button class="editor__btn editor__add" name="jt.wrapIndex(num,min,max)" value='
+//Press Left and Right to change the number
+if(this.wrapIndexNum==undefined){this.wrapIndexNum=2;}
+if(jt.keyPress("right")){
+	this.wrapIndexNum++;
+}
+if(jt.keyPress("left")){
+	this.wrapIndexNum--;
+}
+this.wrapIndexNum=jt.wrapIndex(this.wrapIndexNum,0,4)
+
+//Show controls and the number
+jt.fontSize(14);
+jt.text("Press Left and Right to change the number",jt.w()/2,5,"black","center")
+jt.text("It will wrap around 0 and 4 with jt.wrapIndex()",jt.w()/2,25,"black","center")
+jt.fontSize(24);
+jt.text(this.wrapIndexNum,jt.w()/2,jt.h()/2,"black","center")
+jt.text("Minimum",jt.w()/4,jt.h()/2-25,"black","center")
+jt.text("0",jt.w()/4,jt.h()/2,"black","center")
+jt.text("Maximum",jt.w()/4*3,jt.h()/2-25,"black","center")
+jt.text("4",jt.w()/4*3,jt.h()/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Will return the number that wraps around a min and a max for indexes (indexes only changes by 1,so max+1 will give min)</li>
+				
+				
+				
+				<li class="name">
+						jt.choose(array)
+						<button class="editor__btn editor__add" value='
+//Pressing the btn will generate new numbers
+if(this.chosen==undefined){this.chosen="Press the button!";}
+var btn={x:jt.w()/2-50,y:30,w:100,h:40,c:"grey"};
+var choices=["red","orange","yellow","green","lightblue","blue","purple"]
+if(jt.mIn(btn)){
+	btn.c="lightgrey"
+	if(jt.mPress()){
+		//generate numbers
+		this.chosen=jt.choose(choices)
+		jt.shake(10)
+		jt.stopPlay("jump")
+	}
+}
+
+//Show controls, the background and the choice
+jt.alpha(0.5);
+jt.bg(this.chosen)
+jt.alpha(1)
+jt.fontSize(14);
+jt.text("Click below to choose a color from an array",jt.w()/2,5,"black","center")
+jt.shape(btn);
+jt.text("Choose",jt.w()/2,42,"black","center")
+jt.fontSize(24);
+jt.text(this.chosen,jt.w()/2,jt.h()/2,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Choose an item from an array</li>
+					
+					
+					
+					<li class="name">
+						jt.dist(obj1,obj2)<br>
+						jt.distP(x1,y1,x2,y2)
+						<button class="editor__btn editor__add" id="dist" name="jt.dist(obj1,obj2)" value='
+//Create two objects, one of a circle and the other of the mouse coordinates
+if(this.circleXY==undefined){this.circleXY=[jt.w()/2,jt.h()/2];}
+var circle={x:this.circleXY[0],y:this.circleXY[1],d:10,c:"red"};
+var mouse={x:jt.mX(),y:jt.mY(),w:1,h:1,c:"blue"}
+if(jt.mPress()){
+    this.circleXY=[jt.mX()-circle.d/2,jt.mY()-circle.d/2];
+}
+
+//Show controls circle and line
+jt.fontSize(14);
+jt.text("Move your mouse around and click to teleport",jt.w()/2,5,"black","center")
+jt.shape(circle);
+
+//Make the circles coordinates centered
+circle.x+=circle.d/2;
+circle.y+=circle.d/2;
+jt.line(circle.x,circle.y,mouse.x,mouse.y,3,"blue")
+jt.text("Distance to mouse: "+jt.round(jt.dist(circle,mouse),2),jt.w()/2,jt.h()-40,"black","center")
+
+//Get angle
+var angle=jt.round(jt.angle(circle,mouse),2);
+var angleX=jt.round(jt.angleX(angle),2);
+var angleY=jt.round(jt.angleY(angle),2);
+jt.text("Angle: "+angle,jt.w()/6,jt.h()-20,"black","center")
+jt.text("Ratio X: "+angleX,jt.w()/2,jt.h()-20,"black","center")
+jt.text("Ratio Y: "+angleY,jt.w()/6*5,jt.h()-20,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get the distance from 2 objects or 2 points</li>
+					
+					
+					
+					<li class="name">
+						jt.angle(obj1,obj2)<br>
+						jt.angleP(x1,y1,x2,y2)
+						<button class="editor__btn editor__add" name="jt.angle(obj1,obj2)" valueId='dist'>Test in editor</button>
+					</li>
+					<li class="desc">Get the angle from 2 objects or 2 points (0 is north and goes clockwise up to 359)</li>
+					
+					
+					
+					<li class="name">
+						jt.angleX(angle)<br>
+						jt.ratioX(angle)
+						<button class="editor__btn editor__add" name="jt.angleX(angle)" valueId='dist'>Test in editor</button>
+					</li>
+					<li class="desc">Get the horizontal ratio of an angle using jt.angle()</li>
+					
+					
+					
+					<li class="name">
+						jt.angleY(angle)<br>
+						jt.ratioY(angle)
+						<button class="editor__btn editor__add" name="jt.angleY(angle)" valueId='dist'>Test in editor</button>
+					</li>
+					<li class="desc">Get the vertical ratio of an angle using jt.angle()</li>
+					
+					
+					
+					<li class="name">
+						jt.arr(length,val)
+						<button class="editor__btn editor__add" value='
+//Change the length and the number using the Arrow Keys
+if(this.arrLen==undefined){this.arrLen=3};
+if(this.arrNum==undefined){this.arrNum=1};
+if(jt.keyPress("left")){this.arrLen--;}
+if(jt.keyPress("right")){this.arrLen++;}
+if(jt.keyPress("up")){this.arrNum++;}
+if(jt.keyPress("down")){this.arrNum--;}
+this.arrLen=jt.stay(this.arrLen,1,10)
+this.arrNum=jt.stay(this.arrNum,0,10)
+
+//Show controls
+jt.fontSize(14);
+jt.text("Change the length with Left and Right",jt.w()/2,5,"black","center")
+jt.text("Change the number with Up and Down",jt.w()/2,30,"black","center")
+jt.text("Current number: "+this.arrNum,jt.w()/2,jt.h()-30,"black","center")
+
+//Draw array
+var arr=jt.arr(this.arrLen,this.arrNum);
+for(var i=0;i<arr.length;i++){
+	jt.circleB(30+i*35,jt.h()/2,20,20,"black",0,2);
+	jt.text(arr[i],30+i*35+10,jt.h()/2+4,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Create an array with the specified length (val is optional and undefined by default)</li>
+					
+					
+					
+					<li class="name">
+						jt.matrix(w,h,val)<br>
+						jt.arr2D(w,h,val)
+						<button class="editor__btn editor__add" name="jt.matrix(w,h,val)" value='
+//Change the width and height using the Arrow Keys
+if(this.arrW==undefined){this.arrW=3};
+if(this.arrH==undefined){this.arrH=3};
+if(jt.keyPress("left")){this.arrW--;}
+if(jt.keyPress("right")){this.arrW++;}
+if(jt.keyPress("up")){this.arrH--;}
+if(jt.keyPress("down")){this.arrH++;}
+this.arrW=jt.stay(this.arrW,1,19)
+this.arrH=jt.stay(this.arrH,1,7)
+
+//Show controls
+jt.fontSize(14);
+jt.text("Change the width with Left and Right",jt.w()/2,5,"black","center")
+jt.text("Change the height with Up and Down",jt.w()/2,30,"black","center")
+
+//Draw 2d array
+var arr=jt.matrix(this.arrW,this.arrH);
+for(var y=0;y<arr.length;y++){
+    for(var x=0;x<arr[y].length;x++){
+    	jt.circleB(15+x*20,60+y*20,15,"black",0,2);
+    	jt.text(y,15+x*20+7.5,60+y*20+2,"black","center")
+    }
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Create a 2d array/matrix with the specified width and height (val is optional and undefined by default)</li>
+					
+					
+					
+					<li class="name">
+						jt.copyArr(arr)
+						<button class="editor__btn editor__add" value='
+//Change the length and the number using the Arrow Keys
+if(this.arrLen==undefined){this.arrLen=3};
+if(this.arrNum==undefined){this.arrNum=1};
+if(this.arrCopy==undefined){this.arrCopy=[]}
+if(jt.keyPress("left")){this.arrLen--;}
+if(jt.keyPress("right")){this.arrLen++;}
+if(jt.keyPress("up")){this.arrNum++;}
+if(jt.keyPress("down")){this.arrNum--;}
+this.arrLen=jt.stay(this.arrLen,1,10)
+this.arrNum=jt.stay(this.arrNum,0,10)
+var arr=jt.arr(this.arrLen,this.arrNum);
+
+//Copy the array with Space
+if(jt.keyPress("space")){
+	this.arrCopy=jt.copyArr(arr)
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Change the length with Left and Right",jt.w()/2,5,"black","center")
+jt.text("Change the number with Up and Down",jt.w()/2,30,"black","center")
+jt.text("Copy and paste the array below with Space",jt.w()/2,55,"black","center")
+jt.text("Current number: "+this.arrNum,jt.w()/2,jt.h()-30,"black","center")
+
+//Draw array
+for(var i=0;i<arr.length;i++){
+	jt.circleB(30+i*35,jt.h()/2-10,20,20,"black",0,2);
+	jt.text(arr[i],30+i*35+10,jt.h()/2+4-10,"black","center")
+}
+
+//Draw copied array
+if(this.arrCopy.length>0){
+	for(var i=0;i<this.arrCopy.length;i++){
+		jt.circleB(30+i*35,jt.h()/2+20,20,20,"black",0,2);
+		jt.text(this.arrCopy[i],30+i*35+10,jt.h()/2+4+20,"black","center")
+	}
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Get a copy of the array passed (useful to get a copy of an array rather than a reference like Javascript does by default)</li>
+					
+					
+					
+					<li class="name">
+						jt.floor(num)
+						<button class="editor__btn editor__add" id="mathNum" value='
+//Change the number with Left and Right
+if(this.mathNum==undefined){this.mathNum=0.50};
+if(jt.keyCheck("left")){this.mathNum-=0.02;}
+if(jt.keyCheck("right")){this.mathNum+=0.02;}
+this.mathNum=jt.round(jt.stay(this.mathNum,-2,2),2)
+
+//Show controls
+jt.fontSize(14);
+jt.text("Change the number with Left and Right",jt.w()/2,5,"black","center")
+
+//Draw the same number with jt.floor(), jt.round() and jt.ceil()
+jt.text("jt.floor("+this.mathNum+")",jt.w()/6,jt.h()*0.75,"black","center")
+jt.text("jt.round("+this.mathNum+",1)",jt.w()/2,jt.h()*0.75,"black","center")
+jt.text("jt.ceil("+this.mathNum+")",jt.w()/6*5,jt.h()*0.75,"black","center")
+jt.fontSize(24);
+jt.text("Number: "+this.mathNum,jt.w()/2,jt.h()/2-20,"black","center")
+jt.text(jt.floor(this.mathNum),jt.w()/6,jt.h()*0.75+20,"black","center")
+jt.text(jt.round(this.mathNum,1),jt.w()/2,jt.h()*0.75+20,"black","center")
+jt.text(jt.ceil(this.mathNum),jt.w()/6*5,jt.h()*0.75+20,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get the number to the closest lower integer (rounding down)</li>
+										
+					
+					
+					<li class="name">
+						jt.round(num)
+						<button class="editor__btn editor__add" valueId='mathNum'>Test in editor</button>
+					</li>
+					<li class="desc">Get the number to the closest integer (rounding)</li>
+					
+					
+					
+					<li class="name">
+						jt.ceil(num)<br>
+						jt.ceiling(num)
+						<button class="editor__btn editor__add" name="jt.ceil(num)" valueId='mathNum'>Test in editor</button>
+					</li>
+					<li class="desc">Get the number to the closest higher integer (rounding up)</li>
+										
+					
+					
+					<li class="name">
+						jt.abs(num)
+						<button class="editor__btn editor__add" id="absNum" value='
+//Change the number with Left and Right
+if(this.mathNum==undefined){this.mathNum=0.50};
+if(jt.keyCheck("left")){this.mathNum-=0.02;}
+if(jt.keyCheck("right")){this.mathNum+=0.02;}
+this.mathNum=jt.round(jt.stay(this.mathNum,-2,2),2)
+
+//Show controls
+jt.fontSize(14);
+jt.text("Change the number with Left and Right",jt.w()/2,5,"black","center")
+
+//Draw the same number with jt.abs() and jt.sign()
+jt.text("jt.abs("+this.mathNum+")",jt.w()/3,jt.h()*0.75,"black","center")
+jt.text("jt.sign("+this.mathNum+")",jt.w()/3*2,jt.h()*0.75,"black","center")
+jt.fontSize(24);
+jt.text("Number: "+this.mathNum,jt.w()/2,jt.h()/2-20,"black","center")
+jt.text(jt.abs(this.mathNum),jt.w()/3,jt.h()*0.75+20,"black","center")
+jt.text(jt.sign(this.mathNum),jt.w()/3*2,jt.h()*0.75+20,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get the absolute value of the number (always positive)</li>
+															
+					
+					
+					<li class="name">
+						jt.sign(num)
+						<button class="editor__btn editor__add" valueId='absNum'>Test in editor</button>
+					</li>
+					<li class="desc">Get the sign value of the number (-1 or 0 or 1)</li>
+					
+					
+					
+					<li class="name">
+						jt.lerp(percent,start,end)
+						<button class="editor__btn editor__add" value='
+//Pressing Up and Down to increase and decrease the percentage
+if(this.percent==undefined){this.percent=0.5;}
+if(jt.keyCheck("up")){
+	this.percent+=0.01;
+}else if(jt.keyCheck("down")){
+	this.percent-=0.01;
+}
+this.percent=jt.stay(this.percent,0,1);
+
+//Draw background using jt.p()
+jt.bg([jt.lerp(this.percent,0,255),0,0])
+
+//Show controls
+jt.fontSize(12);
+jt.text("Red percentage in decimal: "+(jt.round(this.percent,2)),jt.w()/2,5,"white","center")
+jt.text("Press Up and Down to change the percentage",jt.w()/2,25,"white","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get a value with a decimal percentage (from 0 to 1)</li>
+					
+					
+					
+					<li class="name">
+						jt.p(percent,start,end)<br>
+						jt.percent(percent,start,end)
+						<button class="editor__btn editor__add" name="jt.p(percent,start,end)" value='
+//Pressing Up and Down to increase and decrease the percentage
+if(this.percent==undefined){this.percent=50;}
+if(jt.keyCheck("up")){
+	this.percent++;
+}else if(jt.keyCheck("down")){
+	this.percent--;
+}
+this.percent=jt.stay(this.percent,0,100);
+
+//Draw background using jt.p()
+jt.bg([jt.p(this.percent,0,255),0,0])
+
+//Show controls
+jt.fontSize(12);
+jt.text("Red percentage: "+this.percent+"%",jt.w()/2,5,"white","center")
+jt.text("Press Up and Down to change the percentage",jt.w()/2,25,"white","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get a value with a percentage (from 0 to 100)</li>
+					
+					
+					
+					<li class="name">
+						jt.pX(percent,start,end)<br>
+						jt.percentX(percent,start,end)
+						<button class="editor__btn editor__add" id="percentVal" name="jt.pX(percent,start,end)" value='
+//Press Up, Down, Left and Right to change both percentage
+if(this.percentX==undefined){this.percentX=50;}
+if(this.percentY==undefined){this.percentY=50;}
+if(jt.keyCheck("up")){
+	this.percentY--;
+}else if(jt.keyCheck("down")){
+	this.percentY++;
+}
+if(jt.keyCheck("left")){
+	this.percentX--;
+}else if(jt.keyCheck("right")){
+	this.percentX++;
+}
+this.percentX=jt.stay(this.percentX,0,100);
+this.percentY=jt.stay(this.percentY,0,100);
+
+//Draw both lines using jt.pX() and jt.pY()
+jt.line(jt.pX(this.percentX),0,jt.pX(this.percentX),jt.h(),1,"blue")
+jt.line(0,jt.pY(this.percentY),jt.w(),jt.pY(this.percentY),1,"green")
+
+//Show controls
+jt.fontSize(18);
+jt.text("X: "+this.percentX+"%",jt.w()/2-50,jt.h()/2-18,"blue","center")
+jt.text("Y: "+this.percentY+"%",jt.w()/2+50,jt.h()/2-18,"green","center")
+jt.fontSize(12);
+jt.text("Press Up, Down, Left and Right to change both percentage",jt.w()/2,5,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get an x coordinate with a percentage (start and end are 0 and width by default)</li>
+					
+					
+					
+					<li class="name">
+						jt.pY(percent,start,end)<br>
+						jt.percentY(percent,start,end)
+						<button class="editor__btn editor__add" name="jt.pY" valueId="percentVal">Test in editor</button>
+					</li>
+					<li class="desc">Get an y coordinate with a percentage (start and end are 0 and height by default)</li>
+					
+					
+					
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="collision"></div>
+			<div class="section">
+				<h2>Collision</h2>
+				<h3>Collisions are supported for these shapes: Point(x,y), Line(x1,y1,x2,y2), Rect(x,y,w,h), Circle(x,y,d), Ellipse(x,y,dX,dY)</h3>
+				<br>
+				<h3>All coordinates start at the upper left corner, to check collision, simply write jt.cShape1Shape2(shape1,shape2)</h3>
+				<br>
+				<h3>Example: jt.cRectCircle(rect,circle) | jt.cCircleRect(circle,rect) | jt.cLineLine(line1,line2)</h3>
+				<br>
+				<ul>
+				
+				
+				
+					<li class="name">
+						jt.cPoint(point1,point2)<br>
+						jt.cPointPoint(point1,point2)<br>
+						jt.cPointLine(point,line)<br>
+						jt.cPointRect(point,rect)<br>
+						jt.cPointCircle(point,circle)<br>
+						jt.cPointEllipse(point,ellipse)
+						<button class="editor__btn editor__add" name="jt.cPoint(point1,point2)" value='
+//Zoom to see the points
+jt.camActive(true)
+jt.cam().w=40;
+jt.cam().h=20;
+jt.cam().x=180;
+jt.cam().y=90;
+
+//Check collision of shapes and move red point with the mouse
+var point2={x:jt.w()/2-15.5,y:jt.h()/2-0.5,c:"black"}
+var line={x1:jt.w()/2-12,y1:jt.h()/2-4.5,x2:jt.w()/2-6,y2:jt.h()/2+4,w:5,c:"black"}
+var rect={x:jt.w()/2-3,y:jt.h()/2-1.5,w:5,h:3,c:"black"}
+var circle={x:jt.w()/2+5,y:jt.h()/2-2.5,d:5,c:"black"}
+var ellipse={x:jt.w()/2+13,y:jt.h()/2-4,dX:4,dY:8,c:"black"}
+
+var point={x:jt.mCX(),y:jt.mCY(),c:"red"}
+
+if(jt.cPoint(point,point2)){
+    jt.bg([227,227,227]);
+    point2.c=[255,127,127];
+}
+
+if(jt.cPointLine(point,line)){
+    jt.bg([227,227,227]);
+    line.c=[255,127,127];
+}
+
+if(jt.cPointRect(point,rect)){
+    jt.bg([227,227,227]);
+    rect.c=[255,127,127];
+}
+
+if(jt.cPointCircle(point,circle)){
+    jt.bg([227,227,227]);
+    circle.c=[255,127,127];
+}
+
+if(jt.cPointEllipse(point,ellipse)){
+    jt.bg([227,227,227]);
+    ellipse.c=[255,127,127];
+}
+
+//Draw the shapes
+point2.x-=0.5;
+point2.y-=0.5;
+jt.shape(point2)
+jt.shape(line)
+jt.shape(rect)
+jt.shape(circle)
+jt.shape(ellipse)
+point.x-=0.5;
+point.y-=0.5;
+jt.shape(point)
+
+//Show controls without the zoom and hide the cursor
+jt.cursor(false)
+jt.camActive(false);
+jt.fontSize(14)
+jt.text("The camera is zoomed to better see the points",jt.w()/2,5,"black","center")
+jt.text("Move the mouse to test collisions",jt.w()/2,25,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Check collision with a Point(x,y) and another shape (will return true or false, in the demo it is drawn to be bigger, but only it's x and y coordinates will cause a reaction)</li>
+
+				
+				
+					<li class="name">
+						jt.cLine(line1,line2)<br>
+						jt.cLineLine(line1,line2)<br>
+						jt.cLinePoint(line,point)<br>
+						jt.cLineRect(line,rect)<br>
+						jt.cLineCircle(line,circle)<br>
+						jt.cLineEllipse(line,ellipse)
+						<button class="editor__btn editor__add" name="jt.cLine(line1,line2)" value='
+//Click with the mouse to change the first point for the line
+if(this.linePoint===undefined){this.linePoint={x:jt.w()/2,y:jt.h()/2}}
+if(jt.mPress()){
+	this.linePoint.x=jt.mCX();
+	this.linePoint.y=jt.mCY();
+}
+	
+//Zoom to see the point
+jt.camActive(true)
+jt.cam().w=40;
+jt.cam().h=20;
+jt.cam().x=180;
+jt.cam().y=90;
+
+//Check collision of shapes and move red line with the mouse
+var point={x:jt.w()/2-15.5,y:jt.h()/2+3,c:"black"}
+var line2={x1:jt.w()/2-11,y1:jt.h()/2,x2:jt.w()/2-6,y2:jt.h()/2+6,w:5,c:"black"}
+var rect={x:jt.w()/2-3,y:jt.h()/2+1.5,w:5,h:3,c:"black"}
+var circle={x:jt.w()/2+5,y:jt.h()/2+0.5,d:5,c:"black"}
+var ellipse={x:jt.w()/2+13,y:jt.h()/2-1,dX:4,dY:8,c:"black"}
+
+var line={x1:this.linePoint.x,y1:this.linePoint.y,x2:jt.mCX(),y2:jt.mCY(),c:"red"}
+
+if(jt.cLinePoint(line,point)){
+    jt.bg([227,227,227]);
+    point.c=[255,127,127];
+}
+
+if(jt.cLine(line,line2)){
+    jt.bg([227,227,227]);
+    line2.c=[255,127,127];
+}
+
+if(jt.cLineRect(line,rect)){
+    jt.bg([227,227,227]);
+    rect.c=[255,127,127];
+}
+
+if(jt.cLineCircle(line,circle)){
+    jt.bg([227,227,227]);
+    circle.c=[255,127,127];
+}
+
+if(jt.cLineEllipse(line,ellipse)){
+    jt.bg([227,227,227]);
+    ellipse.c=[255,127,127];
+}
+
+//Draw the shapes
+point.x-=0.5;
+point.y-=0.5;
+jt.shape(point)
+jt.shape(line2)
+jt.shape(rect)
+jt.shape(circle)
+jt.shape(ellipse)
+jt.shape(line)
+
+//Show controls without the zoom and hide the cursor
+jt.cursor(false)
+jt.camActive(false);
+jt.fontSize(14)
+jt.text("The camera is zoomed to better see the point",jt.w()/2,5,"black","center")
+jt.text("Move the mouse to test collisions",jt.w()/2,25,"black","center")
+jt.text("Click to change the first point of the line",jt.w()/2,45,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Check collision with a Line(x1,y1,x2,y2) and another shape (will return true or false)</li>
+				
+				
+				
+					<li class="name">
+						jt.cRect(rect1,rect2)<br>
+						jt.cRectRect(rect1,rect2)<br>
+						jt.cRectPoint(rect,point)<br>
+						jt.cRectLine(rect,line)<br>
+						jt.cRectCircle(rect,circle)<br>
+						jt.cRectEllipse(rect,ellipse)
+						<button class="editor__btn editor__add" name="jt.cRect(rect1,rect2)" value='
+//Click with the mouse to change the shape of the Rect
+if(this.rectWH===undefined){this.rectWH={w:5,h:2}}
+if(jt.mPress()){
+	if(this.rectWH.w==5){
+	    this.rectWH.w=2;
+	    this.rectWH.h=5;
+	}else{
+	    this.rectWH.w=5;
+	    this.rectWH.h=2;
+	}
+}
+	
+//Zoom to see the point
+jt.camActive(true)
+jt.cam().w=40;
+jt.cam().h=20;
+jt.cam().x=180;
+jt.cam().y=90;
+
+//Check collision of shapes and move red rect with the mouse
+var point={x:jt.w()/2-15.5,y:jt.h()/2+3,c:"black"}
+var line={x1:jt.w()/2-11,y1:jt.h()/2,x2:jt.w()/2-6,y2:jt.h()/2+6,w:5,c:"black"}
+var rect2={x:jt.w()/2-3,y:jt.h()/2+1.5,w:5,h:3,c:"black"}
+var circle={x:jt.w()/2+5,y:jt.h()/2+0.5,d:5,c:"black"}
+var ellipse={x:jt.w()/2+13,y:jt.h()/2-1,dX:4,dY:8,c:"black"}
+
+var rect={x:jt.mCX()-this.rectWH.w/2,y:jt.mCY()-this.rectWH.h/2,w:this.rectWH.w,h:this.rectWH.h,c:"red"}
+
+if(jt.cRectPoint(rect,point)){
+    jt.bg([227,227,227]);
+    point.c=[255,127,127];
+}
+
+if(jt.cRectLine(rect,line)){
+    jt.bg([227,227,227]);
+    line.c=[255,127,127];
+}
+
+if(jt.cRect(rect,rect2)){
+    jt.bg([227,227,227]);
+    rect2.c=[255,127,127];
+}
+
+if(jt.cRectCircle(rect,circle)){
+    jt.bg([227,227,227]);
+    circle.c=[255,127,127];
+}
+
+if(jt.cRectEllipse(rect,ellipse)){
+    jt.bg([227,227,227]);
+    ellipse.c=[255,127,127];
+}
+
+//Draw the shapes
+point.x-=0.5;
+point.y-=0.5;
+jt.shape(point)
+jt.shape(line)
+jt.shape(rect2)
+jt.shape(circle)
+jt.shape(ellipse)
+jt.shape(rect)
+
+//Show controls without the zoom and hide the cursor
+jt.cursor(false)
+jt.camActive(false);
+jt.fontSize(14)
+jt.text("The camera is zoomed to better see the point",jt.w()/2,5,"black","center")
+jt.text("Move the mouse to test collisions",jt.w()/2,25,"black","center")
+jt.text("Click to switch the width and height",jt.w()/2,45,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Check collision with a Rect(x,y,w,h) and another shape (will return true or false)</li>
+								
+				
+				
+					<li class="name">
+						jt.cCircle(circle1,circle2)<br>
+						jt.cCircleCircle(circle1,circle2)<br>
+						jt.cCirclePoint(circle,point)<br>
+						jt.cCircleLine(circle,line)<br>
+						jt.cCircleRect(circle,rect)<br>
+						jt.cCircleEllipse(circle,ellipse)
+						<button class="editor__btn editor__add" name="jt.cCircle(circle1,circle2)" value='
+//Click with the mouse to change the shape of the Circle
+if(this.circleD===undefined){this.circleD=2}
+if(jt.mPress()){
+	if(this.circleD==2){
+	    this.circleD=5;
+	}else{
+	    this.circleD=2;
+	}
+}
+	
+//Zoom to see the point
+jt.camActive(true)
+jt.cam().w=40;
+jt.cam().h=20;
+jt.cam().x=180;
+jt.cam().y=90;
+
+//Check collision of shapes and move red rect with the mouse
+var point={x:jt.w()/2-15.5,y:jt.h()/2+3,c:"black"}
+var line={x1:jt.w()/2-11,y1:jt.h()/2,x2:jt.w()/2-6,y2:jt.h()/2+6,w:5,c:"black"}
+var rect={x:jt.w()/2-3,y:jt.h()/2+1.5,w:5,h:3,c:"black"}
+var circle2={x:jt.w()/2+5,y:jt.h()/2+0.5,d:5,c:"black"}
+var ellipse={x:jt.w()/2+13,y:jt.h()/2-1,dX:4,dY:8,c:"black"}
+
+var circle={x:jt.mCX()-this.circleD/2,y:jt.mCY()-this.circleD/2,d:this.circleD,c:"red"}
+
+if(jt.cCirclePoint(circle,point)){
+    jt.bg([227,227,227]);
+    point.c=[255,127,127];
+}
+
+if(jt.cCircleLine(circle,line)){
+    jt.bg([227,227,227]);
+    line.c=[255,127,127];
+}
+
+if(jt.cCircleRect(circle,rect)){
+    jt.bg([227,227,227]);
+    rect.c=[255,127,127];
+}
+
+if(jt.cCircle(circle,circle2)){
+    jt.bg([227,227,227]);
+    circle2.c=[255,127,127];
+}
+
+if(jt.cCircleEllipse(circle,ellipse)){
+    jt.bg([227,227,227]);
+    ellipse.c=[255,127,127];
+}
+
+//Draw the shapes
+point.x-=0.5;
+point.y-=0.5;
+jt.shape(point)
+jt.shape(line)
+jt.shape(rect)
+jt.shape(circle2)
+jt.shape(ellipse)
+jt.shape(circle)
+
+//Show controls without the zoom and hide the cursor
+jt.cursor(false)
+jt.camActive(false);
+jt.fontSize(14)
+jt.text("The camera is zoomed to better see the point",jt.w()/2,5,"black","center")
+jt.text("Move the mouse to test collisions",jt.w()/2,25,"black","center")
+jt.text("Click to switch the diameter",jt.w()/2,45,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Check collision with a Circle(x,y,d) and another shape (will return true or false)</li>
+												
+				
+				
+					<li class="name">
+						jt.cEllipse(ellipse1,ellipse2)<br>
+						jt.cEllipseEllipse(ellipse1,ellipse2)<br>
+						jt.cEllipsePoint(ellipse,point)<br>
+						jt.cEllipseLine(ellipse,line)<br>
+						jt.cEllipseRect(ellipse,rect)<br>
+						jt.cEllipseCircle(ellipse,circle)
+						<button class="editor__btn editor__add" name="jt.cEllipse(ellipse1,ellipse2)" value='
+//Click with the mouse to change the shape of the Ellipse
+if(this.ellipseXY===undefined){this.ellipseXY={dX:5,dY:2}}
+if(jt.mPress()){
+	if(this.ellipseXY.dX==5){
+	    this.ellipseXY.dX=2;
+	    this.ellipseXY.dY=5;
+	}else{
+	    this.ellipseXY.dX=5;
+	    this.ellipseXY.dY=2;
+	}
+}
+	
+//Zoom to see the point
+jt.camActive(true)
+jt.cam().w=40;
+jt.cam().h=20;
+jt.cam().x=180;
+jt.cam().y=90;
+
+//Check collision of shapes and move red rect with the mouse
+var point={x:jt.w()/2-15.5,y:jt.h()/2+3,c:"black"}
+var line={x1:jt.w()/2-11,y1:jt.h()/2,x2:jt.w()/2-6,y2:jt.h()/2+6,w:5,c:"black"}
+var rect={x:jt.w()/2-3,y:jt.h()/2+1.5,w:5,h:3,c:"black"}
+var circle={x:jt.w()/2+5,y:jt.h()/2+0.5,d:5,c:"black"}
+var ellipse2={x:jt.w()/2+13,y:jt.h()/2-1,dX:4,dY:8,c:"black"}
+
+var ellipse={x:jt.mCX()-this.ellipseXY.dX/2,y:jt.mCY()-this.ellipseXY.dY/2,dX:this.ellipseXY.dX,dY:this.ellipseXY.dY,c:"red"}
+
+if(jt.cEllipsePoint(ellipse,point)){
+    jt.bg([227,227,227]);
+    point.c=[255,127,127];
+}
+
+if(jt.cEllipseLine(ellipse,line)){
+    jt.bg([227,227,227]);
+    line.c=[255,127,127];
+}
+
+if(jt.cEllipseRect(ellipse,rect)){
+    jt.bg([227,227,227]);
+    rect.c=[255,127,127];
+}
+
+if(jt.cEllipseCircle(ellipse,circle)){
+    jt.bg([227,227,227]);
+    circle.c=[255,127,127];
+}
+
+if(jt.cEllipse(ellipse,ellipse2)){
+    jt.bg([227,227,227]);
+    ellipse2.c=[255,127,127];
+}
+
+//Draw the shapes
+point.x-=0.5;
+point.y-=0.5;
+jt.shape(point)
+jt.shape(line)
+jt.shape(rect)
+jt.shape(circle)
+jt.shape(ellipse2)
+jt.shape(ellipse)
+
+//Show controls without the zoom and hide the cursor
+jt.cursor(false)
+jt.camActive(false);
+jt.fontSize(14)
+jt.text("The camera is zoomed to better see the point",jt.w()/2,5,"black","center")
+jt.text("Move the mouse to test collisions",jt.w()/2,25,"black","center")
+jt.text("Click to switch the diameter",jt.w()/2,45,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Check collision with an Ellipse(x,y,dX,dY) and another shape (will return true or false)</li>
+																
+				
+				
+					<li class="name">
+						jt.cAssets(name1,name2)
+						<button class="editor__btn editor__add" value='
+//Move with Left and Right
+if(this.assetX===undefined){this.assetX=50}
+if(jt.keyCheck("left")){
+    this.assetX-=2;
+}
+if(jt.keyCheck("right")){
+    this.assetX+=2;
+}
+
+//If there is a collision, draw a grey background
+if(jt.cAssets("walk","triangle")){
+    jt.bg("grey")
+}
+
+//Slower animation speed
+jt.animSpeed("walk",5)
+//Draw the asset bounding box
+jt.anim("walk",this.assetX,80,100,100);
+jt.rect(this.assetX,80,100,100,[255,0,0,0.25])
+
+//Draw the asset bounding box
+jt.image("triangle",250,155+jt.waveYPos()*50,50,50,270);
+jt.rect(250,155+jt.waveYPos()*50,50,50,[255,0,0,0.25])
+
+//Show controls
+jt.fontSize(14)
+jt.text("Press Left and Right to move",jt.w()/2,5,"black","center")
+jt.text("The background will turn grey when colliding",jt.w()/2,25,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Check collision of 2 assets and return true or false (check their rectangle bounding box)</li>
+				
+				
+				
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="particles"></div>
+			<div class="section">
+				<h2>Particles</h2>
+				<h3>When creating particles, the x and y coordinates are always for the center/middle</h3>
+				<br>
+				<ul>
+											
+				
+				
+					<li class="name">
+						jt.addPart(obj)<br>
+						jt.addPart(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,rRate,id)
+						<button class="editor__btn editor__add" id="part" name="jt.addPart(obj)" value='
+//Add particles by Left clicking
+if(jt.mCheck()){
+    //create 2 particles each frame
+    for(var i=0;i<2;i++){
+        var obj={
+            x:jt.mX(),
+            y:jt.mY(),
+            w:10,
+            h:10,
+            frames:100,
+            wRate:-0.1,
+            hRate:-0.1,
+            alpha:0.9,
+            alphaRate:-0.01,
+            vX:jt.random(-2,2,0.1),
+            vY:jt.random(-3,1,0.1),
+            aX:0,
+            aY:0.1,
+            c:[jt.random(0,255),jt.random(0,255),jt.random(0,255)],
+            cRate:[-0.1,-0.1,-0.1],
+            cMax:[0,0,0],
+            r:45,
+            rRate:jt.random(-2,2,0.1),
+            //1 in 2 will bounce off the floor
+            id:jt.random(1,2)
+        }
+        jt.addPart(obj);
+    }
+}
+
+//jt.parts() for the bouncy particles
+if(jt.parts(1).length>0){
+    var parts=jt.parts(1)
+    for(var i=0;i<parts.length;i++){
+        if(parts[i].y>jt.h()){
+            parts[i].vY=-parts[i].vY/0.75
+        }
+    }
+}
+
+//Right click delete all particles and prevent default right click context menu
+jt.mPrevent(true)
+if(jt.mPress({btn:2})){
+    jt.delParts();
+}
+
+//Draw particles
+jt.drawParts();
+
+//Show controls
+jt.fontSize(14);
+jt.text("Left click to create particles!",jt.w()/2,5,"black","center")
+jt.text("Right click to delete all particles",jt.w()/2,25,"black","center")
+jt.text("Half of them will bounce because of their id",jt.w()/2,45,"black","center")
+//Get number of particles with jt.parts()
+jt.text("Particles count: "+jt.parts().length,jt.w()/2,jt.h()-20,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Add a particle, all of the values are optional (you can make circles by setting h as 0 and hRate as 0, parameters that end with Rate are added each frame, vX and vY are velocity which change position each frame, aX and aY are acceleration which changes velocity each frame, id is to identify a particle)</li>
+																					
+				
+				
+					<li class="name">
+						jt.parts(id)<br>
+						jt.getParts(id)
+						<button class="editor__btn editor__add" name="jt.parts(id)" valueId='part'>Test in editor</button>
+					</li>
+					<li class="desc">Return an array of the particles (if you send an id, it will only return particles that also have that id)</li>
+																										
+				
+				
+					<li class="name">
+						jt.drawParts()
+						<button class="editor__btn editor__add" valueId='part'>Test in editor</button>
+					</li>
+					<li class="desc">Draw all particles</li>
+																															
+				
+				
+					<li class="name">
+						jt.delParts()<br>
+						jt.clearParts()
+						<button class="editor__btn editor__add" name="jt.delParts()" valueId='part'>Test in editor</button>
+					</li>
+					<li class="desc">Delete/clear all particles</li>
+					
+					
+					
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="gamepad"></div>
+			<div class="section">
+				<h2>Gamepad</h2>
+				<h3>If the parameter controller isn't defined, it will default 0 (the first controller)</h3>
+				<br>
+				<h3>The buttons are named after a classic xbox 360 controller: a, b, x, y, leftShoulder, rightShoulder, leftTrigger, rightTrigger, back, start, leftStick, rightStick, dpadUp, dpadDown, dpadLeft, dPadRight, home</h3>
+				<br>
+				<ul>
+																																							
+				
+				
+					<li class="name">
+						jt.padConnected(controller)<br>
+						jt.pConnected(controller)
+						<button class="editor__btn editor__add" id="pad" name="jt.padConnected(controller)" value='
+if(this.padBar==undefined){this.padBar=0;}
+if(this.padWin==undefined){this.padWin=false;}
+//Check if gamepad is connected
+jt.fontSize(14)
+if(jt.padConnected()){
+    jt.text("Gamepad connected!",jt.w()/2,5,"black","center")
+    if(!this.padWin){
+        jt.text("Hold or press A to fill up the bar!",jt.w()/2,25,"black","center")
+    }
+    
+    //Check if the button A is pressed or down
+    if(jt.padPress("a")){
+        this.padBar+=5;
+        jt.shake(5);
+    }
+    if(jt.padCheck("a")){
+        this.padBar+=0.5;
+    }
+    
+    //Calculate the bar width
+    this.padBar=jt.stay(this.padBar,0,100)
+    var width=jt.percent(this.padBar,0,290);
+    var c=[255,0,0];
+    
+    //If the bar is full give the option to spend it all to win
+    if(this.padBar>=100){
+        c=[0,155+jt.waveYPos()*100,0]
+        jt.text("Press X to spend it all",jt.w()/2,45,"black","center")
+        if(jt.padPress("x")){
+            this.padWin=true;
+            this.padBar=0;
+            jt.shake(30);
+            jt.stopPlay("jump");
+        }
+    }
+    
+    //Draw the bar
+    if(!this.padWin){
+        jt.rect(50,80,300,50,"black")
+        jt.rect(55,85,width,40,c);
+    }else{
+        jt.fontSize(64);
+        jt.text("You win!",jt.w()/2-jt.textW("You win!")/2,jt.h()/3,"gold","left",jt.fontSize(),jt.waveY()*15)
+    }
+}else{
+    jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Check if a controller is connected</li>
+																																			
+				
+				
+					<li class="name">
+						jt.padCheck(button,controller)<br>
+						jt.pCheck(button,controller)
+						<button class="editor__btn editor__add" name="jt.padCheck(button,controller)" valueId='pad'>Test in editor</button>
+					</li>
+					<li class="desc">Check if a button is down on a controller and returns true or false</li>
+																																								
+				
+				
+					<li class="name">
+						jt.padPress(button,controller)<br>
+						jt.pPress(button,controller)
+						<button class="editor__btn editor__add" name="jt.padPress(button,controller)" valueId='pad'>Test in editor</button>
+					</li>
+					<li class="desc">Check if a button is pressed on a controller and returns true or false (pressing only lasts 1 frame)</li>
+																																													
+				
+				
+					<li class="name">
+						jt.padValue(button,controller)<br>
+						jt.pValue(button,controller)
+						<button class="editor__btn editor__add" name="jt.padValue(button,controller)" value='
+//Get value of buttons
+jt.fontSize(14)
+if(jt.padConnected()){
+    jt.text("Gamepad connected!",jt.w()/2,5,"black","center")
+    
+    //Get value
+    var left=jt.round(jt.pValue("leftTrigger"),2);
+    var right=jt.round(jt.pValue("rightTrigger"),2);
+    
+    //Show controls
+    jt.text("Press the triggers to get their value",jt.w()/2,25,"black","center")
+    jt.text("Left trigger: "+left,jt.w()/4,80,"black","center")
+    jt.text("Right trigger: "+right,jt.w()/4*3,80,"black","center")
+    
+    //Draw bars
+    jt.rect(jt.w()/4-10,jt.h()-100,20,80,"black")
+    jt.rect(jt.w()/4-10,jt.h()-100,20,80*left,"red")
+    
+    jt.rect(jt.w()/4*3-10,jt.h()-100,20,80,"black")
+    jt.rect(jt.w()/4*3-10,jt.h()-100,20,80*right,"red")
+}else{
+    jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Check the value of a button on the controller and returns from 0 to 1 (returns 0 or 1 if it is down, only leftTrigger and rightTrigger will return between 0 and 1 on how hard you press)</li>
+																																																		
+				
+				
+					<li class="name">
+						jt.padRelease(button,controller)<br>
+						jt.pRelease(button,controller)
+						<button class="editor__btn editor__add" name="jt.padRelease(button,controller)" value='
+//Release a button for 1 frame
+if(this.padDown===undefined){this.padDown=0;}
+jt.fontSize(14)
+if(jt.padConnected()){
+    jt.text("Gamepad connected!",jt.w()/2,5,"black","center")
+    
+    if(this.padDown>=120){
+        jt.padRelease("a")
+    }
+    
+    if(jt.padCheck("a")){
+        this.padDown++;
+        
+    }else{
+        this.padDown=0;
+    }
+    
+    //Show controls
+    jt.text("Hold A to fill up the bar",jt.w()/2,25,"black","center")
+    jt.text("When it is filled, A will be released for 1 frame",jt.w()/2,45,"black","center")
+    jt.text("Number of frames that A is held: "+this.padDown,jt.w()/2,80,"black","center")
+    
+    //Draw the bar
+    jt.rect(jt.w()/4,jt.h()-100,200,20,"black")
+    jt.rect(jt.w()/4,jt.h()-100,200*(this.padDown/120),20,"red")
+}else{
+    jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Release a button on the controller for 1 frame</li>
+																																																							
+				
+				
+					<li class="name">
+						jt.padStick(stick,controller)<br>
+						jt.pStick(stick,controller)<br>
+						jt.padAxes(stick,controller)<br>
+						jt.pAxes(stick,controller)
+						<button class="editor__btn editor__add" name="jt.padStick(stick,controller)" value='
+//Move both gamepad sticks
+jt.fontSize(14)
+if(jt.padConnected()){
+    jt.text("Gamepad connected!",jt.w()/2,5,"black","center")
+    
+    var leftStick=jt.pStick();
+    var rightStick=jt.pStick(1);
+    
+    //Show controls
+    jt.text("Move both sticks around to control the red dots",jt.w()/2,25,"black","center")
+    jt.text("X: "+jt.round(leftStick[0],1)+" | Y: "+jt.round(leftStick[1],1),jt.w()/4,65,"black","center")
+    jt.text("X: "+jt.round(rightStick[0],1)+" | Y: "+jt.round(rightStick[1],1),jt.w()/4*3,65,"black","center")
+    
+    //Draw rectangles, circles and red dots
+    jt.rect(jt.w()/4-50,jt.h()/2-20,100,100,"grey")
+    jt.circle(jt.w()/4-50,jt.h()/2-20,100,"black")
+    jt.circle(jt.w()/4-5+leftStick[0]*50,jt.h()/2+30-5+leftStick[1]*50,10,"red")
+    
+    jt.rect(jt.w()/4*3-50,jt.h()/2-20,100,100,"grey")
+    jt.circle(jt.w()/4*3-50,jt.h()/2-20,100,"black")
+    jt.circle(jt.w()/4*3-5+rightStick[0]*50,jt.h()/2+30-5+rightStick[1]*50,10,"red")
+}else{
+    jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Returns an array of the x and y position of the gamepad stick (from -1 to 1, stick is 0 by default, which is the left stick and 1 is for the right stick)</li>
+																																																												
+				
+				
+					<li class="name">
+						jt.pads()<br>
+						jt.gamepads()
+						<button class="editor__btn editor__add" name="jt.pads()" value='
+//Show all info on the first gamepad and a visual gamepad
+jt.fontSize(14)
+if(jt.padConnected()){
+    //Get first gamepad info
+    var pad=jt.pads()[0];
+    
+    //Show gamepad id
+    jt.text(pad.id+" connected!",jt.w()/2,5,"black","center",jt.fontSize(),0,50,20)
+    jt.line(0,40,jt.w(),40,2,"black")
+    jt.line(jt.w()/2,110,jt.w(),110,2,"black")
+    jt.line(jt.w()/2,40,jt.w()/2,jt.h(),2,"black")
+    
+    //Show controls
+    jt.text("Show all buttons value",jt.w()/4,45,"black","center")
+    jt.text("Show all sticks value",jt.w()/4*3,45,"black","center")
+    
+    //Show button values
+    jt.text("A: "+pad.buttons[0].value,jt.w()/12,65,"black","center")
+    jt.text("B: "+pad.buttons[1].value,jt.w()/12,85,"black","center")
+    jt.text("X: "+pad.buttons[2].value,jt.w()/12,105,"black","center")
+    jt.text("Y: "+pad.buttons[3].value,jt.w()/12,125,"black","center")
+    //D pad values
+    jt.text("Up: "+pad.buttons[12].value,jt.w()/4,65,"black","center")
+    jt.text("Down: "+pad.buttons[13].value,jt.w()/4,85,"black","center")
+    jt.text("Left: "+pad.buttons[14].value,jt.w()/4,105,"black","center")
+    jt.text("Right: "+pad.buttons[15].value,jt.w()/4,125,"black","center")
+    //Special button values
+    jt.text("Back: "+pad.buttons[8].value,jt.w()/12*5,65,"black","center")
+    jt.text("Start: "+pad.buttons[9].value,jt.w()/12*5,85,"black","center")
+    jt.text("Home: "+pad.buttons[16].value,jt.w()/12*5,105,"black","center")
+    //Show pair values
+    jt.text("Shoulders: "+pad.buttons[4].value+" | "+pad.buttons[5].value,jt.w()/4,145,"black","center")
+    jt.text("Triggers: "+jt.round(pad.buttons[6].value,1)+" | "+jt.round(pad.buttons[7].value,1),jt.w()/4,165,"black","center")
+    jt.text("Sticks: "+pad.buttons[10].value+" | "+pad.buttons[11].value,jt.w()/4,185,"black","center")
+    
+    //Show axes/sticks values
+    var leftStick=jt.pStick();
+    var rightStick=jt.pStick(1);
+    jt.text("X: "+jt.round(leftStick[0],1)+" | Y: "+jt.round(leftStick[1],1),jt.w()/4*3,65,"black","center")
+    jt.text("X: "+jt.round(rightStick[0],1)+" | Y: "+jt.round(rightStick[1],1),jt.w()/4*3,85,"black","center")
+    
+    //Show virtual controller
+    //Sticks
+    jt.circle(220,140,30,[255*pad.buttons[10].value,0,0])
+    jt.circle(235-3+leftStick[0]*15,155-3+leftStick[1]*15,6,"red")
+    jt.circle(320,165,30,[255*pad.buttons[11].value,0,0])
+    jt.circle(335-3+rightStick[0]*15,180-3+rightStick[1]*15,6,"red")
+    //Dpad
+    jt.rect(270,165,10,10,[255*pad.buttons[12].value,0,0])
+    jt.rect(270,185,10,10,[255*pad.buttons[13].value,0,0])
+    jt.rect(260,175,10,10,[255*pad.buttons[14].value,0,0])
+    jt.rect(280,175,10,10,[255*pad.buttons[15].value,0,0])
+    //Main buttons
+    jt.circle(360,135,10,[255*pad.buttons[3].value,0,0])
+    jt.circle(350,145,10,[255*pad.buttons[2].value,0,0])
+    jt.circle(370,145,10,[255*pad.buttons[1].value,0,0])
+    jt.circle(360,155,10,[255*pad.buttons[0].value,0,0])
+    //Middle buttons
+    jt.ellipse(280,145,20,10,[255*pad.buttons[8].value,0,0])
+    jt.ellipse(310,145,20,10,[255*pad.buttons[9].value,0,0])
+    jt.circle(300,130,10,[255*pad.buttons[16].value,0,0])
+    //Shoulders and triggers
+    jt.rect(215,125,40,5,[255*pad.buttons[4].value,0,0])
+    jt.rect(215,115,40,5,[255*pad.buttons[6].value,0,0])
+    jt.rect(345,125,40,5,[255*pad.buttons[5].value,0,0])
+    jt.rect(345,115,40,5,[255*pad.buttons[7].value,0,0])
+}else{
+    jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Return an array of all the gamepads info</li>
+					
+					
+				</ul>
+			</div>
+			<div class="anchor" id="keyboard"></div>
+			<div class="section">
+				<h2>Keyboard</h2>
+				<ul>
+				
+				
+				
+					<li class="name">
+						jt.keyCheck(keyName,and)<br>
+						jt.kCheck(keyName,and)<br>
+						jt.keyDown(keyName,and)<br>
+						jt.kDown(keyName,and)
+						<button class="editor__btn editor__add" id="keyPlat" name="jt.keyCheck(keyName,and)" value='
+//Walk with Left or Right and jump with Up or Space
+var groundY=jt.h()-50;
+if(this.keyPos==undefined){this.keyPos=[100,groundY];}
+if(this.keyGrav==undefined){this.keyGrav=0;}
+var keysDown=0;
+//Move around with Left and Right
+if(jt.keyCheck("left")){
+    this.keyPos[0]-=2;
+    keysDown++;
+}
+if(jt.keyCheck("right")){
+    this.keyPos[0]+=2;
+    keysDown++;
+}
+
+//Jumping and gravity
+if(this.keyPos[1]>=groundY){
+    this.keyGrav=0;
+    this.keyPos[1]=groundY;
+}
+if(this.keyPos[1]==groundY && (jt.keyPress("up") || jt.keyPress("space"))){
+    this.keyGrav=-10;
+    jt.stopPlay("jump")
+}
+this.keyPos[1]+=this.keyGrav;
+this.keyGrav+=0.5;
+this.keyPos[0]=jt.stay(this.keyPos[0],0,jt.w()-50);
+//If 0 or 2 keys are down, reset the animation
+if(keysDown!=1){
+    jt.animFrame("walk",0)
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Hold Left or Right to walk around",jt.w()/2,5,"black","center");
+jt.text("Press Up or Space to jump",jt.w()/2,25,"black","center");
+
+//Draw animation
+if(this.keyPos[1]==groundY){
+    jt.anim("walk",this.keyPos[0],this.keyPos[1],50,50);
+}else{
+    jt.image("jump",this.keyPos[0],this.keyPos[1],50,50)
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Check if a key on the keyboard is down and returns true or false (if keyName is undefined, it will check any keys, keyName can also be an array of keyNames, which will return true if one of them is down, if and is true it will return true if all of them are down)</li>
+					
+									
+					
+					<li class="name">
+						jt.keyPress(keyName,and)<br>
+						jt.kPress(keyName,and)
+						<button class="editor__btn editor__add" valueId="keyPlat" name="jt.keyPress(keyName,and)">Test in editor</button>
+					</li>
+					<li class="desc">Check if a key on the keyboard is down and returns true or false (if keyName is undefined, it will check any keys, pressing only last 1 frame, keyName can also be an array of keyNames, which will return true if one of them is pressed, if and is true it will return true if all of them are pressed)</li>
+					
+					
+					
+					<li class="name">
+						jt.keyRelease(keyName)<br>
+						jt.kRelease(keyName)
+						<button class="editor__btn editor__add" name="jt.keyRelease(keyName)" value='
+//Release a key for 1 frame
+if(this.keyDown===undefined){this.keyDown=0;}
+
+
+if(this.keyDown>=120){
+    jt.kRelease("space")
+}
+
+if(jt.kCheck("space")){
+    this.keyDown++;
+}else{
+    this.keyDown=0;
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Hold Space to fill up the bar",jt.w()/2,5,"black","center")
+jt.text("When it is full, Space will release for 1 frame",jt.w()/2,25,"black","center")
+jt.text("Number of frames that Space is held: "+this.keyDown,jt.w()/2,80,"black","center")
+
+//Draw the bar
+jt.rect(jt.w()/4,jt.h()-100,200,20,"black")
+jt.rect(jt.w()/4,jt.h()-100,200*(this.keyDown/120),20,"red")'>Test in editor</button>
+					</li>
+					<li class="desc">Release a key on the keyboard for 1 frame (if keyName is undefined, it will release all keys, keyName can also be an array of keyNames, it can be useful to call after a jt.keyPress() so it doesn't fire another one in the same frame)</li>
+																												
+				
+				
+					<li class="name">
+						jt.simKeyDown(keyName)<br>
+						jt.simKDown(keyName)<br>
+						jt.simDown(keyName)
+						<button class="editor__btn editor__add" id="simKey" name="jt.simKeyDown(keyName)" value='
+//Simulate key presses to move with the mouse
+var groundY=jt.h()-50;
+if(this.keyPos==undefined){this.keyPos=[100,groundY];}
+if(this.keyGrav==undefined){this.keyGrav=0;}
+var keysDown=0;
+//Simulate keys with mouse and button
+var btnLeft={x:50,y:30,w:50,h:50,alpha:1,key:"left",angle:180}
+var btnRight={x:300,y:30,w:50,h:50,alpha:1,key:"right",angle:0}
+var btnUp={x:175,y:30,w:50,h:50,alpha:1,key:"up",angle:270}
+//Loop through all the buttons and check if they are pressed and draw them
+var btns=[btnLeft,btnRight,btnUp];
+for(var i=0;i<btns.length;i++){
+    var btn=btns[i];
+    //Check if the buttons are pressed
+    if(jt.mouseCheck(btn)){
+        jt.simKeyDown(btn.key)
+        btn.alpha=0.5;
+    }else{
+        jt.simKeyUp(btn.key)
+    }
+    
+    //Draw the button
+    jt.alpha(btn.alpha)
+    jt.rectB(btn.x,btn.y,btn.w,btn.h,"black",0,2)
+    jt.image("triangle",btn.x+10,btn.y+10,btn.w-20,btn.h-20,btn.angle)
+    jt.alpha(1)
+}
+
+//Move around with Left and Right
+if(jt.keyCheck("left")){
+    this.keyPos[0]-=2;
+    keysDown++;
+}
+if(jt.keyCheck("right")){
+    this.keyPos[0]+=2;
+    keysDown++;
+}
+
+//Jumping and gravity
+if(this.keyPos[1]>=groundY){
+    this.keyGrav=0;
+    this.keyPos[1]=groundY;
+}
+if(this.keyPos[1]==groundY && (jt.keyPress("up") || jt.keyPress("space"))){
+    this.keyGrav=-10;
+    jt.stopPlay("jump")
+}
+this.keyPos[1]+=this.keyGrav;
+this.keyGrav+=0.5;
+this.keyPos[0]=jt.stay(this.keyPos[0],0,jt.w()-50);
+//If 0 or 2 keys are down, reset the animation
+if(keysDown!=1){
+    jt.animFrame("walk",0)
+}
+
+//Show controls
+jt.fontSize(14);
+jt.text("Press the buttons with the mouse to move",jt.w()/2,5,"black","center");
+
+//Draw animation
+if(this.keyPos[1]==groundY){
+    jt.anim("walk",this.keyPos[0],this.keyPos[1],50,50);
+}else{
+    jt.image("jump",this.keyPos[0],this.keyPos[1],50,50)
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Simulate a key being held down (This is useful to make a game quickly playable on mobile by adding touch buttons that simulates the keyboard)</li>
+																																	
+				
+				
+					<li class="name">
+						jt.simKeyUp(keyName)<br>
+						jt.simKUp(keyName)<br>
+						jt.simUp(keyName)
+						<button class="editor__btn editor__add" valueId="simKey" name="jt.simKeyUp(keyName)">Test in editor</button>
+					</li>
+					<li class="desc">Simulate a key being released (This is useful to make a game quickly playable on mobile by adding touch buttons that simulates the keyboard)</li>
+				
+				
+				
+					<li class="name">
+						jt.keys(keys)<br>
+						jt.k(keys)
+						<button class="editor__btn editor__add" id="keysDown" name="jt.keys(keys)" value='
+//Show keys that are down
+//Show controls
+jt.fontSize(14);
+jt.text("Press keys to show them below",jt.w()/2,5,"black","center")
+jt.text("Here are some keys from jt.keysList():",jt.w()/2,jt.h()-75,"black","center")
+
+//Draw the keys with jt.keyName() and jt.keyCode() (draw them red if they are pressed, so during 1 frame)
+var keys=jt.keys();
+for(var i=0;i<keys.length;i++){
+    var x= jt.lerp((i+0.5)/keys.length,50,350)
+    var keyName=jt.keyName(keys[i].key);
+    var keyCode=jt.keyCode(keyName);
+	var color="black";
+	if(keys[i].press){color="red"}
+    jt.text(keyName,x,jt.h()/2-40,color,"center");
+    jt.text(keyCode,x,jt.h()/2-20,color,"center");
+}
+
+//Draw keys from jt.keysList()
+var keyCodes=jt.keysList();
+var keyNames=jt.keysList(true);
+var list=["space","left","up","right","down"]
+for(var i=0;i<list.length;i++){
+    var x= jt.lerp((i+0.5)/list.length,50,350)
+    var code=keyCodes[list[i]]
+    var name=keyNames[code]
+    jt.text(name,x,jt.h()-50,"black","center");
+    jt.text(code,x,jt.h()-30,"black","center");
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Set or get the array of keys object that are down that contains the keyCode and if they are pressed</li>
+									
+				
+				
+					<li class="name">
+						jt.keysList(byName)<br>
+						jt.kList(byName)
+						<button class="editor__btn editor__add" name="jt.keysList(byName)" valueId='keysDown'>Test in editor</button>
+					</li>
+					<li class="desc">Get the list of keyCodes and keyNames (entering a keyName will give the keyCode, if byName is true, it will be reversed list)</li>
+														
+				
+				
+					<li class="name">
+						jt.keyName(keyCode)<br>
+						jt.kName(keyCode)
+						<button class="editor__btn editor__add" name="jt.keyName(keyCode)" valueId='keysDown'>Test in editor</button>
+					</li>
+					<li class="desc">Get the keyName from a keyCode</li>
+																			
+				
+				
+					<li class="name">
+						jt.keyCode(keyName)<br>
+						jt.kCode(keyName)
+						<button class="editor__btn editor__add" name="jt.keyCode(keyName)" valueId='keysDown'>Test in editor</button>
+					</li>
+					<li class="desc">Get the keyCode from a keyName</li>
+					
+					
+					
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="mouse"></div>
+			<div class="section">
+				<h2>Mouse</h2>
+				<h3>The mouse buttons are 0 for left click, 1 for middle click and 2 for right click</h3>
+				<br>	
+				<ul>
+				
+				
+				
+					<li class="name">
+						jt.mouseCheck(obj)<br>
+						jt.mouseCheck(x,y,w,h,cam,btn)<br>
+						jt.mCheck(obj)<br>
+						jt.mCheck(x,y,w,h,cam,btn)
+						<button class="editor__btn editor__add" id="btns" name="jt.mouseCheck(obj)" value='
+if(this.btnOutline===undefined){this.btnOutline=false}
+//Interact with the buttons with the mouse
+var btnRed={x:75,y:75,w:50,h:50,c:"red"};
+var btnGreen={x:175,y:75,w:50,h:50,c:"green",cam:true};
+var btnBlue={x:275,y:75,w:50,h:50,c:"blue"};
+//Moves the camera
+jt.cam().x=jt.waveY()*20
+
+//Check if buttons are pressed
+jt.camActive(false)
+if(jt.mousePress(btnRed)){
+    this.btnOutline=!this.btnOutline
+}
+
+if(jt.mouseCheck(btnGreen)){
+    btnGreen.c="lightgreen";
+}
+
+if(jt.mouseIn(btnBlue)){
+    btnBlue.c="#99f";
+    if(jt.mouseDown()){
+        btnBlue.c="#ddf";
+    }
+}
+
+if(this.btnOutline){
+    btnRed.outline=5;
+}
+
+//Show controls
+jt.camActive(false)
+jt.fontSize(14);
+jt.text("Press!",100,50,"red","center");
+jt.text("Hover!",300,50,"blue","center");
+jt.text("Use the mouse to interact with the buttons",jt.w()/2,5,"black","center");
+jt.text("The camera moves, but only affects the green one",jt.w()/2,25,"black","center");
+
+//Draw buttons
+jt.camActive(false)
+jt.shape(btnRed);
+jt.shape(btnBlue);
+jt.camActive(true)
+jt.text("Hold!",200,50,"green","center");
+jt.shape(btnGreen);'>Test in editor</button>
+					</li>
+					<li class="desc">Returns true or false if the mouse is held down inside a rectangle (cam specifies if it should be affected by the camera, by default it is the current camera active state and btn specifies which mouse button it checks, by default it is 0, the left click)</li>
+					
+					
+				
+					<li class="name">
+						jt.mousePress(obj)<br>
+						jt.mousePress(x,y,w,h,cam,btn)<br>
+						jt.mPress(obj)<br>
+						jt.mPress(x,y,w,h,cam,btn)
+						<button class="editor__btn editor__add" name="jt.mousePress(obj)" valueId='btns'>Test in editor</button>
+					</li>
+					<li class="desc">Returns true or false if the mouse is pressed inside a rectangle (pressing only lasts 1 frame, cam specifies if it should be affected by the camera, by default it is the current camera active state and btn specifies which mouse button it checks, by default it is 0, the left click)</li>
+					
+					
+				
+					<li class="name">
+						jt.mouseIn(obj)<br>
+						jt.mouseIn(x,y,w,h,cam)<br>
+						jt.mIn(btn)<bt>
+						jt.mIn(x,y,w,h,cam)
+						<button class="editor__btn editor__add" name="jt.mouseIn(obj)" valueId='btns'>Test in editor</button>
+					</li>
+					<li class="desc">Returns true or false if the mouse is inside a rectangle (cam specifies if it should be affected by the camera, by default it is the current camera active state)</li>
+					
+					
+				
+					<li class="name">
+						jt.mouseDown(btn)<br>
+						jt.mDown(btn)
+						<button class="editor__btn editor__add" name="jt.mouseDown(btn)" valueId='btns'>Test in editor</button>
+					</li>
+					<li class="desc">Returns true or false if a mouse button is held down (by default it is 0, the left click)</li>
+										
+					
+				
+					<li class="name">
+						jt.mouseRelease()<br>
+						jt.mRelease()
+						<button class="editor__btn editor__add" name="jt.mouseRelease()" value='
+//Release the mouse after 1 frame of pressing
+var btnRed={x:150,y:75,w:100,h:50,c:"red"};
+
+//Check if buttons are pressed
+jt.camActive(false)
+
+if(jt.mouseIn(btnRed)){
+    btnRed.c="tomato";
+    if(jt.mDown()){
+        btnRed.c="yellow";
+        jt.mouseRelease()
+    }
+}
+
+
+//Show controls
+jt.fontSize(14);
+jt.text("Press the red button to release mouse buttons",jt.w()/2,5,"black","center");
+
+//Draw buttons
+jt.shape(btnRed);
+jt.text("Press me!",jt.w()/2,93,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Releases all mouse buttons</li>
+					
+					
+				
+					<li class="name">
+						jt.mouseX()<br>
+						jt.mX()
+						<button class="editor__btn editor__add" id="mouseXY" name="jt.mouseX()" value='
+//Show mouse coordinates
+//Show controls
+jt.camActive(false)
+jt.fontSize(14);
+jt.text("Move the mouse around!",jt.w()/2,5,"black","center");
+jt.text("The red zone is the canvas size inside the camera",jt.w()/2,25,"black","center");
+jt.text("X: "+jt.mouseX(),jt.w()/3,jt.h()/2-45,"black","center");
+jt.text("Y: "+jt.mouseY(),jt.w()/3*2,jt.h()/2-45,"black","center");
+jt.text("Canvas X: "+jt.mouseCamX(),jt.w()/3,jt.h()/2-25,"black","center");
+jt.text("Canvas Y: "+jt.mouseCamY(),jt.w()/3*2,jt.h()/2-25,"black","center");
+
+//Draw camera zone
+jt.camActive(true)
+jt.cam().x=-200;
+jt.cam().y=-200;
+jt.cam().w=800;
+jt.cam().h=400;
+jt.rectB(0,0,jt.w(),jt.h(),"red",0,2)'>Test in editor</button>
+					</li>
+					<li class="desc">Returns the x coordinate of the mouse</li>
+										
+					
+				
+					<li class="name">
+						jt.mouseCamX()<br>
+						jt.mCX()
+						<button class="editor__btn editor__add" name="jt.mouseCamX()" valueId='mouseXY'>Test in editor</button>
+					</li>
+					<li class="desc">Returns the x coordinate of the mouse relative to the camera (the position only updates after moving the mouse, if you need to update it each frame, end the update function with a jt.camActive(true))</li>
+					
+				
+					<li class="name">
+						jt.mouseY()<br>
+						jt.mY()
+						<button class="editor__btn editor__add" name="jt.mouseY()" valueId='mouseXY'>Test in editor</button>
+					</li>
+					<li class="desc">Returns the y coordinate of the mouse</li>
+															
+					
+				
+					<li class="name">
+						jt.mouseCamY()<br>
+						jt.mCY()
+						<button class="editor__btn editor__add" name="jt.mouseCamY()" valueId='mouseXY'>Test in editor</button>
+					</li>
+					<li class="desc">Returns the y coordinate of the mouse relative to the camera (the position only updates after moving the mouse, if you need to update it each frame, end the update function with a jt.camActive(true))</li>
+																				
+					
+				
+					<li class="name">
+						jt.mouseScroll()<br>
+						jt.mScroll()
+						<button class="editor__btn editor__add" name="jt.mouseScroll()" value='
+if(this.mouseScroll===undefined){this.mouseScroll=0;}
+//Scrolling will wrap around a gradient
+jt.cam().y=jt.wrap(jt.cam().y+jt.mouseScroll()*50,0,750);
+
+//Draw gradient
+jt.camActive(true)
+var colors=[[255,0,0],[255,255,0],[0,255,0],[0,255,255],[0,0,255],[255,0,255],[255,0,0],[255,255,0],[0,255,0]];
+var rainbowGradient=jt.linear(0,0,0,1000,colors)
+jt.rect(0,0,jt.w(),1000,rainbowGradient);
+
+//Show controls
+jt.fontSize(24)
+jt.camActive(false);
+jt.textB("Scroll up and down!",jt.w()/2,jt.h()/2-12+jt.waveY()*10,"white","center",jt.fontSize(),0,2);
+jt.text("Scroll up and down!",jt.w()/2,jt.h()/2-12+jt.waveY()*10,"black","center");'>Test in editor</button>
+					</li>
+					<li class="desc">Returns a scroll value of the mouse (the scroll value is 1 per notch per frame, positive when scrolling down and negative when scrolling up)</li>
+																				
+					
+				
+					<li class="name">
+						jt.mousePrevent(prevent)<br>
+						jt.mPrevent(prevent)
+						<button class="editor__btn editor__add" name="jt.mousePrevent(prevent)" value='
+//Change jt.mousePrevent() depending on where the mouse is 
+if(jt.mouseIn(jt.w()/2,0,jt.w()/2,jt.h())){
+    jt.mousePrevent(true);
+}else{
+    jt.mousePrevent(false);
+}
+
+//Show controls
+jt.fontSize(14)
+jt.text("Right click in both areas to see the difference",jt.w()/2,5,"black","center");
+jt.text("jt.mousePrevent(false)",jt.w()/4,25,"black","center");
+jt.text("jt.mousePrevent(true)",jt.w()/4*3,25,"black","center");
+jt.line(jt.w()/2,25,jt.w()/2,jt.h(),2,"black");'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set with true or false if a right click will open the context menu or if it will prevent it</li>
+					
+					
+					
+				</ul>
+			</div>
+			<div class="anchor" id="touch"></div>
+			<div class="section">
+				<h2>Touch</h2>
+				<h3>For these examples, they will also include the equivalent mouse functions so it is possible to test them on a computer too</h3>
+				<br>
+				<ul>
+				
+				
+				
+					<li class="name">
+						jt.touchCheck(obj)<br>
+						jt.touchCheck(x,y,w,h,cam,fingers)<br>
+						jt.tCheck(obj)<br>
+						jt.tCheck(x,y,w,h,cam,fingers)
+						<button class="editor__btn editor__add" id="btnsTouch" name="jt.touchCheck(obj)" value='
+if(this.btnOutline===undefined){this.btnOutline=false}
+//Interact with the buttons with a touch
+var btnRed={x:75,y:75,w:50,h:50,c:"red"};
+var btnGreen={x:175,y:75,w:50,h:50,c:"green",cam:true};
+var btnBlue={x:275,y:75,w:50,h:50,c:"blue"};
+//Mpves the camera
+jt.cam().x=jt.waveY()*20
+
+//Check if buttons are pressed
+jt.camActive(false)
+if(jt.touchPress(btnRed) || jt.mousePress(btnRed)){
+    this.btnOutline=!this.btnOutline
+}
+
+if(jt.touchCheck(btnGreen) || jt.mouseCheck(btnGreen)){
+    btnGreen.c="lightgreen";
+}
+
+if(jt.touchDown() || jt.mouseDown()){
+    btnBlue.c="#99f";
+    if(jt.touchCheck(btnBlue) || jt.mouseCheck(btnBlue)){
+        btnBlue.c="#ddf";
+    }
+}
+
+if(this.btnOutline){
+    btnRed.outline=5;
+}
+
+//Show controls
+jt.camActive(false)
+jt.fontSize(14);
+jt.text("Press!",100,50,"red","center");
+jt.text("Touch!",300,50,"blue","center");
+jt.text("Touch to interact with the buttons",jt.w()/2,5,"black","center");
+jt.text("The camera moves, but only affects the green one",jt.w()/2,25,"black","center");
+jt.text("Is this on a mobile: "+jt.isMobile(),jt.w()/2,jt.h()-25,"black","center");
+
+//Draw buttons
+jt.camActive(false)
+jt.shape(btnRed);
+jt.shape(btnBlue);
+jt.camActive(true)
+jt.text("Hold!",200,50,"green","center");
+jt.shape(btnGreen);'>Test in editor</button>
+					</li>
+					<li class="desc">Returns true or false if a touch is held down inside a rectangle (cam specifies if it should be affected by the camera, by default it is the current camera active state and fingers is the number of fingers needed to return true, by default it is 1)</li>
+				
+				
+				
+					<li class="name">
+						jt.touchPress(obj)<br>
+						jt.touchPress(x,y,w,h,cam,fingers)<br>
+						jt.tPress(obj)<br>
+						jt.tPress(x,y,w,h,cam,fingers)
+						<button class="editor__btn editor__add" name="jt.touchPress(obj)" valueId='btnsTouch'>Test in editor</button>
+					</li>
+					<li class="desc">Returns true or false if a touch is pressed inside a rectangle (pressing only lasts 1 frame, cam specifies if it should be affected by the camera, by default it is the current camera active state and fingers is the number of fingers needed to return true, by default it is 1)</li>
+									
+				
+				
+					<li class="name">
+						jt.touchDown()<br>
+						jt.tDown()
+						<button class="editor__btn editor__add" name="jt.touchDown()" valueId='btnsTouch'>Test in editor</button>
+					</li>
+					<li class="desc">Returns true or false if a touch is held down in the canvas</li>
+										
+					
+				
+					<li class="name">
+						jt.touchRelease()<br>
+						jt.tRelease()
+						<button class="editor__btn editor__add" name="jt.touchRelease()" value='
+//Release the mouse after 1 frame of pressing
+var btnRed={x:150,y:75,w:100,h:50,c:"red"};
+
+//Check if buttons are pressed
+jt.camActive(false)
+
+if(jt.touchCheck(btnRed) || jt.mouseCheck(btnRed)){
+	btnRed.c="yellow";
+	jt.mouseRelease()
+	jt.touchRelease()
+}
+
+
+//Show controls
+jt.fontSize(14);
+jt.text("Press the red button to release mouse buttons",jt.w()/2,5,"black","center");
+jt.text("Is this on a mobile: "+jt.isMobile(),jt.w()/2,jt.h()-25,"black","center");
+
+//Draw buttons
+jt.shape(btnRed);
+jt.text("Press me!",jt.w()/2,93,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Releases all touch buttons</li>
+									
+				
+				
+					<li class="name">
+						jt.isMobile()
+						<button class="editor__btn editor__add" valueId='btnsTouch'>Test in editor</button>
+					</li>
+					<li class="desc">Returns true or false if the user is using a mobile device</li>
+					
+				
+				
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="compatibility"></div>
+			<div class="section">
+				<h2>Backward compatibility</h2>
+				<h3>These are all functions that are only here to work with older JT version, but should not be used otherwise, because of they don't follow nomenclature or are not useful.</h3>
+				<br>
+				<ul>
+					<li class="name">jt.addAlarm(name,time)</li>
+					<li class="desc">Same as jt.alarm(name,time)</li>
+					
+					<li class="name">jt.wrapVal(num,min,max)</li>
+					<li class="desc">Same as jt.wrap(num,min,max)</li>
+										
+					<li class="name">jt.colAssets(name1,name2)</li>
+					<li class="desc">Same as jt.cAssets(name1,name2)</li>
+										
+					<li class="name">jt.changeSoundSrc(soundSrc,repeat)</li>
+					<li class="desc">It was used to allow sounds on safari, but it was too complicated to use</li>	
+					
+					<li class="name">jt.repeatSoundSrc(repeat)</li>
+					<li class="desc">It was used to allow sounds on safari, but it was too complicated to use</li>
+					
+					<li class="name">jt.soundSrc()</li>
+					<li class="desc">It was used to allow sounds on safari, but it was too complicated to use</li>
+										
+					<li class="name">jt.changeMusicSrc(musicSrc,repeat)</li>
+					<li class="desc">It was used to allow sounds on safari, but it was too complicated to use</li>
+										
+					<li class="name">jt.repeatMusicSrc(repeat)</li>
+					<li class="desc">It was used to allow sounds on safari, but it was too complicated to use</li>
+										
+					<li class="name">jt.musicSrc()</li>
+					<li class="desc">It was used to allow sounds on safari, but it was too complicated to use</li>
+				
+					<li class="name">jt.camactive(bool)</li>
+					<li class="desc">Same as jt.camactive(bool)</li>
+									
+					<li class="name">jt.animP(name)</li>
+					<li class="desc">Same as jt.animPause(name)</li>
+														
+					<li class="name">jt.animF(name,frame)</li>
+					<li class="desc">Same as jt.animFrame(name,frame)</li>
+														
+					<li class="name">jt.animS(name,speed)</li>
+					<li class="desc">Same as jt.animSpeed(name,speed)</li>
+																			
+					<li class="name">jt.id(id)</li>
+					<li class="desc">Can be done easily in native javascript</li>
+																								
+					<li class="name">jt.class(className)</li>
+					<li class="desc">Can be done easily in native javascript</li>
+																													
+					<li class="name">jt.webRatio()</li>
+					<li class="desc">Same as jt.ratio()</li>
+																																		
+					<li class="name">jt.htmlRatio()</li>
+					<li class="desc">Same as jt.ratio()</li>
+																																							
+					<li class="name">jt.cRectC(rect,circle)</li>
+					<li class="desc">Same as jt.cRectCircle(rect,circle)</li>
+																																												
+					<li class="name">jt.particlesAdd(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,id)</li>
+					<li class="desc">Almost the same as jt.addPart(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,rRate,id)</li>
+																																																	
+					<li class="name">jt.addParticles(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,id)</li>
+					<li class="desc">Almost the same as jt.addPart(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,rRate,id)</li>
+																																																	
+					<li class="name">jt.particleAdd(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,id)</li>
+					<li class="desc">Almost the same as jt.addPart(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,rRate,id)</li>
+																																																	
+					<li class="name">jt.addParticle(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,id)</li>
+					<li class="desc">Almost the same as jt.addPart(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,rRate,id)</li>
+																																																						
+					<li class="name">jt.partAdd(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,id)</li>
+					<li class="desc">Almost the same as jt.addPart(x,y,w,h,frames,wRate,hRate,alpha,alphaRate,vX,vY,aX,aY,c,cRate,cMax,r,rRate,id)</li>
+					
+					<li class="name">jt.particlesDraw()</li>
+					<li class="desc">Same as jt.drawParts()</li>
+																																										
+					<li class="name">jt.partDraw()</li>
+					<li class="desc">Same as jt.drawParts()</li>
+																																															
+					<li class="name">jt.drawPart()</li>
+					<li class="desc">Same as jt.drawParts()</li>
+																																										
+					<li class="name">jt.drawParticles()</li>
+					<li class="desc">Same as jt.drawParts()</li>
+																																															
+					<li class="name">jt.particlesClear()</li>
+					<li class="desc">Same as jt.delParts()</li>
+																																																				
+					<li class="name">jt.clearParticles()</li>
+					<li class="desc">Same as jt.delParts()</li>
+																																																									
+					<li class="name">jt.delPart()</li>
+					<li class="desc">Same as jt.delParts()</li>
+																																																									
+					<li class="name">jt.clearPart()</li>
+					<li class="desc">Same as jt.delParts()</li>
+																																																														
+					<li class="name">jt.simKey(evt,keyName)</li>
+					<li class="desc">Divided into jt.simKeyDown(keyName) and jt.simKeyUp(keyName)</li>
+																																																																			
+					<li class="name">jt.sim(evt,keyName)</li>
+					<li class="desc">Divided into jt.simKeyDown(keyName) and jt.simKeyUp(keyName)</li>
+																																																														
+					<li class="name">jt.keysDown(keys)</li>
+					<li class="desc">Same as jt.keys(keys)</li>
+																																																																			
+					<li class="name">jt.mC(x,y,w,h,cam,btn)</li>
+					<li class="desc">Same as jt.mCheck(x,y,w,h,cam,btn)</li>
+																																																																			
+					<li class="name">jt.mP(x,y,w,h,cam,btn)</li>
+					<li class="desc">Same as jt.mPress(x,y,w,h,cam,btn)</li>
+																																																																								
+					<li class="name">jt.tC(x,y,w,h,cam,fingers)</li>
+					<li class="desc">Same as jt.tCheck(x,y,w,h,cam,fingers)</li>
+																																																																			
+					<li class="name">jt.tP(x,y,w,h,cam,fingers)</li>
+					<li class="desc">Same as jt.tPress(x,y,w,h,cam,fingers)</li>
+																																																																								
+					<li class="name">jt.mS()</li>
+					<li class="desc">Same as jt.mScroll()</li>
+																																																																													
+					<li class="name">jt.r(min,max,val)</li>
+					<li class="desc">Same as jt.random(min,max,interval)</li>
+																																																																																		
+					<li class="name">jt.kC(keyCode)</li>
+					<li class="desc">Almost the same as jt.kCheck(keyName,and)</li>
+																																																																																							
+					<li class="name">jt.kP(keyCode)</li>
+					<li class="desc">Almost the same as jt.kPress(keyName,and)</li>
+																																																																								
+					<li class="name">jt.m(x,y,w,h,cam)</li>
+					<li class="desc">Almost the same as jt.mCheck(x,y,w,h,cam,btn)</li>
+																																																																													
+					<li class="name">jt.i(name,newX,newY,w,h,sX,sY,sW,sH,rotate)</li>
+					<li class="desc">Almost the same as jt.image(name,x,y,w,h,rotation,sX,sY,sW,sH)</li>
+																																																																																		
+					<li class="name">jt.a(name,newX,newY,w,h,rotate)</li>
+					<li class="desc">Almost the same as jt.anim(name,x,y,w,h,rotation)</li>
+																																																																																							
+					<li class="name">jt.s(name,src)</li>
+					<li class="desc">Almost the same as jt.stopPlay(name)</li>
+				</ul>
+			</div>
+			<br>
+			<div class="anchor" id="jte"></div>
+			<div class="section">
+				<h2>JTE (Only works in JT Engine)</h2>
+				<h3>These functions can only be used in the JT Engine</h3>
+				<br>
+				<ul>
+					<li class="name">jte.getObject(name,view)</li>
+					<li class="desc">Get an object by it's name (and the view if it's specified)</li>
+					
+					<li class="name">jte.getObjects(tags,view,and)</li>
+					<li class="desc">Get objects by their names (and the view if it's specified, if and is true it will check if the objects have all the tags, otherwise it will return if the objects have 1 tag)</li>
+									
+					<li class="name">jte.delObject(name)</li>
+					<li class="desc">Delete an object by it's name</li>
+														
+					<li class="name">jte.newObject(name)</li>
+					<li class="desc">Delete an object by it's name</li>
+																			
+					<li class="name">jte.setView(view)</li>
+					<li class="desc">Change the view, only if it exists</li>
+																			
+					<li class="name">jte.getView(i)</li>
+					<li class="desc">Get the current view or get a view by it's index</li>
+																								
+					<li class="name">jte.getViews()</li>
+					<li class="desc">Get all the views</li>
+				</ul>
+			</div>
 			<br>
 			
 			
-			
-			
-			
+			<br>
+			<br>
 
         </div>
         </main>
@@ -39,9 +4153,18 @@
                 ToniestTony's Github page , <a href="https://github.com/ToniestTony">See the github</a> or <a href = "mailto: antoine30@outlook.com">contact me</a>
             </small>
         </footer>
-        <script src="js/jquery-3.2.1.min.js"></script>
-    
-		<script src="./js/jt.js"></script>
+			<!-- Required Ace Libraries -->
+		<script src="js/ace-editor/src-min/ace.js"></script>
+		<script src="js/ace-editor/src-min/mode-javascript.js"></script>
+		<script src="js/ace-editor/src-min/ext-language_tools.js"></script>
+
+		<!-- Custom Scripts -->
+		<script src="js/jquery-3.2.1.min.js"></script>
+		
+		<script src="js/editor.js"></script>
+		
+		<script src="js/jt_lib16.js"></script>
+		
     
     </body>
 </html>
