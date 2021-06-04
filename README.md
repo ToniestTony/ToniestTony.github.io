@@ -1,3 +1,2 @@
 # ToniestTony main page
-My main website is http://ynotplay.ca
-The main page that links to my games: https://toniesttony.github.io/
+Go here to access it: https://toniesttony.github.io/. My main website with my games is http://ynotplay.ca
