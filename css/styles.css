@@ -1,15 +1,28 @@
 *{
     margin: 0;
     padding: 0;
-    font-family: "Arial";
+    font-family: "Consolas";
 }
 
-#can{
+canvas{
 	border:1px solid black;
 	margin-left:auto;
 	margin-right:auto;
 	top:0;
 	left:0;
+}
+
+.section{
+	margin:5px;
+}
+
+.anchor{
+	margin-bottom:75px;
+}
+
+ul.table{
+	padding:5px;
+	padding-left:20px;
 }
 
 ul.projects li{
@@ -41,12 +54,40 @@ ul.nav li.current{
 	background-color: white;
 }
 
+.section ul{
+	margin:5px;
+	padding-left:15px;
+	font-weight:normal;
+	font-size:16px;
+}
+
+.section ul li.name{
+	font-weight:bold;
+	font-size:20px;
+	margin-top:15px;
+}
+
+.section ul li.name:first-child{
+	margin-top:10px;
+}
+
+.section ul li.desc{
+	list-style:none;
+	margin-top:2px;
+	margin-bottom:30px;
+}
+
 h1{
     font-size: 32px;
 }
 
 h2{
     font-size: 24px;
+}
+
+.section h2{
+	padding-bottom:5px;
+	border-bottom:2px solid #ccc
 }
 
 p,label{
@@ -60,12 +101,19 @@ body{
 
 main{
     margin: 20px;
+	margin-top:0;
+	padding-top:90px;
 }
 
 header{
+	display: inline-block;
     background-color: #292929;
     color: white;
 	padding:2px;
+	position: fixed;
+	width: 100%;
+	margin:none;
+	z-index:10;
 }
 
 footer{
@@ -76,6 +124,7 @@ footer{
     padding: 10px;
 	position: fixed;
     bottom: 0;
+	z-index:10;
 }
 
 a{color: #f02850;}
@@ -88,4 +137,8 @@ header h1{
     display: inline-block;
     border-bottom: 1px solid white;
     margin-right: 15px;
+}
+
+.inv{
+	display:none;
 }
