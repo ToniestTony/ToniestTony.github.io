@@ -536,7 +536,9 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
                             if(this.context.gamepad.gamepads[i]==undefined){
                                 this.context.gamepad.gamepads[i]={
                                     axes:[{},{}],
-                                    buttons:[]
+                                    buttons:[],
+									thresholds:[[[0.5,0.5],[0.5,0.5]],[[0.5,0.5],[0.5,0.5]]],
+									directions:[[0,0],[0,0]],
                                 };
                             }
                                 
@@ -544,6 +546,22 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
                             this.context.gamepad.gamepads[i].axes[0].y=gamepads[i].axes[1];
                             this.context.gamepad.gamepads[i].axes[1].x=gamepads[i].axes[2];
                             this.context.gamepad.gamepads[i].axes[1].y=gamepads[i].axes[3];
+							
+							//Directions and thresholds
+							for(var j=0;j<4;j++){
+								var x=j%2;
+								var y=0;
+								if(j>=2){y=1;}
+								if(gamepads[i].axes[j]<=-this.context.gamepad.gamepads[i].thresholds[y][x][0] || gamepads[i].axes[j]>=this.context.gamepad.gamepads[i].thresholds[y][x][1]){
+									if(gamepads[i].axes[j]<=-this.context.gamepad.gamepads[i].thresholds[y][x][0]){
+										this.context.gamepad.gamepads[i].directions[y][x]--;
+									}else if(gamepads[i].axes[j]>=this.context.gamepad.gamepads[i].thresholds[y][x][1]){
+										this.context.gamepad.gamepads[i].directions[y][x]++;
+									}
+								}else{
+									this.context.gamepad.gamepads[i].directions[y][x]=0;
+								}
+							}
 
                             this.context.gamepad.gamepads[i].id=gamepads[i].id;
                             this.context.gamepad.gamepads[i].connected=gamepads[i].connected;
@@ -740,6 +758,7 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
 							this.context.draw.shape(d);
 						}
 						this.context.draw.cam.active=cam;
+						
 						if(d.stay==false){
 							this.debugs.splice(i,1)
 							i--;
@@ -1045,7 +1064,7 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
 		},
 		
 		addDebugText:function(string,x,y,color,textAlign,fontSize,rotation,maxChars,newLineHeight,stay){
-			this.debugs.push({type:"text",string:string,x:x,y:y,color:color,textAlign:textAlign,fontSize:fontSize,rotation:rotation,maxChars:maxChars,newLineHeight:newLineHeight})
+			this.debugs.push({type:"text",string:string,x:x,y:y,color:color,textAlign:textAlign,fontSize:fontSize,rotation:rotation,maxChars:maxChars,newLineHeight:newLineHeight,stay:stay})
 		},
 		
 		addDebugShape:function(obj){
@@ -3011,6 +3030,9 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
 				lineRect.h=line.y1-line.y2;
 			}
 			
+			if(lineRect.w==0){lineRect.w=1;}
+			if(lineRect.h==0){lineRect.h=1;}
+			
 			if(this.rect(rect,lineRect)){
 				//Check if start or end of line is colliding
 				if(this.rectPoint(rect,{x:line.x1,y:line.y1})){
@@ -3057,6 +3079,9 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
 				lineRect.h=line.y1-line.y2;
 			}
 			
+			if(lineRect.w==0){lineRect.w=1;}
+			if(lineRect.h==0){lineRect.h=1;}
+			
 			if(this.rectCircle(lineRect,circle)){
 				//Check if start or end of line is colliding
 				if(this.circlePoint(circle,{x:line.x1,y:line.y1})){
@@ -3102,6 +3127,9 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
 				lineRect.y=line.y2;
 				lineRect.h=line.y1-line.y2;
 			}
+			
+			if(lineRect.w==0){lineRect.w=1;}
+			if(lineRect.h==0){lineRect.h=1;}
 			
 			if(this.rectEllipse(lineRect,ellipse)){
 				//Check if start or end of line is colliding
@@ -3322,23 +3350,41 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
             }
         },
         
-        check: function(button,controller) {
+        check: function(button,controller,and) {
             if(controller==undefined){
                 controller=0;
             }
             if(this.checkConnected(controller)){
                 if(typeof(button)=="object" && button.length>0){
                     var allFound=true;
+					var oneFound=false;
+					var once=true;
+					if(and!=undefined){
+						if(and==true){
+							once=false;
+						}
+					}
                     for(var i=0;i<button.length;i++){
                         if(!this.check(button[i],controller)){
                             allFound=false;
-                        }
+                        }else if(once){
+							oneFound=true;
+							break;
+						}
                     }
-                    if(allFound){
-                        return true;
-                    }else{
-                        return false;
-                    }
+                    if(once){
+						if(oneFound){
+							return true;
+						}else{
+							return false;
+						}
+					}else{
+						if(allFound){
+							return true;
+						}else{
+							return false;
+						}
+					}
                 }else{
                     if(this.buttons[button]!=undefined){
                         button=this.buttons[button];
@@ -3352,24 +3398,122 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
             }
             
         },
+		
+		direction:function(direction,axes,controller,press){
+			if(controller==undefined){
+                controller=0;
+            }
+			if(axes==undefined){
+                axes=0;
+            }
+            if(this.checkConnected(controller)){
+				if(direction==undefined){
+					return this.gamepads[controller].direction;
+				}
+				//one
+				var found=false;
+				var pressed=false;
+				if(press!=undefined){
+					if(press==true){
+						pressed=true;
+					}
+				}
+				if(!pressed){
+					if(direction=="all"){
+						if(this.gamepads[controller].directions[axes][0]<0){found=true}
+						if(this.gamepads[controller].directions[axes][0]>0){found=true}
+						if(this.gamepads[controller].directions[axes][1]<0){found=true}
+						if(this.gamepads[controller].directions[axes][1]>0){found=true}
+						return found;
+					}else if(direction=="left"){if(this.gamepads[controller].directions[axes][0]<0){found=true}}
+					else if(direction=="right"){if(this.gamepads[controller].directions[axes][0]>0){found=true}}
+					else if(direction=="up"){if(this.gamepads[controller].directions[axes][1]<0){found=true}}
+					else if(direction=="down"){if(this.gamepads[controller].directions[axes][1]>0){found=true}}
+				}else{
+					if(direction=="all"){
+						if(this.gamepads[controller].directions[axes][0]==-1){found=true}
+						if(this.gamepads[controller].directions[axes][0]==1){found=true}
+						if(this.gamepads[controller].directions[axes][1]==-1){found=true}
+						if(this.gamepads[controller].directions[axes][1]==1){found=true}
+						return found;
+					}else if(direction=="left"){if(this.gamepads[controller].directions[axes][0]==-1){found=true}}
+					else if(direction=="right"){if(this.gamepads[controller].directions[axes][0]==1){found=true}}
+					else if(direction=="up"){if(this.gamepads[controller].directions[axes][1]==-1){found=true}}
+					else if(direction=="down"){if(this.gamepads[controller].directions[axes][1]==1){found=true}}
+				}
+				return found;
+			}
+		},
+				
+		threshold:function(threshold,axes,controller,val){
+			if(controller==undefined){
+                controller=0;
+            }
+			if(axes==undefined){
+                axes=0;
+            }
+            if(this.checkConnected(controller)){
+				if(threshold==undefined){
+					return this.gamepads[controller].threshold;
+				}
+				//one
+				var found=false;
+				if(val==undefined){
+					if(threshold=="all"){return this.gamepads[controller].thresholds[axes];}
+					else if(threshold=="left"){return this.gamepads[controller].thresholds[axes][0][0];}
+					else if(threshold=="right"){return this.gamepads[controller].thresholds[axes][0][1];}
+					else if(threshold=="up"){return this.gamepads[controller].thresholds[axes][1][0];}
+					else if(threshold=="down"){return this.gamepads[controller].thresholds[axes][1][1];}
+				}else{
+					if(threshold=="all"){
+						this.gamepads[controller].thresholds[axes][0][0]=val;
+						this.gamepads[controller].thresholds[axes][0][1]=val;
+						this.gamepads[controller].thresholds[axes][1][0]=val;
+						this.gamepads[controller].thresholds[axes][1][1]=val;
+						return this.gamepads[controller].thresholds[axes];
+					}else if(threshold=="left"){return this.gamepads[controller].thresholds[axes][0][0]=val;}
+					else if(threshold=="right"){return this.gamepads[controller].thresholds[axes][0][1]=val;}
+					else if(threshold=="up"){return this.gamepads[controller].thresholds[axes][1][0]=val;}
+					else if(threshold=="down"){return this.gamepads[controller].thresholds[axes][1][1]=val;}
+				}
+			}
+		},
         
-        value: function(button,controller) {
+        value: function(button,controller,and) {
             if(controller==undefined){
                 controller=0;
             }
             if(this.checkConnected(controller)){
                 if(typeof(button)=="object" && button.length>0){
                     var allFound=true;
+					var oneFound=false;
+					var once=true;
+					if(and!=undefined){
+						if(and==true){
+							once=false;
+						}
+					}
                     for(var i=0;i<button.length;i++){
                         if(!this.value(button[i],controller)){
                             allFound=false;
-                        }
+                        }else if(once){
+							oneFound=true;
+							break;
+						}
                     }
-                    if(allFound){
-                        return true;
-                    }else{
-                        return false;
-                    }
+                    if(once){
+						if(oneFound){
+							return true;
+						}else{
+							return false;
+						}
+					}else{
+						if(allFound){
+							return true;
+						}else{
+							return false;
+						}
+					}
                 }else{
                     if(this.buttons[button]!=undefined){
                         button=this.buttons[button];
@@ -3381,19 +3525,51 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
             
         },
         
-        press: function(button,controller) {
+        press: function(button,controller,and) {
             if(controller==undefined){
                 controller=0;
             }
-            if(this.checkConnected(controller)){
-                if(this.buttons[button]!=undefined){
-                    button=this.buttons[button];
-                }
-                var found = this.gamepads[controller].buttons[button].pressed;
-                if(found==1){
-                    return true;
+			if(this.checkConnected(controller)){
+                if(typeof(button)=="object" && button.length>0){
+                    var allFound=true;
+					var oneFound=false;
+					var once=true;
+					if(and!=undefined){
+						if(and==true){
+							once=false;
+						}
+					}
+                    for(var i=0;i<button.length;i++){
+                        if(!this.press(button[i],controller)){
+                            allFound=false;
+                        }else if(once){
+							oneFound=true;
+							break;
+						}
+                    }
+                    if(once){
+						if(oneFound){
+							return true;
+						}else{
+							return false;
+						}
+					}else{
+						if(allFound){
+							return true;
+						}else{
+							return false;
+						}
+					}
                 }else{
-                    return false;
+                    if(this.buttons[button]!=undefined){
+						button=this.buttons[button];
+					}
+					var found = this.gamepads[controller].buttons[button].pressed;
+					if(found==1){
+						return true;
+					}else{
+						return false;
+					}
                 }
             }
         },
@@ -3408,10 +3584,20 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
                         this.gamepads[controller].buttons[i].value=0;
                     }
                 }else{
-                    if(this.buttons[button]!=undefined){
-                        button=this.buttons[button];
-                    }
-                    this.gamepads[controller].buttons[button].value=0;
+					if(typeof(button)=="object" && button.length>0){
+						for(var i=0;i<button.length;i++){
+							var buttonI=button[i];
+							if(this.buttons[buttonI]!=undefined){
+								buttonI=this.buttons[buttonI];
+							}
+							this.gamepads[controller].buttons[buttonI].value=0;
+						}
+					}else{
+						if(this.buttons[button]!=undefined){
+							button=this.buttons[button];
+						}
+						this.gamepads[controller].buttons[button].value=0;
+					}
                 }
             }
         }
@@ -3670,15 +3856,31 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
 						this.release(keyCode[i]);
 					}
 				}else{
-					if(this.keys[keyCode]!=undefined){
-						keyCode=this.keys[keyCode];
-					}
-					var found = undefined;
-					for(var i=0; i<this.keysDown.length; i++) {
-						if(this.keysDown[i].key == keyCode) {found=i;}
-					}
-					if(found!=undefined){
-						this.keysDown.splice(found,1);
+					if(typeof(keyCode)=="object" && keyCode.length>0){
+						for(var i=0;i<keyCode.length;i++){
+							var key=keyCode[i];
+							if(this.keys[key]!=undefined){
+								key=this.keys[key];
+							}
+							for(var j=0; j<this.keysDown.length; j++) {
+								if(this.keysDown[j].key == key) {
+									this.keysDown.splice(j,1);
+									j--;
+									continue;
+								}
+							}
+						}
+					}else{
+						if(this.keys[keyCode]!=undefined){
+							keyCode=this.keys[keyCode];
+						}
+						var found = undefined;
+						for(var i=0; i<this.keysDown.length; i++) {
+							if(this.keysDown[i].key == keyCode) {found=i;}
+						}
+						if(found!=undefined){
+							this.keysDown.splice(found,1);
+						}
 					}
 				}
             }
@@ -4821,8 +5023,8 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
         return this.math.angle(obj1.x,obj1.y,obj2.x,obj2.y);
     }
 	
-	this.angleP=function(x,y,x2,y2){
-        return this.math.angle(x,y,x2,y2);
+	this.angleP=function(x1,y1,x2,y2){
+        return this.math.angle(x1,y1,x2,y2);
     }
     
     this.angleX=function(angle){
@@ -5100,28 +5302,28 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
         return this.gamepad.checkConnected(controller);
     }
 	
-    this.padCheck=function(button,controller){
-        return this.gamepad.check(button,controller);
+    this.padCheck=function(button,controller,and){
+        return this.gamepad.check(button,controller,and);
     }
     
-    this.pCheck=function(button,controller){
-        return this.gamepad.check(button,controller);
+    this.pCheck=function(button,controller,and){
+        return this.gamepad.check(button,controller,and);
     }
     
-    this.padPress=function(button,controller){
-        return this.gamepad.press(button,controller);
+    this.padPress=function(button,controller,and){
+        return this.gamepad.press(button,controller,and);
     }
     
-    this.pPress=function(button,controller){
-        return this.gamepad.press(button,controller);
+    this.pPress=function(button,controller,and){
+        return this.gamepad.press(button,controller,and);
     }
     
-    this.padValue=function(button,controller){
-        return this.gamepad.value(button,controller);
+    this.padValue=function(button,controller,and){
+        return this.gamepad.value(button,controller,and);
     }
     
-    this.pValue=function(button,controller){
-        return this.gamepad.value(button,controller);
+    this.pValue=function(button,controller,and){
+        return this.gamepad.value(button,controller,and);
     }
     
     this.padRelease=function(button,controller){
@@ -5148,6 +5350,61 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
         return this.gamepad.axes(axes,controller);
     }
 	    
+    this.padDirCheck=function(direction,stick,controller){
+        return this.gamepad.direction(direction,stick,controller,false);
+    }
+		    
+    this.pDirCheck=function(direction,stick,controller){
+        return this.gamepad.direction(direction,stick,controller,false);
+    }
+			    
+    this.padDirPress=function(direction,stick,controller){
+        return this.gamepad.direction(direction,stick,controller,true);
+    }
+		    
+    this.pDirPress=function(direction,stick,controller){
+        return this.gamepad.direction(direction,stick,controller,true);
+    }
+		    
+    this.padThreshold=function(threshold,stick,controller,val){
+        return this.gamepad.threshold(threshold,stick,controller,val);
+    }
+			    
+    this.pThreshold=function(threshold,stick,controller,val){
+        return this.gamepad.threshold(threshold,stick,controller,val);
+    }
+	  
+	/*direction:function(direction,axes,controller,press){
+			if(controller==undefined){
+                controller=0;
+            }
+			if(axes==undefined){
+                axes=0;
+            }
+            if(this.checkConnected(controller)){
+				if(direction==undefined){
+					return this.gamepads[controller].direction;
+				}
+				//one
+				var found=false;
+				if(press==undefined){
+					if(direction=="left"){if(this.gamepads[controller].directions[axes][0]<0){found=true}}
+					if(direction=="right"){if(this.gamepads[controller].directions[axes][0]>0){found=true}}
+					if(direction=="up"){if(this.gamepads[controller].directions[axes][1]<0){found=true}}
+					if(direction=="down"){if(this.gamepads[controller].directions[axes][1]>0){found=true}}
+				}else{
+					if(direction=="left"){if(this.gamepads[controller].directions[axes][0]==-1){found=true}}
+					if(direction=="right"){if(this.gamepads[controller].directions[axes][0]==1){found=true}}
+					if(direction=="up"){if(this.gamepads[controller].directions[axes][1]==-1){found=true}}
+					if(direction=="down"){if(this.gamepads[controller].directions[axes][1]==1){found=true}}
+				}
+				return found;
+			}
+		},
+				
+		threshold:function(threshold,axes,controller,val){*/
+
+	  
     this.pads=function(){
         return this.gamepad.gamepads;
     }
@@ -5486,6 +5743,13 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
 	this.camactive=function(bool){
 		return this.draw.camActive(bool);
 	}
+	
+	this.fontsize=function(size){
+		if(size!=undefined){
+			this.draw.font(this.draw.fontName,size)
+		}
+		return this.draw.fontSize;
+    }
 			
 	this.animP=function(name){
 		return this.draw.animPaused(name)
