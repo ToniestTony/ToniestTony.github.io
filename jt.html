@@ -3157,20 +3157,20 @@ if(jt.padConnected()){
 				
 				
 					<li class="name">
-						jt.padCheck(button,controller)<br>
-						jt.pCheck(button,controller)
-						<button class="editor__btn editor__add" name="jt.padCheck(button,controller)" valueId='pad'>Test in editor</button>
+						jt.padCheck(button,controller,and)<br>
+						jt.pCheck(button,controller,and)
+						<button class="editor__btn editor__add" name="jt.padCheck(button,controller,and)" valueId='pad'>Test in editor</button>
 					</li>
-					<li class="desc">Check if a button is down on a controller and returns true or false</li>
+					<li class="desc">Check if a button is down on a controller and returns true or false (button can also be an array of buttons, if and is true it will return true if all of them are down)</li>
 																																								
 				
 				
 					<li class="name">
-						jt.padPress(button,controller)<br>
-						jt.pPress(button,controller)
-						<button class="editor__btn editor__add" name="jt.padPress(button,controller)" valueId='pad'>Test in editor</button>
+						jt.padPress(button,controller,and)<br>
+						jt.pPress(button,controller,and)
+						<button class="editor__btn editor__add" name="jt.padPress(button,controller,and)" valueId='pad'>Test in editor</button>
 					</li>
-					<li class="desc">Check if a button is pressed on a controller and returns true or false (pressing only lasts 1 frame)</li>
+					<li class="desc">Check if a button is pressed on a controller and returns true or false (pressing only lasts 1 frame, button can also be an array of buttons, if and is true it will return true if all of them are down)</li>
 																																													
 				
 				
@@ -3239,7 +3239,7 @@ if(jt.padConnected()){
     jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
 }'>Test in editor</button>
 					</li>
-					<li class="desc">Release a button on the controller for 1 frame</li>
+					<li class="desc">Release a button on the controller for 1 frame (button can also be an array of button or empty to release all)</li>
 																																																							
 				
 				
@@ -3274,8 +3274,143 @@ if(jt.padConnected()){
     jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
 }'>Test in editor</button>
 					</li>
-					<li class="desc">Returns an array of the x and y position of the gamepad stick (from -1 to 1, stick is 0 by default, which is the left stick and 1 is for the right stick)</li>
+					<li class="desc">Returns an array of the x and y position of the gamepad stick (from -1 to 1, stick is 0 by default which is the left stick and 1 is for the right stick)</li>
 																																																												
+				
+				
+					<li class="name">
+						jt.padDirCheck(direction,stick,controller)<br>
+						jt.pDirCheck(direction,stick,controller)
+						<button class="editor__btn editor__add" name="jt.padDirCheck(direction,stick,controller)" value='
+//Move both gamepad sticks to change the directions
+jt.fontSize(14)
+if(jt.padConnected()){
+    jt.text("Gamepad connected!",jt.w()/2,5,"black","center")
+    
+    var leftStick=jt.pStick();
+    var rightStick=jt.pStick(1);
+    
+    //Show controls
+    jt.text("Move both sticks around to change the directions",jt.w()/2,25,"black","center")
+    //Left stick
+    jt.text("Up: "+jt.padDirCheck("up"),jt.w()/4,65,"black","center")
+    jt.text("Left: "+jt.padDirCheck("left"),jt.w()/8,105,"black","center")
+    jt.text("Down: "+jt.padDirCheck("down"),jt.w()/4,145,"black","center")
+    jt.text("Right: "+jt.padDirCheck("right"),jt.w()*(3/8),105,"black","center")
+    jt.line(jt.w()/2,60,jt.w()/2,jt.h()-35,1,"black")
+    //Right stick
+    jt.text("Up: "+jt.padDirCheck("up",1),jt.w()*(3/4),65,"black","center")
+    jt.text("Left: "+jt.padDirCheck("left",1),jt.w()*(5/8),105,"black","center")
+    jt.text("Down: "+jt.padDirCheck("down",1),jt.w()*(3/4),145,"black","center")
+    jt.text("Right: "+jt.padDirCheck("right",1),jt.w()*(7/8),105,"black","center")
+}else{
+    jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Return true or false if the gamepad's stick is facing that direction (left,right,up,down or all) (stick is 0 by default which is the left stick and 1 is for the right stick)</li>
+																																																																	
+				
+				
+					<li class="name">
+						jt.padDirPress(direction,axes,controller)<br>
+						jt.pDirPress(direction,axes,controller)
+						<button class="editor__btn editor__add" name="jt.padDirPress(direction,axes,controller)" value='
+//Move both gamepad sticks to select color in a grid
+if(this.padX===undefined){this.padX=3;}
+if(this.padY===undefined){this.padY=2;}
+jt.fontSize(14)
+if(jt.padConnected()){
+    jt.text("Gamepad connected!",jt.w()/2,5,"black","center")
+    
+    //Select color in grid with jt.padDirPress()
+    if(jt.padDirPress("left")){this.padX--;}
+    if(jt.padDirPress("right")){this.padX++;}
+    if(jt.padDirPress("up")){this.padY--;}
+    if(jt.padDirPress("down")){this.padY++;}
+    this.padX=jt.stay(this.padX,0,8);
+    this.padY=jt.stay(this.padY,0,4);
+    
+    //Draw grid
+    var c=[0,0,0];
+    for(var y=0;y<5;y++){
+        for(var x=0;x<9;x++){
+            var xx=10+(x*30);
+            var yy=y*30+55;
+            var cc=[x*(255/8),0,y*(255/4)];
+            jt.rect(xx,yy,20,20,cc)   
+            if(x==this.padX && y==this.padY){
+                jt.circleB(xx-5,yy-5,30,"black",3)
+                c=cc;
+            }
+        }
+    }
+    jt.rect(jt.w()*(3/4)+2,jt.h()/2-5,60,60,c)
+    
+    //Show controls
+    jt.text("Move both sticks around to move in the grid",jt.w()/2,25,"black","center")
+}else{
+    jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Return true or false if the gamepad's stick is facing that direction (left,right,up,down or all) (pressing only lasts 1 frame, stick is 0 by default which is the left stick and 1 is for the right stick)</li>
+																																																																						
+				
+				
+					<li class="name">
+						jt.padThreshold(direction,stick,controller,val)<br>
+						jt.pThreshold(direction,stick,controller,val)
+						<button class="editor__btn editor__add" name="jt.padThreshold(direction,stick,controller,val)" value='
+//Move both gamepad sticks to select color in a grid and change threshold with triggers
+if(this.padX===undefined){this.padX=3;}
+if(this.padY===undefined){this.padY=2;}
+if(this.padThreshold===undefined){this.padThreshold=0.5;}
+jt.fontSize(14)
+if(jt.padConnected()){
+    jt.text("Gamepad connected!",jt.w()/2,5,"black","center")
+    
+    //Select color in grid with jt.padDirPress()
+    if(jt.padDirPress("left")){this.padX--;}
+    if(jt.padDirPress("right")){this.padX++;}
+    if(jt.padDirPress("up")){this.padY--;}
+    if(jt.padDirPress("down")){this.padY++;}
+    this.padX=jt.stay(this.padX,0,8);
+    this.padY=jt.stay(this.padY,0,4);
+    
+    //Change threshold
+    if(jt.padPress("leftTrigger")){this.padThreshold-=0.1;}
+    if(jt.padPress("rightTrigger")){this.padThreshold+=0.1;}
+    this.padThreshold=jt.stay(jt.round(this.padThreshold,1),0.1,1)
+    jt.padThreshold("all",0,0,this.padThreshold)
+    
+    //Draw grid
+    var c=[0,0,0];
+    for(var y=0;y<5;y++){
+        for(var x=0;x<9;x++){
+            var xx=10+(x*25);
+            var yy=y*25+70;
+            var cc=[x*(255/8),0,y*(255/4)];
+            jt.rect(xx,yy,15,15,cc)   
+            if(x==this.padX && y==this.padY){
+                jt.circleB(xx-5,yy-5,25,"black",3)
+                c=cc;
+            }
+        }
+    }
+    jt.rect(275,jt.h()/2+25,60,60,c)
+    //Draw threshold bar
+    jt.text("Threshold: "+this.padThreshold,300,70,"black","center")
+    jt.rect(250-2,85-2,100+4,15+4,"black")
+    jt.rect(250,85,this.padThreshold*100,15,"red")
+    
+    //Show controls
+    jt.text("Move both sticks around to move in the grid",jt.w()/2,25,"black","center")
+    jt.text("Use the triggers to change the threshold",jt.w()/2,45,"black","center")
+}else{
+    jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Get or set with val the threshold for a direction (left,right,up,down or all), this only affects jt.padDirCheck() and jt.padDirPress() (stick is 0 by default which is the left stick and 1 is for the right stick, val is optional and used for setting a threshold and should be between 0 and 1 which by default is 0.5)</li>
+					
 				
 				
 					<li class="name">
@@ -3455,7 +3590,7 @@ jt.text("Number of frames that Space is held: "+this.keyDown,jt.w()/2,80,"black"
 jt.rect(jt.w()/4,jt.h()-100,200,20,"black")
 jt.rect(jt.w()/4,jt.h()-100,200*(this.keyDown/120),20,"red")'>Test in editor</button>
 					</li>
-					<li class="desc">Release a key on the keyboard for 1 frame (if keyName is undefined, it will release all keys, keyName can also be an array of keyNames, it can be useful to call after a jt.keyPress() so it doesn't fire another one in the same frame)</li>
+					<li class="desc">Release a key on the keyboard for 1 frame (keyName can also be an array of all keys or empty to release all, keyName can also be an array of keyNames which can be useful to call after a jt.keyPress() so it doesn't fire another one in the same frame)</li>
 																												
 				
 				
@@ -4000,6 +4135,9 @@ jt.text("Press me!",jt.w()/2,93,"black","center")'>Test in editor</button>
 				
 					<li class="name">jt.camactive(bool)</li>
 					<li class="desc">Same as jt.camactive(bool)</li>
+									
+					<li class="name">jt.fontsize(size)</li>
+					<li class="desc">Same as jt.fontSize(size)</li>
 									
 					<li class="name">jt.animP(name)</li>
 					<li class="desc">Same as jt.animPause(name)</li>
