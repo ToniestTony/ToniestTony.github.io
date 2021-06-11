@@ -33,6 +33,18 @@ window.onload = function(){
 	jt3.loadImage(path+"vs.png","vs");
 	jt3.loadImage(path+"hammer.png","hammer");
 	jt3.loadImage(path+"triangle.png","triangle");
+	jt3.loadImage(path+"watch.png","watch");
+	jt3.loadImage(path+"settings.png","settings");
+	jt3.loadImage(path+"check.png","check");
+	jt3.loadImage(path+"carRed.png","carRed");
+	jt3.loadImage(path+"carGreen.png","carGreen");
+	jt3.loadImage(path+"carBlue.png","carBlue");
+	jt3.loadImage(path+"carGrey.png","carGrey");
+	jt3.loadImage(path+"carPink.png","carPink");
+	jt3.loadImage(path+"carRainbow.png","carRainbow");
+	jt3.loadSound(path+"change.mp3","change");
+	jt3.loadSound(path+"choose.mp3","choose");
+	jt3.loadSound(path+"cancel.mp3","cancel");
 	
 	
 	//jt.loadSound("sound.mp3","name")
