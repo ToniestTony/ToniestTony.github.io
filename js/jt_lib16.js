@@ -570,27 +570,19 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
                                 var pressed=0;
                                
                                 if(this.context.gamepad.gamepads[i].buttons[j]!=undefined){
+                                    if(gamepads[i].buttons[j].value>0){
+										this.context.gamepad.gamepads[i].buttons[j].pressed++;
+                                    }else{
+										this.context.gamepad.gamepads[i].buttons[j].pressed=0;
+									}
+									this.context.gamepad.gamepads[i].buttons[j].value=gamepads[i].buttons[j].value;
+								}else{
+									this.context.gamepad.gamepads[i].buttons[j]={
                                     
-                                    if(this.context.gamepad.gamepads[i].buttons[j].value>0){
-                                    pressed=1;
-                                    }
-                                    
-                                    if(this.context.gamepad.gamepads[i].buttons[j].pressed==1 || this.context.gamepad.gamepads[i].buttons[j].pressed==2){
-                                        pressed=2;
-                                    }
-                                    
-                                    if(this.context.gamepad.gamepads[i].buttons[j].value<=0){
-                                    pressed=0;
-                                    }
-                                    
-                                
-                                }
-                                
-                                this.context.gamepad.gamepads[i].buttons[j]={
-                                    
-                                    value:gamepads[i].buttons[j].value,
-                                    pressed:pressed
-                                }
+										value:gamepads[i].buttons[j].value,
+										pressed:pressed
+									}
+								}
                             }
                         }
                     }
@@ -1534,6 +1526,8 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
 			var dX=obj.dX;
 			var dY=obj.dY;
             var diameter=obj.diameter;
+            var diameterX=obj.diameterX;
+            var diameterY=obj.diameterY;
             var rotation=obj.rotation;
             var width=obj.width;
             var height=obj.height;
@@ -1578,6 +1572,18 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
                 }
             }
 			
+			if(dX==undefined){
+                if(diameterX!=undefined){
+                    dX=diameterX;
+                }
+            }
+			
+			if(dY==undefined){
+                if(diameterY!=undefined){
+                    dY=diameterY;
+                }
+            }
+			
 			if(o==undefined){
                 if(outline!=undefined){
                     o=outline;
@@ -1586,20 +1592,29 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
             
             if(x1!=undefined){
                 //line
+				if(o!=undefined){
+					w=o;
+				}
                 this.line(x1,y1,x2,y2,w,c,r);
             }else if(d!=undefined){
                 //circle
 				if(o==undefined){
 					this.circle(x,y,d,c);
 				}else{
-					this.circleB(x,y,d,c,o);
+					if(o!=undefined){
+						w=o;
+					}
+					this.circleB(x,y,d,c,w);
 				}
             }else if(dX!=undefined){
                 //ellipse
 				if(o==undefined){
 					this.ellipse(x,y,dX,dY,c);
 				}else{
-					this.ellipseB(x,y,dX,dY,c,o);
+					if(o!=undefined){
+						w=o;
+					}
+					this.ellipseB(x,y,dX,dY,c,w);
 				}
             }else{
                 //rect
@@ -1614,64 +1629,101 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
 
         //Drawing rectangle
         rect: function(x,y,w,h,color,rotation) {
-			if(color!=undefined){this.color(color,"fill");}
-            this.fill("rect",x,y,w,h,rotation);
+			if(typeof(x)=="object"){
+				if(x.o!=undefined){x.o=undefined;}
+				if(x.outline!=undefined){x.outline=undefined;}
+				this.shape(x);
+			}else{
+				if(color!=undefined){this.color(color,"fill");}
+				this.fill("rect",x,y,w,h,rotation);
+			}
         },
         
         //Drawing rectangle border
         rectB: function(x,y,w,h,color,rotation,lineW){
-            if(color!=undefined){this.color(color,"stroke");}
-            if(lineW<=0){lineW=1}
-            this.ctx.lineWidth = lineW;
-            this.fill("rectB",x,y,w,h,rotation);
+			if(typeof(x)=="object"){
+				if(x.o==undefined && x.outline==undefined){x.o=1;}
+				this.shape(x);
+			}else{
+				if(color!=undefined){this.color(color,"stroke");}
+				if(lineW<=0){lineW=1}
+				this.ctx.lineWidth = lineW;
+				this.fill("rectB",x,y,w,h,rotation);
+			}
         },
 
         //Drawing circle
         circle: function(x,y,d,color) {
-            this.ctx.beginPath();
-            this.fill("arc",x+d/2,y+d/2,d/2);
-            if(color!=undefined){this.color(color,"fill");}
-            this.ctx.fill();
+			if(typeof(x)=="object"){
+				if(x.o!=undefined){x.o=undefined;}
+				if(x.outline!=undefined){x.outline=undefined;}
+				this.shape(x);
+			}else{
+				this.ctx.beginPath();
+				this.fill("arc",x+d/2,y+d/2,d/2);
+				if(color!=undefined){this.color(color,"fill");}
+				this.ctx.fill();
+			}
         },
         
         //Drawing circle border
         circleB: function(x,y,d,color,lineW) {
-            this.ctx.beginPath();
-            this.fill("arc",x+d/2,y+d/2,d/2);
-            if(color!=undefined){this.color(color,"stroke");}
-            if(lineW<=0){lineW=1}
-            this.ctx.lineWidth=lineW;
-            this.ctx.stroke();
+			if(typeof(x)=="object"){
+				if(x.o==undefined && x.outline==undefined){x.o=1;}
+				this.shape(x);
+			}else{
+				this.ctx.beginPath();
+				this.fill("arc",x+d/2,y+d/2,d/2);
+				if(color!=undefined){this.color(color,"stroke");}
+				if(lineW<=0){lineW=1}
+				this.ctx.lineWidth=lineW;
+				this.ctx.stroke();
+			}
         },
 		
         //Drawing ellipse
         ellipse: function(x,y,dX,dY,color,rotation) {
-            this.ctx.beginPath();
-            this.fill("ellipse",x+dX/2,y+dY/2,dX/2,dY/2,rotation);
-            if(color!=undefined){this.color(color,"fill");}
-            this.ctx.fill();
+			if(typeof(x)=="object"){
+				if(x.o!=undefined){x.o=undefined;}
+				if(x.outline!=undefined){x.outline=undefined;}
+				this.shape(x);
+			}else{
+				this.ctx.beginPath();
+				this.fill("ellipse",x+dX/2,y+dY/2,dX/2,dY/2,rotation);
+				if(color!=undefined){this.color(color,"fill");}
+				this.ctx.fill();
+			}
         },
         
         //Drawing ellipse border
         ellipseB: function(x,y,dX,dY,color,rotation,lineW) {
-            this.ctx.beginPath();
-            this.fill("ellipse",x+dX/2,y+dY/2,dX/2,dY/2,rotation);
-            if(color!=undefined){this.color(color,"stroke");}
-            if(lineW<=0){lineW=1}
-            this.ctx.lineWidth=lineW;
-            this.ctx.stroke();
+			if(typeof(x)=="object"){
+				if(x.o==undefined && x.outline==undefined){x.o=1;}
+				this.shape(x);
+			}else{
+				this.ctx.beginPath();
+				this.fill("ellipse",x+dX/2,y+dY/2,dX/2,dY/2,rotation);
+				if(color!=undefined){this.color(color,"stroke");}
+				if(lineW<=0){lineW=1}
+				this.ctx.lineWidth=lineW;
+				this.ctx.stroke();
+			}
         },
 
         //Drawing line
         line: function(x1,y1,x2,y2,width,color,rotation) {
-            if(color!=undefined){this.color(color,"stroke");}
-            this.ctx.lineWidth=1;
-            if(width!=undefined){
-                this.ctx.lineWidth=width;
-            }
-            this.ctx.beginPath();
-            this.fill("line",x1,y1,x2,y2,rotation)
-            this.ctx.stroke();
+			if(typeof(x1)=="object"){
+				this.shape(x1);
+			}else{
+				if(color!=undefined){this.color(color,"stroke");}
+				this.ctx.lineWidth=1;
+				if(width!=undefined){
+					this.ctx.lineWidth=width;
+				}
+				this.ctx.beginPath();
+				this.fill("line",x1,y1,x2,y2,rotation)
+				this.ctx.stroke();
+			}
         },
 		
         //Setting the font
@@ -5373,37 +5425,6 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
     this.pThreshold=function(threshold,stick,controller,val){
         return this.gamepad.threshold(threshold,stick,controller,val);
     }
-	  
-	/*direction:function(direction,axes,controller,press){
-			if(controller==undefined){
-                controller=0;
-            }
-			if(axes==undefined){
-                axes=0;
-            }
-            if(this.checkConnected(controller)){
-				if(direction==undefined){
-					return this.gamepads[controller].direction;
-				}
-				//one
-				var found=false;
-				if(press==undefined){
-					if(direction=="left"){if(this.gamepads[controller].directions[axes][0]<0){found=true}}
-					if(direction=="right"){if(this.gamepads[controller].directions[axes][0]>0){found=true}}
-					if(direction=="up"){if(this.gamepads[controller].directions[axes][1]<0){found=true}}
-					if(direction=="down"){if(this.gamepads[controller].directions[axes][1]>0){found=true}}
-				}else{
-					if(direction=="left"){if(this.gamepads[controller].directions[axes][0]==-1){found=true}}
-					if(direction=="right"){if(this.gamepads[controller].directions[axes][0]==1){found=true}}
-					if(direction=="up"){if(this.gamepads[controller].directions[axes][1]==-1){found=true}}
-					if(direction=="down"){if(this.gamepads[controller].directions[axes][1]==1){found=true}}
-				}
-				return found;
-			}
-		},
-				
-		threshold:function(threshold,axes,controller,val){*/
-
 	  
     this.pads=function(){
         return this.gamepad.gamepads;
