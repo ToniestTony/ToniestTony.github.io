@@ -436,22 +436,31 @@ for(var alarm in alarms){
 					
 					
 					
-					
 					<li class="name">
 							jt.shake(force,duration,reduce)
-							<button class="editor__btn editor__add" value='
+							<button class="editor__btn editor__add" id="shake" value='
 //Shake screen when clicking
 if(jt.mPress()){
 	jt.shake(10,10,1);
 }
 
 //Show controls
+jt.camActive(true);
 jt.fontSize(14);
 jt.text("Click anywhere to shake!",jt.w()/2,jt.h()/2-6,"black","center")
 jt.camActive(false);
-jt.text("The cam is not active on this text",jt.w()/2,jt.h()-50,"black","center")'>Test in editor</button>
+jt.text("Shaking: "+jt.shaking(),jt.w()/2,jt.h()-50,"black","center")
+jt.text("The cam is not active on this text",jt.w()/2,jt.h()-25,"black","center")'>Test in editor</button>
 					</li>
 					<li class="desc">Shake the canvas (if the cam is active) with force, duration and how much it is reduced each frame</li>
+										
+					
+					
+					<li class="name">
+							jt.shaking()
+							<button class="editor__btn editor__add" valueId='shake'>Test in editor</button>
+					</li>
+					<li class="desc">Get true or false if the screen is shaking with jt.shake()</li>
 					
 					
 					
@@ -1099,7 +1108,7 @@ jt.text("Space to Stop then Play",jt.w()/2,180,"black","center")'>Test in editor
 			<div class="anchor" id="draw"></div>
 			<div class="section">
 				<h2>Draw</h2>
-				<h3>When drawing shapes, the x and y coordinates are always for the upper left corner</h3>
+				<h3>When drawing shapes, the x and y coordinates are always for the upper left corner. If you pass an object in a shape drawing function except jt.shape(), be sure to include all the necessary parameters, jt.line() needs x1,y1,x2,y2, jt.rect() needs x,y,w,h, jt.circle() needs x,y,d and jt.ellipse() needs x,y,dX,yY</h3>
 				<br>
 				<ul>
 				
