@@ -4613,6 +4613,14 @@ function JT(id,w,h,fps,setupName,updateName,objName,mobileAudioSize,fullScreenBt
     this.shake=function(force,duration,reduce){
         return this.loop.shake(force,duration,reduce);
     }
+	    
+    this.shaking=function(){
+		if(this.loop.shakeObj==undefined){
+			return false;
+		}else{
+			return true;
+		}
+    }
     
     this.checkCombo=function(arr,reset){
         return this.loop.checkCombo(arr,reset);
