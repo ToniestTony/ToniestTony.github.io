@@ -22,7 +22,7 @@ var app3={
 		[50,150],
 		[50,50]]
 		],
-		name:"Beginner",
+		name:"Square",
 		w:200,
 		h:200,
 		checkpoints:[
@@ -31,72 +31,53 @@ var app3={
 			{x:150,y:150,w:50,h:50},
 			{x:10,y:150,w:50,h:50},
 		],
-		times:[[2000,"Tony Tony Tony Tony1"],[2100,"Test"],[2300,"Third"],[2400,"4"],[2400,"5"],[2400,"6"],[2400,"7"],[2500,"8"],[2700,"9"],[3000,"10"]],
+		stars:[950,800,650],
+		
 	},
-	{
-		lines:[[
-		[0,0],
-		[200,10],
-		[200,200],
-		[10,200],
-		[10,115],
-		[50,115],
-		[50,105],
-		[10,105],
-		[0,0]],
-		[
-		[60,60],
-		[150,60],
-		[160,160],
-		[60,160],
-		[60,150],
-		[100,150],
-		[100,70],
-		[60,70],
-		[60,60]]],
-		name:"Beginner 2",
-		w:200,
-		h:200,
-		checkpoints:[
-			{x:0,y:0,w:50,h:50},
-			{x:150,y:0,w:50,h:50},
-			{x:150,y:150,w:50,h:50},
-			{x:10,y:150,w:50,h:50},
-		],
-		times:[[2000,"Tony"],[2100,"Test"],[2300,"Third"]],
-	},
-		{
-			name:"aaaa aaaa aaaa aaa",
-			w:200,
-			h:200,
-			lines:[
-				[
-					[-100,-100],
-					[200,10],
-					[200,200],
-					[10,200],
-					[-100,-100]
-				],
-				[
-					[60,60],
-					[150,60],
-					[150,150],
-					[60,150],
-					[60,60]
-				]
-			],
-			checkpoints:[
-				{x:60,y:0,w:20,h:60},
-				{x:150,y:10,w:50,h:50},
-				{x:150,y:150,w:50,h:50},
-				{x:10,y:150,w:50,h:50},
-			],
-			times:[[2000,"Tony"],[2100,"Test"],[2300,"Third"]],
-		},{"w":650,"h":250,"lines":[[[-100,0],[550,0],[550,250],[-100,250],[-100,0]],[[150,50],[450,50],[510,150],[450,220],[370,100],[260,100],[200,200],[130,100],[60,200],[-10,100],[0,50],[150,50]],[[400,250],[350,150],[290,150],[230,250],[160,250],[130,190],[80,250]],[[-70,150],[-20,150],[-20,220],[-70,220],[-70,150]],[[260,10],[270,10],[270,20],[260,20],[260,10]],[[290,30],[300,30],[300,20],[290,20],[290,30]],[[330,40],[340,40],[340,30],[330,30],[330,40]],[[360,10],[360,20],[370,20],[370,20],[370,10],[360,10]],[],[],[]],"checkpoints":[{"x":150,"y":2,"w":41,"h":48},{"x":448,"y":3,"w":102,"h":47},{"x":289,"y":98,"w":63,"h":54},{"x":-20,"y":175,"w":74,"h":75}],"name":"JAY","times":[[2000,"Tony"],[2100,"Test"],[2300,"Third"]],}
-		,{},{},{},
+	
+/*
+Stars guideline
+best(boost all long) rounded up
+middle(good normal ride) rounded
+worst(2 bumps) rounded
+*/
+	
+{
+"w":400,
+"h":300,
+"lines":[[[-250,-100],[-200,-150],[100,-150],[150,-100],[150,100],[100,150],[-200,150],[-250,100],[-250,-100]],[[-150,-50],[50,-50],[50,50],[-150,50],[-150,-50]],[[-60,-20],[-60,20],[-80,20],[-80,-20],[-60,-20]],[[-100,-20],[-110,-20],[-110,20],[-110,-20],[-120,-20]],[[-40,20],[-40,-20],[-20,20],[-20,-20]],[[0,-20],[10,0],[20,-20],[10,0],[10,20]],[],[],[],[],[]],
+"checkpoints":[{"x":-70,"y":-150,"w":40,"h":100},{"x":50,"y":-20,"w":100,"h":40},{"x":-70,"y":50,"w":40,"h":100},{"x":-250,"y":-20,"w":100,"h":40}],
+"name":"Stadium Tony",
+"completed":false,
+stars:[1250,1100,850]
+},
+
+{
+"w":650,
+"h":250,
+"lines":[[[-100,0],[550,0],[550,250],[-100,250],[-100,0]],[[150,50],[450,50],[510,150],[450,220],[370,100],[260,100],[200,200],[130,100],[60,200],[-10,100],[0,50],[150,50]],[[400,250],[350,150],[290,150],[230,250],[160,250],[130,190],[80,250]],[[-70,150],[-20,150],[-20,220],[-70,220],[-70,150]],[[260,10],[270,10],[270,20],[260,20],[260,10]],[[290,30],[300,30],[300,20],[290,20],[290,30]],[[330,40],[340,40],[340,30],[330,30],[330,40]],[[360,10],[360,20],[370,20],[370,10],[360,10]],[],[],[]],
+"checkpoints":[{"x":150,"y":0,"w":50,"h":50},{"x":450,"y":-10,"w":110,"h":70},{"x":280,"y":90,"w":80,"h":70},{"x":-30,"y":140,"w":100,"h":110}],
+"name":"JAY's Race",
+"completed":false,
+stars:[2650,2400,2150]
+},
+
+{
+"w":350,
+"h":250,
+"lines":[[[-50,0],[200,0],[200,250],[-50,250],[-150,150],[-150,100],[-50,0]],[[50,50],[150,50],[150,200],[50,200],[0,150],[0,100],[50,50]],[[-50,100],[-50,150],[0,200],[10,200],[-40,150],[-40,100],[10,50],[0,50],[-50,100]],[],[],[],[],[],[],[],[]],
+"checkpoints":[{"x":50,"y":0,"w":20,"h":50},{"x":150,"y":170,"w":50,"h":30},{"x":50,"y":200,"w":20,"h":50},{"x":-160,"y":60,"w":210,"h":30}],
+"name":"Cutting edge",
+"completed":false,
+stars:[1400,1200,850]
+},
+
+
+
+	{},{},{},{},{},
 	],
 	
-	customIndex:2,
+	customIndex:4,
 	lastState:"",
 	maker:0,
 	makingX1:0,
@@ -207,18 +188,10 @@ var app3={
 		{
 			x:600,
 			y:355,
-			w:99,
+			w:199,
 			h:40,
-			text:"Test race",
+			text:"Test/Complete race",
 			action:"test",
-		},
-		{
-			x:700,
-			y:355,
-			w:99,
-			h:40,
-			text:"Save race",
-			action:"save",
 		},
 	],
 	racing:"",
@@ -236,8 +209,8 @@ var app3={
 	stickThreshold:0.5,
 	exitBtn:"start",
 	setting:0,
-	settings:[2,false,0.25,false,"reset"],
-	settingsIni:[5,true,0.25,true,"reset"],
+	settings:[2,false,0.25,false,"reset","clear"],
+	settingsIni:[5,false,0.25,false,"reset","clear"],
 	cars:["carRed","carGreen","carBlue","carGrey","carPink","carRainbow"],
 	car:0,
 	//setup is called when the game has finished loading
@@ -367,9 +340,10 @@ var app3={
 			jt3.text("SPEEDY CARS",jt3.w()/2,5+jt3.waveYPos()*30,"black","center");
 			
 			jt3.fontSize(24);
-			jt3.text("Press Up and Down to drive forward and backwards",jt3.w()/2,jt3.h()/2-40,"black","center")
-			jt3.text("Press Left and Right to turn",jt3.w()/2,jt3.h()/2-10,"black","center")
-			jt3.text("(You can also use a gamepad)",jt3.w()/2,jt3.h()/2+20,"black","center")
+			jt3.text("Press Up and Down to drive forward and backwards",jt3.w()/2,jt3.h()/2-50,"black","center")
+			jt3.text("Press Left and Right to turn",jt3.w()/2,jt3.h()/2-20,"black","center")
+			jt3.text("Hold Space to charge and release to boost",jt3.w()/2,jt3.h()/2+10,"black","center")
+			jt3.text("(You can also use a gamepad)",jt3.w()/2,jt3.h()/2+40,"black","center")
 			
 			jt3.fontSize(24);
 			if(jt3.frame()<=40){
@@ -379,34 +353,32 @@ var app3={
 			if(jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a")){
 				jt3.stopPlay("choose");
 				this.state="mode"
-				jt3.kRelease();
+				;
 			}
 			
 		}else if(this.state=="mode"){
 			jt3.camActive(false);
 			if(jt3.kPress("left") || jt3.pDirPress("left")){this.mode--;jt3.waveX(0);jt3.stopPlay("change");}
 			if(jt3.kPress("right") || jt3.pDirPress("right")){this.mode++;jt3.waveX(0);jt3.stopPlay("change");}
-			this.mode=jt3.wrapIndex(this.mode,0,3);
+			this.mode=jt3.wrapIndex(this.mode,0,2);
 			
 			if(jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a")){
 				jt3.stopPlay("choose");
 				if(this.mode==0){
 					this.state="race"
 				}else if(this.mode==1){
-					this.state="vs"
-				}else if(this.mode==2){
 					this.state="maker"
 					this.maker=this.customIndex;
-				}else if(this.mode==3){
+				}else if(this.mode==2){
 					this.state="settings"
 				}
-				jt3.kRelease();
+				;
 			}
 			
 			if(jt3.kPress("escape") || jt3.pPress(this.exitBtn)){
 				jt3.stopPlay("cancel");
 				this.state="menu";
-				jt3.kRelease();
+				;
 			}
 			
 			//draw
@@ -420,12 +392,12 @@ var app3={
 			jt3.text("Choose with Space/Enter",jt3.w()/2,jt3.h()-30,"black","center");
 			
 			var ys=[0,0,0,0]
-			var images=["watch","vs","hammer","settings"];
-			var texts=["Time trials","Online","Race maker","Settings"];
-			for(var i=0;i<4;i++){
+			var images=["watch","hammer","settings"];
+			var texts=["Time trials","Race maker","Settings"];
+			for(var i=0;i<3;i++){
 				if(this.mode==i){ys[i]=jt3.waveYPos()*20;}
 				
-				var x=25+(150+50)*i;
+				var x=75+(150+100)*i;
 				var y=125;
 				var w=150;
 				jt3.rectB(x,125+ys[i],w,w,"black",0,3);
@@ -450,17 +422,24 @@ var app3={
 			}
 			this.race=jt3.wrapIndex(this.race,0,len-1);
 			
-			if(jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a")){
+			var completed=true;
+			if(this.race>=this.customIndex){
+				if(!this.races[this.race].completed){
+					completed=false;
+				}
+			}
+			
+			if((jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a")) && completed){
 				jt3.stopPlay("choose");
 				this.lastState=this.state;
 				this.state="racing";
 				this.startRace();
-				jt3.kRelease();
+				;
 			}
 			if(jt3.kPress("escape") || jt3.pPress(this.exitBtn)){
 				jt3.stopPlay("cancel");
 				this.state="mode";
-				jt3.kRelease();
+				;
 			}
 			
 			//draw
@@ -533,10 +512,32 @@ var app3={
 			//var x=((jt3.w()-(squareX+squareW))/2)+squareX+squareW
 			var x=squareX+squareW+20;
 			if(this.races[this.race].time!=undefined){
-				jt3.text("Your time: "+this.toTime(this.races[this.race].time),x,squareY+5,"black","left")
+				var text="Your time: "+this.toTime(this.races[this.race].time)
+				var y=squareY+5;
+				if(this.races[this.race].stars!=undefined){
+					y=squareY+5+20;
+					var text2="Stars"
+					jt3.text(text2,x,squareY+5,"black","left")
+					var w=jt3.textW(text2);
+					for(var i=0;i<3;i++){
+						if(this.races[this.race].time<=this.races[this.race].stars[i]){
+							jt3.image("star",x+w+10+(i*20),squareY+2,16,16);
+						}else{
+							jt3.image("starEmpty",x+w+10+(i*20),squareY+2,16,16);
+						}
+					}
+				}
+				jt3.text(text,x,y,"black","left")
 			}else{
 				jt3.text("Play this race to get your time!",x,squareY+5,"black","left")
 			}
+			
+			if(!completed){
+				jt3.rect(squareX,squareY+squareH/4,squareW,squareH/2,[0,0,0,0.5]);
+				jt3.fontSize(14);
+				jt3.text("Not completed",squareX+squareW/2,squareY+squareH/2-jt3.fontSize()/2,"white","center")
+			}
+			
 			if(this.races[this.race].times!=undefined){
 				jt3.text("Leaderboard:",x,squareY+30,"black","left")
 				var times=this.races[this.race].times;
@@ -546,6 +547,21 @@ var app3={
 					var index=i+1;
 					if(i+1<10){index=" "+index}
 					jt3.text((index)+": "+this.toTime(time)+" ("+name+")",x,squareY+50+(i*15),"black","left")
+				}
+			}else if(this.races[this.race].stars!=undefined){
+				jt3.text("Beat these times to gain stars:",x,squareY+60,"black","left")
+				var times=this.races[this.race].stars;
+				for(var i=0;i<times.length;i++){
+					var time=times[(times.length-1)-i];
+					var index=i+1;
+					for(var j=0;j<3;j++){
+						if(j<=(times.length-1)-i){
+							jt3.image("star",x+(j*20),squareY+80+(i*20),16,16);
+						}else{
+							jt3.image("starEmpty",x+(j*20),squareY+80+(i*20),16,16);
+						}
+					}
+					jt3.text(": "+this.toTime(time),x+(60),squareY+80+(i*20)+4,"black","left")
 				}
 			}
 		}else if(this.state=="maker"){
@@ -584,6 +600,7 @@ var app3={
 					this.state="making";
 					jt3.cam().x=-300;
 					jt3.cam().y=-100;
+					this.races[this.maker].completed=false;
 				}else{
 					this.races[this.maker]={
 						w:200,
@@ -591,6 +608,7 @@ var app3={
 						lines:[],
 						checkpoints:[],
 						time:35999,
+						completed:false,
 					};
 					
 					for(var i=0;i<=10;i++){
@@ -599,7 +617,7 @@ var app3={
 					
 					jt3.stopPlay("choose");
 					var name=window.prompt("What is the race's name?")
-					var alphanum=/^[A-Za-z0-9\s]+$/i;
+					var alphanum=/^[A-Za-z0-9\s']+$/i;
 					if(name && name.trim() && alphanum.test(name) && name.length<=18){
 						this.lastState=this.state;
 						this.state="making";
@@ -610,12 +628,12 @@ var app3={
 						window.alert("Invalid name, too long (18 chars) or has special characters")
 					}
 				}
-				jt3.kRelease();
+				;
 			}
 			if(jt3.kPress("escape") || jt3.pPress(this.exitBtn)){
 				jt3.stopPlay("cancel");
 				this.state="mode";
-				jt3.kRelease();
+				;
 			}
 			
 			//draw
@@ -642,7 +660,7 @@ var app3={
 			}
 			
 			
-			jt3.fontSize(18);
+			
 			
 			//drawing races
 			var squareX=37.5;
@@ -650,6 +668,7 @@ var app3={
 			var spacing=25;
 			for(var raceIndex=0;raceIndex<this.races.length-this.customIndex;raceIndex++){
 				var race=this.races[raceIndex+this.customIndex];
+				jt3.fontSize(18);
 				var startX=squareX+(raceIndex*(spacing+squareW));
 				var startY=(jt3.h()/2-squareW/2)+ys[raceIndex]-20;
 				if(raceIndex==this.maker-this.customIndex){
@@ -727,6 +746,11 @@ var app3={
 					jt3.camActive(false);
 				}
 				jt3.alpha(1);
+				if(race.name!=undefined && !race.completed){
+					jt3.rect(startX,startY+squareH/4,squareW,squareH/2,[0,0,0,0.5])
+					jt3.fontSize(14);
+					jt3.text("Not completed",startX+squareW/2,startY+squareH/2-jt3.fontSize()/2,"white","center")
+				}
 			}
 		}else if(this.state=="making"){
 			if(jt3.cam().w!=800 || jt3.cam().h!=400){
@@ -742,7 +766,7 @@ var app3={
 				jt3.cam().x=0;
 				jt3.cam().y=0;
 				jt3.camActive(false);
-				jt3.kRelease();
+				;
 			}
 			
 			var camSpeed=this.camSpeed;
@@ -767,98 +791,98 @@ var app3={
 			
 			
 			//tools
-			if(this.tool=="erase"){
-				if(jt3.mDown()){
-					if(jt3.mPress()){
-						this.makingX1=jt3.mX();
-						this.makingY1=jt3.mY();
-					}
-					this.makingX2=jt3.mX();
-					this.makingY2=jt3.mY();
-				}else{
-					if(this.makingX1!=0 && this.makingY1!=0 && this.makingX2!=0 && this.makingY2!=0){
-						var x1=this.makingX1;
-						var y1=this.makingY1;
-						var x2=this.makingX2;
-						var y2=this.makingY2;
-						
-						if(x1>x2){
-							x1=this.makingX2;
-							x2=this.makingX1;
+			if(jt3.mY()>50 && jt3.mY()<jt3.h()-50){
+				if(this.tool=="erase"){
+					if(jt3.mDown()){
+						if(jt3.mPress()){
+							this.makingX1=jt3.mX();
+							this.makingY1=jt3.mY();
 						}
-						if(y1>y2){
-							y1=this.makingY2;
-							y2=this.makingY1;
-						}
-						x1=jt3.xCam(x1);
-						y1=jt3.yCam(y1);
-						x2=jt3.xCam(x2);
-						y2=jt3.yCam(y2);
-						
-						var rectCol={x:x1,y:y1,w:x2-x1,h:y2-y1};
-						
-						//remove checkpoints
-						for(var j=0;j<race.checkpoints.length;j++){
-							if(jt3.cRect(rectCol,race.checkpoints[j])){
-								this.races[this.maker].checkpoints.splice(j,1);
-								j--;
-								continue;
+						this.makingX2=jt3.mX();
+						this.makingY2=jt3.mY();
+					}else{
+						if(this.makingX1!=0 && this.makingY1!=0 && this.makingX2!=0 && this.makingY2!=0){
+							var x1=this.makingX1;
+							var y1=this.makingY1;
+							var x2=this.makingX2;
+							var y2=this.makingY2;
+							
+							if(x1>x2){
+								x1=this.makingX2;
+								x2=this.makingX1;
 							}
-						}
-						
-						//remove points
-						for(var j=0;j<race.lines.length;j++){
-							if(j==this.layer || this.allLayers){
+							if(y1>y2){
+								y1=this.makingY2;
+								y2=this.makingY1;
+							}
+							x1=jt3.xCam(x1);
+							y1=jt3.yCam(y1);
+							x2=jt3.xCam(x2);
+							y2=jt3.yCam(y2);
+							
+							var rectCol={x:x1,y:y1,w:x2-x1,h:y2-y1};
+							
+							//remove checkpoints
+							for(var j=0;j<race.checkpoints.length;j++){
+								if(jt3.cRect(rectCol,race.checkpoints[j])){
+									this.races[this.maker].checkpoints.splice(j,1);
+									j--;
+									continue;
+								}
+							}
+							
+							//remove points
+							for(var j=0;j<race.lines.length;j++){
+								if(j==this.layer || this.allLayers){
+									for(var k=0;k<race.lines[j].length;k++){
+										var point={x:race.lines[j][k][0],y:race.lines[j][k][1]}
+										if(jt3.cRectPoint(rectCol,point)){
+											this.races[this.maker].lines[j].splice(k,1);
+											k--;
+											continue;
+										}
+									}
+								}
+							}
+							
+							//remove duplicates
+							for(var j=0;j<race.lines.length;j++){
+								var beforeX=undefined;
+								var beforeY=undefined;
 								for(var k=0;k<race.lines[j].length;k++){
-									var point={x:race.lines[j][k][0],y:race.lines[j][k][1]}
-									if(jt3.cRectPoint(rectCol,point)){
-										this.races[this.maker].lines[j].splice(k,1);
+									var del=false;
+									if(beforeX!=undefined){
+										if(beforeX==race.lines[j][k][0] && beforeY==race.lines[j][k][1]){
+											del=true;
+										}
+									}
+									
+									beforeX=race.lines[j][k][0];
+									beforeY=race.lines[j][k][1];
+									
+									if(del){
+										this.races[this.maker].lines[j].splice(k-1,1);
 										k--;
-										continue;
 									}
 								}
 							}
-						}
-						
-						//remove duplicates
-						for(var j=0;j<race.lines.length;j++){
-							var beforeX=undefined;
-							var beforeY=undefined;
-							for(var k=0;k<race.lines[j].length;k++){
-								var del=false;
-								if(beforeX!=undefined){
-									if(beforeX==race.lines[j][k][0] && beforeY==race.lines[j][k][1]){
-										del=true;
-									}
-								}
-								
-								beforeX=race.lines[j][k][0];
-								beforeY=race.lines[j][k][1];
-								
-								if(del){
-									this.races[this.maker].lines[j].splice(k-1,1);
-									k--;
+							
+							//remove singles
+							for(var j=0;j<race.lines.length;j++){
+								if(race.lines[j].length==1){
+									this.races[this.maker].lines[j]=[]
+									continue;
 								}
 							}
-						}
 						
-						//remove singles
-						for(var j=0;j<race.lines.length;j++){
-							if(race.lines[j].length==1){
-								this.races[this.maker].lines[j]=[]
-								continue;
-							}
+						this.makingX1=0;
+						this.makingX2=0;
+						this.makingY1=0;
+						this.makingY2=0;
 						}
-					
-					this.makingX1=0;
-					this.makingX2=0;
-					this.makingY1=0;
-					this.makingY2=0;
 					}
-				}
-			}else if(this.tool=="line"){
-				if(jt3.mY()>50 && jt3.mY()<jt3.h()-50){
-					
+				}else if(this.tool=="line"){
+						
 					var circleCol={x:jt3.mCX()-5,y:jt3.mCY()-5,d:10};
 					var magnet={x:undefined,y:undefined}
 					
@@ -891,47 +915,47 @@ var app3={
 						race.lines[this.layer].push(point)
 					}
 					jt3.camActive(false);
-				}
-			}else if(this.tool=="checkpoint"){
-				if(jt3.mDown()){
-					if(jt3.mPress()){
-						this.makingX1=jt3.mX();
-						this.makingY1=jt3.mY();
-					}
-					this.makingX2=jt3.mX();
-					this.makingY2=jt3.mY();
-				}else{
-					if(this.makingX1!=0 && this.makingY1!=0 && this.makingX2!=0 && this.makingY2!=0){
-						var x1=this.makingX1;
-						var y1=this.makingY1;
-						var x2=this.makingX2;
-						var y2=this.makingY2;
-						
-						if(x1>x2){
-							x1=this.makingX2;
-							x2=this.makingX1;
+				}else if(this.tool=="checkpoint"){
+					if(jt3.mDown()){
+						if(jt3.mPress()){
+							this.makingX1=jt3.mX();
+							this.makingY1=jt3.mY();
 						}
-						if(y1>y2){
-							y1=this.makingY2;
-							y2=this.makingY1;
+						this.makingX2=jt3.mX();
+						this.makingY2=jt3.mY();
+					}else{
+						if(this.makingX1!=0 && this.makingY1!=0 && this.makingX2!=0 && this.makingY2!=0){
+							var x1=this.makingX1;
+							var y1=this.makingY1;
+							var x2=this.makingX2;
+							var y2=this.makingY2;
+							
+							if(x1>x2){
+								x1=this.makingX2;
+								x2=this.makingX1;
+							}
+							if(y1>y2){
+								y1=this.makingY2;
+								y2=this.makingY1;
+							}
+							x1=jt3.round(jt3.xCam(x1)/10,0)*10;
+							y1=jt3.round(jt3.yCam(y1)/10,0)*10;
+							x2=jt3.round(jt3.xCam(x2)/10,0)*10;
+							y2=jt3.round(jt3.yCam(y2)/10,0)*10;
+							
+							var rectCol={x:x1,y:y1,w:x2-x1,h:y2-y1};
+							
+							if(rectCol.w>5 && rectCol.h>5){
+								this.races[this.maker].checkpoints.push(rectCol)
+							}
+							
+							
+						
+						this.makingX1=0;
+						this.makingX2=0;
+						this.makingY1=0;
+						this.makingY2=0;
 						}
-						x1=jt3.round(jt3.xCam(x1)/10,0)*10;
-						y1=jt3.round(jt3.yCam(y1)/10,0)*10;
-						x2=jt3.round(jt3.xCam(x2)/10,0)*10;
-						y2=jt3.round(jt3.yCam(y2)/10,0)*10;
-						
-						var rectCol={x:x1,y:y1,w:x2-x1,h:y2-y1};
-						
-						if(rectCol.w>5 && rectCol.h>5){
-							this.races[this.maker].checkpoints.push(rectCol)
-						}
-						
-						
-					
-					this.makingX1=0;
-					this.makingX2=0;
-					this.makingY1=0;
-					this.makingY2=0;
 					}
 				}
 			}
@@ -943,7 +967,7 @@ var app3={
 					switch(btn.action){
 						case "name":
 							var name=window.prompt("What is the race's name?")
-							var alphanum=/^[A-Za-z0-9\s]+$/i;
+							var alphanum=/^[A-Za-z0-9\s']+$/i;
 							if(name && name.trim() && alphanum.test(name) && name.length<=18){
 								race.name=name;
 							}else{
@@ -978,7 +1002,15 @@ var app3={
 							jt3.camActive(false);
 							break;
 						case "code":
-							var raceCode=JSON.stringify(this.races[this.maker])
+							var raceCode=JSON.stringify(this.races[this.maker],null)
+							raceCode='{\n';
+							raceCode+='"w":'+this.races[this.maker].w+',\n';
+							raceCode+='"h":'+this.races[this.maker].h+',\n';							
+							raceCode+='"lines":'+JSON.stringify(this.races[this.maker].lines)+',\n';
+							raceCode+='"checkpoints":'+JSON.stringify(this.races[this.maker].checkpoints)+',\n';
+							raceCode+='"name":"'+this.races[this.maker].name+'",\n';
+							raceCode+='"completed":false,\n';
+							raceCode+='},\n';
 							console.log(raceCode);
 							window.prompt("Race code",raceCode)
 							break;
@@ -1129,46 +1161,47 @@ var app3={
 			
 			//tools
 			jt3.camActive(false);
-			if(this.tool=="erase"){
-				if(jt3.mDown() && this.makingX1!=0 && this.makingY1!=0 && this.makingX2!=0 && this.makingY2!=0){
-					var x1=this.makingX1;
-					var y1=this.makingY1;
-					var x2=this.makingX2;
-					var y2=this.makingY2;
-					
-					if(x1>x2){
-						x1=this.makingX2;
-						x2=this.makingX1;
+			if(jt3.mY()>50 && jt3.mY()<jt3.h()-50){
+				if(this.tool=="erase"){
+					if(jt3.mDown() && this.makingX1!=0 && this.makingY1!=0 && this.makingX2!=0 && this.makingY2!=0){
+						var x1=this.makingX1;
+						var y1=this.makingY1;
+						var x2=this.makingX2;
+						var y2=this.makingY2;
+						
+						if(x1>x2){
+							x1=this.makingX2;
+							x2=this.makingX1;
+						}
+						if(y1>y2){
+							y1=this.makingY2;
+							y2=this.makingY1;
+						}
+						
+						jt3.rectB(x1,y1,x2-x1,y2-y1,[0,0,255,0.5])
+						jt3.rect(x1,y1,x2-x1,y2-y1,[0,0,255,0.25])
 					}
-					if(y1>y2){
-						y1=this.makingY2;
-						y2=this.makingY1;
+				}else if(this.tool=="checkpoint"){
+					if(jt3.mDown() && this.makingX1!=0 && this.makingY1!=0 && this.makingX2!=0 && this.makingY2!=0){
+						var x1=this.makingX1;
+						var y1=this.makingY1;
+						var x2=this.makingX2;
+						var y2=this.makingY2;
+						
+						if(x1>x2){
+							x1=this.makingX2;
+							x2=this.makingX1;
+						}
+						if(y1>y2){
+							y1=this.makingY2;
+							y2=this.makingY1;
+						}
+						
+						jt3.rectB(x1,y1,x2-x1,y2-y1,[0,255,0,0.5])
+						jt3.rect(x1,y1,x2-x1,y2-y1,[0,255,0,0.25])
 					}
+				}else if(this.tool=="line"){
 					
-					jt3.rectB(x1,y1,x2-x1,y2-y1,[0,0,255,0.5])
-					jt3.rect(x1,y1,x2-x1,y2-y1,[0,0,255,0.25])
-				}
-			}else if(this.tool=="checkpoint"){
-				if(jt3.mDown() && this.makingX1!=0 && this.makingY1!=0 && this.makingX2!=0 && this.makingY2!=0){
-					var x1=this.makingX1;
-					var y1=this.makingY1;
-					var x2=this.makingX2;
-					var y2=this.makingY2;
-					
-					if(x1>x2){
-						x1=this.makingX2;
-						x2=this.makingX1;
-					}
-					if(y1>y2){
-						y1=this.makingY2;
-						y2=this.makingY1;
-					}
-					
-					jt3.rectB(x1,y1,x2-x1,y2-y1,[0,255,0,0.5])
-					jt3.rect(x1,y1,x2-x1,y2-y1,[0,255,0,0.25])
-				}
-			}else if(this.tool=="line"){
-				if(jt3.mY()>50 && jt3.mY()<jt3.h()-50){
 					jt3.camActive(true);
 					var circleCol={x:jt3.mCX()-5,y:jt3.mCY()-5,d:10};
 					var magnet={x:undefined,y:undefined}
@@ -1255,7 +1288,7 @@ var app3={
 			if(this.racing!="finish" && (jt3.kPress("escape") || jt3.pPress(this.exitBtn))){
 				jt3.stopPlay("cancel");
 				this.state=this.lastState;
-				jt3.kRelease();
+				;
 			}
 			
 			//Update
@@ -1306,6 +1339,10 @@ var app3={
 				    }
 					
 					if(jt3.cCircleLine(circle,line)){
+						if(!jt3.shaking()){
+							jt3.shake(3);
+						}
+						
 						//reverse speed
 						this.player.speed=-this.player.speed;
 						
@@ -1313,42 +1350,12 @@ var app3={
 						var modY=0;
 						var mult=this.player.speed;
 						if(this.player.drift>0){
-							modX=this.player.driftX*mult;
-							modY=this.player.driftY*mult;
+							modX=(this.player.driftX*mult)/2+(jt3.angleX(this.player.r)*mult)/2;
+							modY=(this.player.driftY*mult)/2+(jt3.angleY(this.player.r)*mult)/2;
 						}else{
 							modX=jt3.angleX(this.player.r)*mult;
 							modY=jt3.angleY(this.player.r)*mult;
 						}
-						
-						/*var angle=jt3.angleP(line.x1,line.y1,line.x2,line.y2);
-						//Get bouncing angle
-						var angleX=jt3.round(jt3.angleY(angle),1)
-						var angleY=jt3.round(jt3.angleX(angle),1)
-						
-						var lineX=jt3.abs(angleX)*jt3.sign(modX)
-						var lineY=jt3.abs(angleY)*jt3.sign(modY)
-						
-						var speed=this.player.speed;
-						if(speed<this.player.speedMax){
-							speed=this.player.speedMax;
-						}
-						
-						var rX=-jt3.round(jt3.angleX(this.player.r),1);
-						var rY=-jt3.round(jt3.angleY(this.player.r),1);
-						
-						var distX1=jt3.abs(lineX-rX);
-						var distX2=jt3.abs(-lineX-rX);
-						if(distX2<distX1){lineX=-lineX}
-						
-						var distY1=jt3.abs(lineY-rY);
-						var distY2=jt3.abs(-lineY-rY);
-						if(distY2<distY1){lineY=-lineY}
-						
-						modX=lineY*10;
-						modX=lineX*10;*/
-						//modX=lineX*speed+modX;
-						//modY=lineY*speed+modY;
-
 						
 						this.player.x+=modX;
 						this.player.y+=modY;
@@ -1396,10 +1403,7 @@ var app3={
 				offset=offset3;
 				closest=closest3;
 			}
-			//console.log("-------------")
-			//console.log(this.r+" "+this.player.r);
-			//console.log(this.r+" "+(this.player.r-359));
-			//var offset=this.player.r-closest;
+			
 			this.r=closest;
 			
 			this.r=jt3.lerp(this.settings[2],this.r,this.player.r);
@@ -1440,12 +1444,15 @@ var app3={
 			//HUD
 			jt3.camActive(false);
 			jt3.fontSize(24);
+			jt3.rect(0,0,jt3.w(),50,[255,255,255,0.5])
 			jt3.text(this.toTime(this.time),jt3.w()/2,10,"black","center");
+			jt3.text(this.time,jt3.w()/2,40,"black","center");
 			jt3.text("Laps: "+this.laps+"/3",jt3.w()*(3/4),10,"black","center");
-			jt3.addDebug("Speed: "+jt3.round(this.player.speed,1),jt3.w()/4,10,"black","center",jt3.fontSize(24),0)
+			jt3.text("Speed: "+jt3.round(this.player.speed,1),jt3.w()/4,10,"black","center");
 			if(this.racing=="start"){
 				if(jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a")){
 					this.racing="racing";
+					jt3.kRelease("space");
 				}
 				this.timer--;
 				var ratio=0;
@@ -1484,6 +1491,8 @@ var app3={
 					jt3.alpha(ratio)
 					jt3.text(text,jt3.w()/2,jt3.h()/2-jt3.fontSize()/2,"black","center");
 					jt3.alpha(1);
+					jt3.fontSize(14);
+					jt3.text("Space to skip",jt3.w()/2,jt3.h()-25,"black","center")
 				}
 			}else if(this.racing=="finish"){
 				jt3.rect(0,0,jt3.w(),jt3.h(),[255,255,255,0.25])
@@ -1502,7 +1511,12 @@ var app3={
 				if(jt3.checkAlarm("finish")){
 					jt3.delAlarm("finish");
 					this.racing="start";
-					this.state=this.lastState;
+					if(this.lastState=="making"){
+						this.races[this.race].completed=true;
+						this.state="maker";
+					}else{
+						this.state=this.lastState;
+					}
 				}
 			}else{
 				this.time++;
@@ -1536,7 +1550,7 @@ var app3={
 			if(type=="check" && (jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a"))){
 				jt3.stopPlay("choose");
 				this.settings[this.setting]=!this.settings[this.setting];
-				jt3.kRelease();
+				;
 			}
 			
 			if(type=="action" && (jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a"))){
@@ -1550,7 +1564,15 @@ var app3={
 						}
 					}
 				}
-				jt3.kRelease();
+				if(this.settings[this.setting]=="clear"){
+					if(window.prompt("Are you sure you want to delete all your times?")!=null){
+						localStorage.clear();
+						for(var i=0;i<this.races.length;i++){
+							this.races[i].time=undefined;
+						}
+					}
+				}
+				;
 			}
 			
 			if(type=="index" && canSlide && (jt3.kPress("left") || jt3.pDirPress("left"))){
@@ -1580,7 +1602,7 @@ var app3={
 			if(jt3.kPress("escape") || jt3.pPress(this.exitBtn)){
 				jt3.stopPlay("cancel");
 				this.state="mode";
-				jt3.kRelease();
+				;
 			}
 			
 			//draw
@@ -1595,13 +1617,13 @@ var app3={
 			if(type=="slider" || type=="index"){text="Change with Left and Right";}
 			jt3.text(text,jt3.w()/2,jt3.h()-30,"black","center");
 			
-			var settings=["Choose your car","Rotating camera","Camera rotating speed","Driving backwards reverses turn control","Reset settings"]
+			var settings=["Choose your car","Rotating camera","Camera rotating speed","Driving backwards reverses turn control","Reset settings","Clear times"]
 			
-			var startY=80;
+			var startY=90;
 			for(var i=0;i<this.settings.length;i++){
 				var x=100;
 				var c="black";
-				var spacing=50;
+				var spacing=40;
 				var y=startY+i*(spacing);
 				if(i==2 && this.settings[1]==false){
 					c="grey";
@@ -1629,7 +1651,12 @@ var app3={
 						var w=40;
 						var xx=jt3.w()-x-w;
 						if(i==0){
-							jt3.image(this.cars[this.settings[0]],xx,y-5,20,40,90);
+							if(this.settings[0]==this.settingsIni[0]){
+								jt3.anim(this.cars[this.settings[0]],xx,y-5,20,40,90);
+							}else{
+								jt3.image(this.cars[this.settings[0]],xx,y-5,20,40,90);
+							}
+							
 						}
 					}else{
 						//slider
@@ -1647,11 +1674,16 @@ var app3={
 				}
 				if(this.setting==i){
 					jt3.line(x-5,y+30,jt3.w()-x,y+30,2,"black")
+					jt3.image("triangle",x-20,y,10,20);
 				}
 			}
-			
-			
-			
+			jt3.line(0,60,jt3.w(),60,1,"black")
+			jt3.line(0,330,jt3.w(),330,1,"black")
+		}
+		if(this.state!="menu" && this.state!="making"){
+			jt3.fontSize(16);
+			jt3.camActive(false);
+			jt3.text("Escape    to return",5,5,"black","left",jt3.fontSize(),0,10,20)
 		}
 	}
 }
@@ -1665,8 +1697,8 @@ function Racer(){
 	this.r=90;
 	
 	this.speed=0;
-	this.speedMax=2.5;
-	this.speedTrueMax=4;
+	this.speedMax=2;
+	this.speedTrueMax=3;
 	this.accel=0.05;
 	this.deccel=0.1;
 	this.friction=0.98;
@@ -1677,9 +1709,9 @@ function Racer(){
 	this.controlMax=2;
 	
 	this.drift=0;
-	this.driftBoostMin=45;
-	this.driftMax=55;
-	this.driftDead=65;
+	this.driftBoostMin=30;
+	this.driftMax=40;
+	this.driftDead=50;
 	this.driftCooldown=30;
 	this.driftX=0;
 	this.driftY=0;
@@ -1712,13 +1744,13 @@ Racer.prototype.update=function(){
 		if(jt3.pStick()[0]<-0.5){left=true;}
 		if(jt3.pStick()[0]>0.5){right=true;}
 	}
-	//console.log(aCheck+" "+aPress)
 	
+	var turnSpeed=this.turn;
 	if((jt3.kCheck("up") || rightTrigger) && this.control<1){up=true;}
 	if((jt3.kCheck("down") || leftTrigger)&& this.control<1){down=true;}
 	if(jt3.kCheck("space") || aCheck){
 		if(jt3.kPress("space") || aPress){
-			this.drift=0;
+			this.drift=10;
 			this.driftX=jt3.angleX(this.r);
 			this.driftY=jt3.angleY(this.r);
 		}
@@ -1743,6 +1775,7 @@ Racer.prototype.update=function(){
 			this.driftX=0;
 			this.driftY=0;
 		}else{
+			jt3.shake(3);
 			this.drift=0;
 			this.driftX=0;
 			this.driftY=0;
@@ -1754,7 +1787,6 @@ Racer.prototype.update=function(){
 		}
 	}
 	
-	var turnSpeed=this.turn;
 	if(drift){turnSpeed=this.turn*1.5;}
 	
 	if(up || down || drift){key=true;}
@@ -1797,8 +1829,8 @@ Racer.prototype.update=function(){
 	this.r=jt3.wrap(this.r,0,359)
 	
 	if(drift){
-		this.x+=this.driftX*this.speed;
-		this.y+=this.driftY*this.speed;
+		this.x+=(this.driftX*this.speed)/2+(jt3.angleX(this.r)*this.speed)/2;
+		this.y+=(this.driftY*this.speed)/2+(jt3.angleY(this.r)*this.speed)/2;
 	}else{
 		this.x+=jt3.angleX(this.r)*this.speed;
 		this.y+=jt3.angleY(this.r)*this.speed;
@@ -1816,17 +1848,22 @@ Racer.prototype.draw=function(){
 	if(this.drift>0){
 		var c=[0,0,0,0.5];
 		if(this.drift>=this.driftBoostMin){
-			c=[255,0,0,0.5];
+			c=[0,255,0,0.5];
 		}
 		var offset=this.w*1.5;
-		jt3.circleB(this.x+this.w/2-offset,this.y+this.h/2-offset,offset*2,[255,0,0,0.5],1)
+		jt3.circleB(this.x+this.w/2-offset,this.y+this.h/2-offset,offset*2,c,1)
 		var ratio=this.drift/this.driftMax;
 		offset*=ratio;
 		jt3.circle(this.x+this.w/2-offset,this.y+this.h/2-offset,offset*2,c)
 	}
 	//car
 	jt3.rotate(this.r,this.x,this.y,this.w,this.h)
-	jt3.image(app3.cars[app3.settings[0]],this.x,this.y,this.w,this.h)
+	if(app3.settings[0]==app3.settingsIni[0]){
+		jt3.anim(app3.cars[app3.settings[0]],this.x,this.y,this.w,this.h)
+	}else{
+		jt3.image(app3.cars[app3.settings[0]],this.x,this.y,this.w,this.h)
+	}
+	
 	//jt3.rect(this.x,this.y,this.w,this.h,this.c)
 	//jt3.rect(this.x+1,this.y,this.w-2,this.h-6,"black")
 	jt3.rotate(-this.r,this.x,this.y,this.w,this.h)
