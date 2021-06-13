@@ -42,6 +42,10 @@ window.onload = function(){
 	jt3.loadImage(path+"carGrey.png","carGrey");
 	jt3.loadImage(path+"carPink.png","carPink");
 	jt3.loadImage(path+"carRainbow.png","carRainbow");
+	jt3.loadImage(path+"starEmpty.png","starEmpty");
+	jt3.loadImage(path+"star.png","star");
+	jt3.loadAnim(path+"carRainbowAnim.png","carRainbow",9,8);
+	
 	jt3.loadSound(path+"change.mp3","change");
 	jt3.loadSound(path+"choose.mp3","choose");
 	jt3.loadSound(path+"cancel.mp3","cancel");
