@@ -32,7 +32,8 @@ var app3={
 			{x:10,y:150,w:50,h:50},
 		],
 		stars:[950,800,650],
-		
+		bg:"white",
+		c:"black"
 	},
 	
 /*
@@ -48,18 +49,9 @@ worst(2 bumps) rounded
 "lines":[[[-250,-100],[-200,-150],[100,-150],[150,-100],[150,100],[100,150],[-200,150],[-250,100],[-250,-100]],[[-150,-50],[50,-50],[50,50],[-150,50],[-150,-50]],[[-60,-20],[-60,20],[-80,20],[-80,-20],[-60,-20]],[[-100,-20],[-110,-20],[-110,20],[-110,-20],[-120,-20]],[[-40,20],[-40,-20],[-20,20],[-20,-20]],[[0,-20],[10,0],[20,-20],[10,0],[10,20]],[],[],[],[],[]],
 "checkpoints":[{"x":-70,"y":-150,"w":40,"h":100},{"x":50,"y":-20,"w":100,"h":40},{"x":-70,"y":50,"w":40,"h":100},{"x":-250,"y":-20,"w":100,"h":40}],
 "name":"Stadium Tony",
-"completed":false,
-stars:[1250,1100,850]
-},
-
-{
-"w":650,
-"h":250,
-"lines":[[[-100,0],[550,0],[550,250],[-100,250],[-100,0]],[[150,50],[450,50],[510,150],[450,220],[370,100],[260,100],[200,200],[130,100],[60,200],[-10,100],[0,50],[150,50]],[[400,250],[350,150],[290,150],[230,250],[160,250],[130,190],[80,250]],[[-70,150],[-20,150],[-20,220],[-70,220],[-70,150]],[[260,10],[270,10],[270,20],[260,20],[260,10]],[[290,30],[300,30],[300,20],[290,20],[290,30]],[[330,40],[340,40],[340,30],[330,30],[330,40]],[[360,10],[360,20],[370,20],[370,10],[360,10]],[],[],[]],
-"checkpoints":[{"x":150,"y":0,"w":50,"h":50},{"x":450,"y":-10,"w":110,"h":70},{"x":280,"y":90,"w":80,"h":70},{"x":-30,"y":140,"w":100,"h":110}],
-"name":"JAY's Race",
-"completed":false,
-stars:[2650,2400,2150]
+stars:[1250,1100,800],
+bg:"black",
+c:"white"
 },
 
 {
@@ -68,16 +60,60 @@ stars:[2650,2400,2150]
 "lines":[[[-50,0],[200,0],[200,250],[-50,250],[-150,150],[-150,100],[-50,0]],[[50,50],[150,50],[150,200],[50,200],[0,150],[0,100],[50,50]],[[-50,100],[-50,150],[0,200],[10,200],[-40,150],[-40,100],[10,50],[0,50],[-50,100]],[],[],[],[],[],[],[],[]],
 "checkpoints":[{"x":50,"y":0,"w":20,"h":50},{"x":150,"y":170,"w":50,"h":30},{"x":50,"y":200,"w":20,"h":50},{"x":-160,"y":60,"w":210,"h":30}],
 "name":"Cutting edge",
-"completed":false,
-stars:[1400,1200,850]
+stars:[1400,1200,850],
+c:"blue"
 },
+
+{
+"w":800,
+"h":450,
+"lines":[[[600,200],[800,200],[800,250],[750,350],[700,400],[600,450],[500,450],[400,400],[350,350],[300,250],[300,200],[600,200]],[[550,250],[750,250],[700,350],[600,400],[500,400],[400,350],[350,250],[550,250]],[],[],[],[],[],[],[],[],[]],
+"checkpoints":[{"x":540,"y":200,"w":20,"h":50},{"x":700,"y":300,"w":100,"h":100},{"x":500,"y":400,"w":100,"h":50},{"x":350,"y":300,"w":100,"h":100}],
+"name":"Half Circle",
+"bg":"white",
+"c":"black",
+stars:[1850,1650,1250],
+},
+
+{
+"w":650,
+"h":250,
+"lines":[[[-100,0],[550,0],[550,250],[-100,250],[-100,0]],[[150,50],[450,50],[510,150],[450,220],[370,100],[260,100],[200,200],[130,100],[60,200],[-10,100],[0,50],[150,50]],[[400,250],[350,150],[290,150],[230,250],[160,250],[130,190],[80,250]],[[-70,150],[-20,150],[-20,220],[-70,220],[-70,150]],[[260,10],[270,10],[270,20],[260,20],[260,10]],[[290,30],[300,30],[300,20],[290,20],[290,30]],[[330,40],[340,40],[340,30],[330,30],[330,40]],[[360,10],[360,20],[370,20],[370,10],[360,10]],[],[],[]],
+"checkpoints":[{"x":150,"y":0,"w":50,"h":50},{"x":450,"y":-10,"w":110,"h":70},{"x":280,"y":90,"w":80,"h":70},{"x":-30,"y":140,"w":100,"h":110}],
+"name":"JAY's Race",
+stars:[2650,2400,2050],
+c:"green",
+},
+
+{
+"w":790,
+"h":740,
+"lines":[[[-50,-200],[200,-200],[250,-150],[300,-150],[350,-200],[400,-200],[450,-150],[450,0],[400,50],[450,100],[450,200],[400,250],[350,250],[300,300],[250,300],[150,200],[50,200],[0,250],[-150,100],[-150,-150],[-100,-200],[-50,-200]],[[-50,-150],[150,-150],[200,-100],[300,-100],[350,-150],[400,-150],[400,-100],[350,-50],[350,100],[400,150],[350,200],[300,200],[250,250],[150,150],[0,150],[-50,100],[-100,50],[-100,-100],[-50,-150]],[[-80,-250],[-30,-230],[10,-230],[40,-250],[50,-290],[20,-330],[-60,-340],[-80,-300],[-80,-250]],[[-230,-90],[-190,-60],[-160,-60],[-130,-90],[-160,-120],[-190,-130],[-220,-120],[-230,-90]],[[300,-280],[320,-240],[390,-230],[410,-280],[330,-330],[300,-280]],[[470,-10],[540,0],[560,-40],[540,-70],[500,-90],[460,-70],[430,-20],[470,-10]],[[250,130],[270,100],[310,110],[320,140],[310,170],[260,170],[230,160],[250,130]],[[100,310],[80,350],[100,380],[180,400],[220,360],[150,320],[140,280],[120,300],[100,310]],[[-80,150],[-80,190],[-110,230],[-210,230],[-230,200],[-220,140],[-160,110],[-120,110],[-90,120],[-80,150]],[[390,280],[410,310],[430,310],[470,290],[450,250],[430,240],[390,230],[380,270],[390,280]],[[130,-100],[150,-80],[180,-80],[210,-110],[190,-140],[150,-140],[140,-130],[130,-100]],[]],
+"checkpoints":[{"x":-50,"y":-200,"w":20,"h":50},{"x":350,"y":-200,"w":50,"h":50},{"x":300,"y":200,"w":50,"h":100},{"x":-150,"y":-50,"w":50,"h":50}],
+"name":"Cavern",
+"unlocked":false,
+"bg":"lightgrey",
+"c":"brown",
+stars:[3000,2700,2100]
+},
+/*
+{
+"w":800,
+"h":400,
+"lines":[[[400,200],[800,200],[800,400],[400,400],[400,200]],[],[],[],[],[],[],[],[],[],[]],
+"checkpoints":[{"x":420,"y":240,"w":60,"h":90},{"x":680,"y":240,"w":60,"h":130}],
+"name":"asdf",
+"unlocked":false,
+"bg":"white",
+"c":"black",
+},*/
 
 
 
 	{},{},{},{},{},
 	],
 	
-	customIndex:4,
+	customIndex:5,
 	lastState:"",
 	maker:0,
 	makingX1:0,
@@ -87,21 +123,29 @@ stars:[1400,1200,850]
 	camSpeed:4,
 	tool:"",
 	layer:0,
-	magnet:false,
+	magnet:true,
 	allLayers:false,
 	deleteTimer:-1,
 	deleteTimerMax:120,
 	btns:[
 		{
-			x:50,
-			y:26,
+			x:150,
+			y:2,
 			w:99,
 			h:20,
 			text:"Set name",
 			action:"name",
 		},
 		{
-			x:300,
+			x:150,
+			y:26,
+			w:99,
+			h:20,
+			text:"Set color",
+			action:"color",
+		},
+		{
+			x:350,
 			y:2,
 			w:99,
 			h:20,
@@ -110,7 +154,7 @@ stars:[1400,1200,850]
 			action:"line",
 		},
 		{
-			x:400,
+			x:450,
 			y:2,
 			w:99,
 			h:20,
@@ -119,7 +163,7 @@ stars:[1400,1200,850]
 			action:"checkpoint",
 		},
 		{
-			x:500,
+			x:550,
 			y:2,
 			w:99,
 			h:20,
@@ -144,16 +188,16 @@ stars:[1400,1200,850]
 			action:"plus",
 		},
 		{
-			x:300,
+			x:350,
 			y:26,
 			w:99,
 			h:20,
 			text:"Magnet",
 			action:"magnet",
-			option:false,
+			option:true,
 		},
 		{
-			x:400,
+			x:450,
 			y:26,
 			w:99,
 			h:20,
@@ -162,7 +206,7 @@ stars:[1400,1200,850]
 			option:false,
 		},
 		{
-			x:500,
+			x:550,
 			y:26,
 			w:99,
 			h:20,
@@ -181,9 +225,17 @@ stars:[1400,1200,850]
 			x:500,
 			y:355,
 			w:99,
-			h:40,
+			h:19,
 			text:"Get code",
 			action:"code",
+		},
+		{
+			x:500,
+			y:375,
+			w:99,
+			h:19,
+			text:"Set code",
+			action:"set",
 		},
 		{
 			x:600,
@@ -208,6 +260,8 @@ stars:[1400,1200,850]
 	stick:"",
 	stickThreshold:0.5,
 	exitBtn:"start",
+	camLerp:0.25,
+	lineW:2,
 	setting:0,
 	settings:[2,false,0.25,false,"reset","clear"],
 	settingsIni:[5,false,0.25,false,"reset","clear"],
@@ -423,9 +477,26 @@ stars:[1400,1200,850]
 			this.race=jt3.wrapIndex(this.race,0,len-1);
 			
 			var completed=true;
+			var unlocked=true;
 			if(this.race>=this.customIndex){
-				if(!this.races[this.race].completed){
-					completed=false;
+				if(this.races[this.race].completed!=undefined){
+					if(!this.races[this.race].completed){
+						completed=false;
+					}
+				}
+			}
+			if(this.races[this.race].unlocked!=undefined){
+				if(!this.races[this.race].unlocked){
+					var beatenAll=true;
+					for(var i=0;i<this.race;i++){
+						if(this.races[i].time==undefined){
+							beatenAll=false;
+						}
+					}
+					if(!beatenAll){
+						completed=false;
+						unlocked=false;
+					}
 				}
 			}
 			
@@ -434,15 +505,18 @@ stars:[1400,1200,850]
 				this.lastState=this.state;
 				this.state="racing";
 				this.startRace();
-				;
 			}
 			if(jt3.kPress("escape") || jt3.pPress(this.exitBtn)){
 				jt3.stopPlay("cancel");
 				this.state="mode";
-				;
 			}
 			
 			//draw
+			var race=this.races[this.race];
+			var bg="white";
+			var lineC="black";
+			if(race.bg!=undefined){bg=race.bg;}
+			if(race.c!=undefined){lineC=race.c;}
 			jt3.bg("white")
 			
 			jt3.fontSize(48);
@@ -457,11 +531,12 @@ stars:[1400,1200,850]
 			var squareY=100;
 			var squareW=400;
 			var squareH=200;
+			jt3.rect(squareX,squareY,squareW,squareH,bg);
 			jt3.rectB(squareX,squareY,squareW,squareH,"black",0,3);
-			var race=this.races[this.race];
+			
 			this.lines=[];
-			var minX=0;
-			var minY=0;
+			var minX=10000;
+			var minY=10000;
 			var maxX=0;
 			var maxY=0;
 			
@@ -483,21 +558,20 @@ stars:[1400,1200,850]
 			
 			for(var i=0;i<race.lines.length;i++){
 				var curr=race.lines[i];
-				var c="black";
 				
-				this.addLines(curr,0,0,1,1,c);
+				this.addLines(curr,0,0,1,1,lineC);
 			}
 			
 			for(var i=0;i<this.lines.length;i++){
 
 				var line=this.lines[i];
 				
-				var lineX1=(((line.x1+-minX)/maxX)*(squareW*(3/4)))+squareX+squareW/8;
-				var lineY1=(((line.y1+-minY)/maxY)*(squareH*(3/4)))+squareY+squareH/8;
-				var lineX2=(((line.x2+-minX)/maxX)*(squareW*(3/4)))+squareX+squareW/8;
-				var lineY2=(((line.y2+-minY)/maxY)*(squareH*(3/4)))+squareY+squareH/8;
+				var lineX1=(((line.x1-minX)/maxX)*(squareW*(3/4)))+squareX+squareW/8;
+				var lineY1=(((line.y1-minY)/maxY)*(squareH*(3/4)))+squareY+squareH/8;
+				var lineX2=(((line.x2-minX)/maxX)*(squareW*(3/4)))+squareX+squareW/8;
+				var lineY2=(((line.y2-minY)/maxY)*(squareH*(3/4)))+squareY+squareH/8;
 				
-				jt3.line(lineX1,lineY1,lineX2,lineY2,1,"black");
+				jt3.line(lineX1,lineY1,lineX2,lineY2,1,lineC);
 			}
 			
 			jt3.fontSize(24);
@@ -505,7 +579,7 @@ stars:[1400,1200,850]
 			if(this.race>=this.customIndex){
 				str="Custom race: ";
 			}
-			jt3.text(str+this.races[this.race].name,jt3.w()/2,70,"blue","center");
+			jt3.text(str+this.races[this.race].name,jt3.w()/2,70,"black","center");
 			
 			//show best time and highscores
 			jt3.fontSize(14);
@@ -535,7 +609,9 @@ stars:[1400,1200,850]
 			if(!completed){
 				jt3.rect(squareX,squareY+squareH/4,squareW,squareH/2,[0,0,0,0.5]);
 				jt3.fontSize(14);
-				jt3.text("Not completed",squareX+squareW/2,squareY+squareH/2-jt3.fontSize()/2,"white","center")
+				var text="Not completed";
+				if(!unlocked){text="Beat the previous races to unlock"}
+				jt3.text(text,squareX+squareW/2,squareY+squareH/2-jt3.fontSize()/2,"white","center")
 			}
 			
 			if(this.races[this.race].times!=undefined){
@@ -598,8 +674,8 @@ stars:[1400,1200,850]
 				if(this.races[this.maker].name!==undefined){
 					this.lastState=this.state;
 					this.state="making";
-					jt3.cam().x=-300;
-					jt3.cam().y=-100;
+					jt3.cam().x=200;
+					jt3.cam().y=100;
 					this.races[this.maker].completed=false;
 				}else{
 					this.races[this.maker]={
@@ -621,8 +697,8 @@ stars:[1400,1200,850]
 					if(name && name.trim() && alphanum.test(name) && name.length<=18){
 						this.lastState=this.state;
 						this.state="making";
-						jt3.cam().x=-300;
-						jt3.cam().y=-100;
+						jt3.cam().x=200;
+						jt3.cam().y=100;
 						this.races[this.maker].name=name;
 					}else{
 						window.alert("Invalid name, too long (18 chars) or has special characters")
@@ -668,6 +744,10 @@ stars:[1400,1200,850]
 			var spacing=25;
 			for(var raceIndex=0;raceIndex<this.races.length-this.customIndex;raceIndex++){
 				var race=this.races[raceIndex+this.customIndex];
+				var bg="white";
+				var lineC="black";
+				if(race.bg!=undefined){bg=race.bg;}
+				if(race.c!=undefined){lineC=race.c;}
 				jt3.fontSize(18);
 				var startX=squareX+(raceIndex*(spacing+squareW));
 				var startY=(jt3.h()/2-squareW/2)+ys[raceIndex]-20;
@@ -681,6 +761,7 @@ stars:[1400,1200,850]
 					jt3.alpha(ratio);
 				}
 				
+				jt3.rect(startX,startY,squareW,squareW,bg);
 				jt3.rectB(startX,startY,squareW,squareW,"black",0,3);
 				if(race.name===undefined){
 					jt3.text("Slot "+(raceIndex+1),startX+squareW/2,startY+squareW/2-10,"black","center")
@@ -695,14 +776,14 @@ stars:[1400,1200,850]
 						str2=race.name.substring(len/2,len);
 					}
 					
-					jt3.text(str1,startX+squareW/2,startY+squareW-jt3.fontSize()*2,"black","center")
-					jt3.text(str2,startX+squareW/2,startY+squareW-jt3.fontSize(),"black","center")
+					jt3.text(str1,startX+squareW/2,startY+squareW-jt3.fontSize()*2,lineC,"center")
+					jt3.text(str2,startX+squareW/2,startY+squareW-jt3.fontSize(),lineC,"center")
 					
 					//draw race
 					//jt3.camActive(true)
 					this.lines=[];
-					var minX=0;
-					var minY=0;
+					var minX=100000;
+					var minY=100000;
 					var maxX=0;
 					var maxY=0;
 					
@@ -724,9 +805,8 @@ stars:[1400,1200,850]
 					
 					for(var i=0;i<race.lines.length;i++){
 						var curr=race.lines[i];
-						var c="black";
 						
-						this.addLines(curr,0,0,1,1,c);
+						this.addLines(curr,0,0,1,1,lineC);
 					}
 					
 					var squareH=(squareW-jt.fontSize()*2);
@@ -741,7 +821,7 @@ stars:[1400,1200,850]
 						var lineX2=(((line.x2+-minX)/maxX)*(squareW*(2/3)))+startX+squareW/6;
 						var lineY2=(((line.y2+-minY)/maxY)*(squareH*(2/3)))+squareY;
 						
-						jt3.line(lineX1,lineY1,lineX2,lineY2,1,"black");
+						jt3.line(lineX1,lineY1,lineX2,lineY2,1,lineC);
 					}
 					jt3.camActive(false);
 				}
@@ -754,8 +834,8 @@ stars:[1400,1200,850]
 			}
 		}else if(this.state=="making"){
 			if(jt3.cam().w!=800 || jt3.cam().h!=400){
-				jt3.cam().x=-300;
-				jt3.cam().y=-100;
+				jt3.cam().x=200;
+				jt3.cam().y=100;
 				jt3.cam().w=800;
 				jt3.cam().h=400;
 			}
@@ -763,8 +843,8 @@ stars:[1400,1200,850]
 			if(jt3.kPress("escape") || jt3.pPress(this.exitBtn)){
 				jt3.stopPlay("cancel");
 				this.state="maker";
-				jt3.cam().x=0;
-				jt3.cam().y=0;
+				jt3.cam().x=200;
+				jt3.cam().y=100;
 				jt3.camActive(false);
 				;
 			}
@@ -778,14 +858,14 @@ stars:[1400,1200,850]
 			if(jt3.kCheck("a")){jt3.cam().x-=camSpeed}
 			if(jt3.kCheck("d")){jt3.cam().x+=camSpeed}
 			
-			jt3.cam().x=jt3.stay(jt3.cam().x,-1000,1000-jt3.w())
-			jt3.cam().y=jt3.stay(jt3.cam().y,-550,550-jt3.h())
+			jt3.cam().x=jt3.stay(jt3.cam().x,0,1600-jt3.w())
+			jt3.cam().y=jt3.stay(jt3.cam().y,-50,800-jt3.h())
 			
 			var race=this.races[this.maker];
 			
 			if(jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a")){
-				jt3.cam().x=-jt3.w()/2+race.w/2;
-				jt3.cam().y=-jt3.h()/2+race.h/2;
+				jt3.cam().x=200;
+				jt3.cam().y=100;
 			}
 			
 			
@@ -974,6 +1054,21 @@ stars:[1400,1200,850]
 								window.alert("Invalid name, too long (18 chars) or has special characters")
 							}
 							break;
+						case "color":
+							var bg=window.prompt("Set the background color (default is white) as a color name or an hexadecimal like #fff")
+							var alphanum=/^[A-Za-z0-9\s'#]+$/i;
+							if(bg && bg.trim() && alphanum.test(bg) && bg.length<=18){
+								race.bg=bg;
+							}else{
+								window.alert("Invalid color, too long (18 chars) or has special characters")
+							}
+							lineC=window.prompt("Set the line color (default is white) as a color name or an hexadecimal like #fff")
+							if(lineC && lineC.trim() && alphanum.test(lineC) && lineC.length<=18){
+								race.c=lineC;
+							}else{
+								window.alert("Invalid color, too long (18 chars) or has special characters")
+							}
+							break;
 						case "minus":
 							this.layer--;
 							break;
@@ -1003,6 +1098,10 @@ stars:[1400,1200,850]
 							break;
 						case "code":
 							var raceCode=JSON.stringify(this.races[this.maker],null)
+							var bg="white";
+							var lineC="black";
+							if(race.bg!=undefined){bg=race.bg;}
+							if(race.c!=undefined){lineC=race.c;}
 							raceCode='{\n';
 							raceCode+='"w":'+this.races[this.maker].w+',\n';
 							raceCode+='"h":'+this.races[this.maker].h+',\n';							
@@ -1010,9 +1109,19 @@ stars:[1400,1200,850]
 							raceCode+='"checkpoints":'+JSON.stringify(this.races[this.maker].checkpoints)+',\n';
 							raceCode+='"name":"'+this.races[this.maker].name+'",\n';
 							raceCode+='"completed":false,\n';
+							raceCode+='"bg":"'+bg+'",\n';
+							raceCode+='"c":"'+lineC+'",\n';
 							raceCode+='},\n';
 							console.log(raceCode);
-							window.prompt("Race code",raceCode)
+							window.prompt("Race code",JSON.stringify(this.races[this.maker],null))
+							break;
+						case "set":
+							var code=window.prompt("Enter the race code");
+							if(code!=null){
+								this.races[this.maker]=JSON.parse(code);
+							}else{
+								window.alert("Invalid code")
+							}
 							break;
 						case "test":
 							this.lastState=this.state;
@@ -1079,22 +1188,30 @@ stars:[1400,1200,850]
 			//draw grid
 			if(this.magnet){
 				var initialY=jt3.round(jt3.yCam(50)/10,0)*10;
-				for(var y=initialY;y<initialY+300;y+=10){
+				for(var y=initialY;y<=initialY+300;y+=10){
 					var yy=jt3.camY(y);
 					var c=[0,0,0,0.25]
+					var w=1;
 					if(y%50==0){
 						c=[255,0,0,0.5]
 					}
-					jt3.line(0,yy,jt3.w(),yy,1,c);
+					if(y%200==0){
+						w=4;
+					}
+					jt3.line(0,yy,jt3.w(),yy,w,c);
 				}
 				var initialX=jt3.round(jt3.xCam(0)/10,0)*10;
-				for(var x=initialX;x<initialX+800;x+=10){
+				for(var x=initialX;x<=initialX+800;x+=10){
 					var xx=jt3.camX(x);
 					var c=[0,0,0,0.25]
+					var w=1;
 					if(x%50==0){
 						c=[255,0,0,0.5]
 					}
-					jt3.line(xx,50,xx,jt3.h()-50,1,c);
+					if(x%400==0){
+						w=4;
+					}
+					jt3.line(xx,50,xx,jt3.h()-50,w,c);
 				}
 			}
 			
@@ -1134,7 +1251,8 @@ stars:[1400,1200,850]
 			this.addCheckpoints(this.races[this.maker].checkpoints);
 			
 			for(var i=0;i<this.lines.length;i++){
-				jt3.shape(this.lines[i]);
+				this.lines[i].w=this.lineW;
+				jt3.line(this.lines[i]);
 			}
 			
 			for(var i=0;i<this.checkpoints.length;i++){
@@ -1238,15 +1356,22 @@ stars:[1400,1200,850]
 			}
 			jt3.camActive(false);
 			//Top menu
-			jt3.fontSize(18);
-			jt3.rect(0,0,jt3.w(),50,"white");
-			jt3.rect(0,jt3.h()-50,jt3.w(),50,"white");
+			jt3.fontSize(14);
+			jt3.rect(0,0,jt3.w(),49,"white");
+			jt3.rect(0,jt3.h()-49,jt3.w(),49,"white");
 			//jt3.text("Creating race: ",5,1,"black","left");
 			jt3.text(race.name,5,5,"black","left");
-			jt3.line(190,0,190,50,2,"black")
+			var bg="white";
+			var lineC="black";
+			if(race.bg!=undefined){bg=race.bg;}
+			if(race.c!=undefined){lineC=race.c;}
+			jt3.text("Bg: "+bg,5,23,"black","left");
+			jt3.text("Line: "+lineC,5,37,"black","left");
+			jt3.fontSize(18);
+			jt3.line(260,0,260,50,2,"black")
 			jt3.line(650,0,650,50,2,"black")
-			jt3.text("Tools: ",195,5,"black","left");
-			jt3.text("Options: ",195,28,"black","left");
+			jt3.text("Tools: ",265,5,"black","left");
+			jt3.text("Options: ",265,28,"black","left");
 			var text=jt3.mCX()+" "+jt3.mCY();
 			if(this.magnet){
 				var x=jt3.round(jt3.mCX()/10,0)*10;
@@ -1256,8 +1381,8 @@ stars:[1400,1200,850]
 			jt3.text(text,jt3.w()-5,jt3.h()-70,"black","right");
 			
 			//jt3.text("Width: "+race.w+" | Height: "+race.h,5,28,"black","left");
-			jt3.line(0,50,jt3.w(),50,2,"black")
-			jt3.line(0,jt3.h()-50,jt3.w(),jt3.h()-50,2,"black")
+			jt3.line(0,49,jt3.w(),49,2,"black")
+			jt3.line(0,jt3.h()-49,jt3.w(),jt3.h()-49,2,"black")
 			
 			//Bottom menu
 			jt3.fontSize(18);
@@ -1288,16 +1413,20 @@ stars:[1400,1200,850]
 			if(this.racing!="finish" && (jt3.kPress("escape") || jt3.pPress(this.exitBtn))){
 				jt3.stopPlay("cancel");
 				this.state=this.lastState;
-				;
 			}
 			
 			//Update
+			var currRace=this.races[this.race];
+			var bg="white";
+			var lineC="black";
+			if(currRace.bg!=undefined){bg=currRace.bg;}
+			if(currRace.c!=undefined){lineC=currRace.c;}
 			var race=this.races[this.race];
 			this.lines=[];
 			for(var i=0;i<this.races[this.race].lines.length;i++){
 				var curr=this.races[this.race].lines[i];
 				var c="black";
-				this.addLines(curr,0,0,1,1,c);
+				this.addLines(curr,0,0,1,1,lineC);
 			}
 			this.addCheckpoints(this.races[this.race].checkpoints);
 			
@@ -1370,7 +1499,7 @@ stars:[1400,1200,850]
 			
 			//Draw
 						//camera follow
-			var camLerp=0.25;
+			var camLerp=this.camLerp;
 			if(this.racing=="start"){
 				if(this.timer>0){
 					camLerp=(this.timer/this.timerMax)*0.05;
@@ -1409,14 +1538,15 @@ stars:[1400,1200,850]
 			this.r=jt3.lerp(this.settings[2],this.r,this.player.r);
 			
 			jt3.camActive(true);
-			jt3.bg("white");
+			jt3.bg(bg)
 			var r=-this.r;
 			if(!this.settings[1]){r=0;}
 			jt3.rotate(r,jt3.cam().x,jt3.cam().y,jt3.cam().w,jt3.cam().h);
-			jt3.rect(-1000,-1000,3000,3000,"white")
+			jt3.rect(-1000,-1000,3000,3000,bg)
 			
 			for(var i=0;i<this.lines.length;i++){
-				jt3.shape(this.lines[i]);
+				this.lines[i].w=this.lineW;
+				jt3.line(this.lines[i]);
 			}
 			
 			
@@ -1446,7 +1576,7 @@ stars:[1400,1200,850]
 			jt3.fontSize(24);
 			jt3.rect(0,0,jt3.w(),50,[255,255,255,0.5])
 			jt3.text(this.toTime(this.time),jt3.w()/2,10,"black","center");
-			jt3.text(this.time,jt3.w()/2,40,"black","center");
+			jt3.text(this.time,jt3.w()/2,30,"black","center");
 			jt3.text("Laps: "+this.laps+"/3",jt3.w()*(3/4),10,"black","center");
 			jt3.text("Speed: "+jt3.round(this.player.speed,1),jt3.w()/4,10,"black","center");
 			if(this.racing=="start"){
@@ -1846,11 +1976,12 @@ Racer.prototype.update=function(){
 Racer.prototype.draw=function(){
 	//drift circle
 	if(this.drift>0){
-		var c=[0,0,0,0.5];
+		var c=[0,0,0,0.75];
 		if(this.drift>=this.driftBoostMin){
-			c=[0,255,0,0.5];
+			c=[0,200,0,0.75];
 		}
 		var offset=this.w*1.5;
+		jt3.circle(this.x+this.w/2-offset,this.y+this.h/2-offset,offset*2,[255,255,255,0.5])
 		jt3.circleB(this.x+this.w/2-offset,this.y+this.h/2-offset,offset*2,c,1)
 		var ratio=this.drift/this.driftMax;
 		offset*=ratio;
