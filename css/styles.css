@@ -17,12 +17,21 @@ canvas{
 }
 
 .anchor{
-	margin-bottom:75px;
+	margin-bottom:100px;
+}
+
+.anchor .anchor{
+  margin-bottom: 0px;
 }
 
 ul.table{
 	padding:5px;
 	padding-left:20px;
+}
+
+ul.mainTable > li{
+  margin-top: 15px;
+  margin-bottom: 0px;
 }
 
 ul.projects li{
@@ -35,8 +44,8 @@ ul.nav a{
 
 ul.nav a:hover li{
 	text-decoration: underline;
-	
-	
+
+
 }
 
 ul.nav{
@@ -60,6 +69,9 @@ ul.nav li.current{
 	font-weight:normal;
 	font-size:16px;
 }
+.section ul li{
+  margin-left: 20px;
+}
 
 .section ul li.name{
 	font-weight:bold;
@@ -75,6 +87,13 @@ ul.nav li.current{
 	list-style:none;
 	margin-top:2px;
 	margin-bottom:30px;
+}
+
+.section h3{
+  display: inline-block;
+  font-size: 22px;
+  border-bottom: 2px solid #ccc;
+  margin-top: 10px;
 }
 
 h1{
