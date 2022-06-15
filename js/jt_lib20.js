@@ -49,6 +49,8 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
         this.canvas.context=this;
         this.canvas.setId(actualId);
         this.canvas.resize(w,h);
+		document.getElementById(actualId).style.width=w;
+		document.getElementById(actualId).style.height=h;
 
 
         if(setupName!=undefined){
@@ -264,6 +266,17 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 					}
 				}else{
 					if(bool){
+						//scroll to element
+						document.getElementById(this.id).scrollIntoView();
+						
+						//find all header spaces
+						var headerHeight=0;
+						var classes=document.getElementsByClassName("JTEcanvasfs");
+						for(var i=0;i<classes.length;i++){
+							headerHeight+=classes[i].offsetHeight;
+						}
+						console.log(headerHeight)
+						
 						this.iosFullscreen=true;
 						
 						this.lastRatioW=this.w;
@@ -272,10 +285,10 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 						var ratio=this.lastRatioW/this.lastRatioH;
 						
 						var diffX=window.innerWidth/this.lastRatioW;
-						var diffY=(window.innerHeight-this.additionalH)/this.lastRatioH;
+						var diffY=(window.innerHeight-this.additionalH-headerHeight)/this.lastRatioH;
 						
 						var w=window.innerWidth;
-						var h=window.innerHeight;
+						var h=window.innerHeight-headerHeight;
 						if(diffX<diffY){
 							//width to max
 							h=w/ratio+this.additionalH;
@@ -552,10 +565,6 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 			ctx.fillText("Loading game: "+percent+"%",this.context.canvas.w/2,this.context.canvas.h/2-10)
 
 		},
-		//return the max font size so it fills the screen but doesn't go above 
-		getMaxFontSize:function(str){
-			
-		},
 		//main loop
         mainLoop:function(){
 			var now=new Date().getTime();
@@ -796,11 +805,11 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 					var time=this.getAlarm("jt_fullscreen")
 					var ratio=time/180;
 					
-					var alpha=this.context.drawing.ctx.globalAlpha;
+					var alpha=this.context.drawing.alpha();
 					if(time<180/2){
-						this.context.drawing.ctx.globalAlpha=(time/(180/2));
+						this.context.drawing.alpha(time/(180/2));
 					}
-					this.context.drawing.ctx.globalAlpha=this.context.drawing.ctx.globalAlpha/2;
+					this.context.drawing.alpha(this.context.drawing.alpha()*0.8)
 					
 					
 					var color=this.context.color();
@@ -811,11 +820,18 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 					var align=this.context.drawing.align();
 					this.context.drawing.camActive(false);
 					
-					var string="Press f11 to quit Fullscreen";
+					this.context.drawing.font("Consolas",newFont);
+					
+					var string="F11 to exit fullscreen";
+					
+					var maxWidth=this.context.canvas.w;
+					/*if(this.context.canvas.src.style.width!=""){
+						maxWidth=parseInt(this.context.canvas.src.style.width.split("p")[0]);
+					}*/
 					
 					//change font size
 					for(var i=0;i<9;i++){
-						if(this.context.drawing.ctx.measureText(string).width>this.context.canvas.w){
+						if(this.context.drawing.ctx.measureText(string).width>maxWidth){
 							newFont=20-(i*2);
 							this.context.drawing.font("Consolas",newFont);
 						}else{
@@ -825,22 +841,19 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 					
 					//draw rectangle
 					var w=this.context.drawing.ctx.measureText(string).width;
-					var x=w/2;
+					var x=0;
 					var y=0;
-					var h=newFont*2;
-					this.context.drawing.ctx.fillStyle="white";
-					this.context.drawing.ctx.fillRect(x,y,w,h);
-					this.context.drawing.ctx.fillStyle="black";
-					this.context.drawing.ctx.textAlign="center";
+					var h=newFont*1.5;
+					this.context.drawing.rect(x,y,w,h,"white")
 					
 					//draw text
-					this.context.drawing.ctx.globalAlpha=this.context.drawing.ctx.globalAlpha*2;
-					this.context.drawing.ctx.fillText("Press f11 to quit Fullscreen",x+w/2,10)
+					this.context.drawing.alpha(this.context.drawing.alpha()*1.25);
+					this.context.drawing.text(string,x+w/2,y+h/4,"black","center");
 					this.context.drawing.camActive(cam);
 					this.context.drawing.font(font,size);
 					this.context.drawing.align(align);
 					this.context.drawing.color(color);
-					this.context.drawing.ctx.globalAlpha=alpha;
+					this.context.drawing.alpha(alpha);
 					
 					this.checkAlarm("jt_fullscreen",true);
 				}
@@ -1493,6 +1506,40 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 				this.sounds[name].loop=bool;
 			}
 			return this.sounds[name].loop;
+		},
+		//check if a sound is playing
+		playing:function(name){
+			if(name===undefined){
+				var playing=false;
+				for(var sound in this.sounds){
+					if(this.sounds.hasOwnProperty(sound)){
+						if(!this.sounds[sound].paused){
+							playing=true;
+							break;
+						}
+					}
+				}
+				return playing;
+			}else{
+				return !this.sounds[name].paused;
+			}
+		},
+		//check if a sound is paused
+		paused:function(name){
+			if(name===undefined){
+				var paused=false;
+				for(var sound in this.sounds){
+					if(this.sounds.hasOwnProperty(sound)){
+						if(this.sounds[sound].paused){
+							paused=true;
+							break;
+						}
+					}
+				}
+				return paused;
+			}else{
+				return this.sounds[name].paused;
+			}
 		},
         //collision
         collision:function(name1,name2){
@@ -6652,6 +6699,10 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
     this.isAlarm=function(name){
         return this.loop.isAlarm(name);
     }
+	
+	this.getTime=function(name){
+		return this.loop.getAlarm(name);
+    }
     
     this.getAlarm=function(name){
 		return this.loop.getAlarm(name);
@@ -6909,7 +6960,15 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
     }
 
 	this.repeat=function(name,bool){
-		return this.assets.repeat(name,bool)
+		return this.assets.repeat(name,bool);
+	}
+	
+	this.playing=function(name){
+		return this.assets.playing(name);
+	}
+	
+	this.paused=function(name){
+		return this.assets.paused(name);
 	}
 
 
