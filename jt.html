@@ -596,8 +596,9 @@ for(var alarm in alarms){
 
 
 					<li class="name">
-							jt.getAlarm(name)
-							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
+							jt.getAlarm(name)<br>
+							jt.getTime(name)
+							<button class="editor__btn editor__add" name='jt.getAlarm(name)' valueId='alarmVal'>Test in editor</button>
 					</li>
 					<li class="desc">Get the time remaining of an alarm, or undefined if it does not exist</li>
 
@@ -1296,7 +1297,7 @@ jt.text("Mute: "+jt.mute(),jt.w()/2,jt.h()/2,"black","center")'>Test in editor</
 					<li class="name">
 						jt.play(name,volume)<br>
 						jt.sound(name,volume)
-						<button class="editor__btn editor__add" id="playVal" name="jt.play(name)" value='
+						<button class="editor__btn editor__add" id="playVal" name="jt.play(name,volume)" value='
 //Pressing R will set the sound to repeat or stop repeating
 if(this.volume==undefined){this.volume=1;}
 if(jt.keyPress("r")){
@@ -1332,8 +1333,9 @@ if(jt.keyPress("space")){
 
 //Show contols
 jt.fontSize(14);
-jt.text("Paused: "+jt.sounds()["jump"].paused,jt.w()/2,10,"black","center")
-jt.text("Repeat: "+jt.repeat("jump"),jt.w()/2,40,"black","center")
+jt.text("Playing: "+jt.playing("jump"),jt.w()/2,10,"black","center")
+jt.text("Paused: "+jt.paused("jump"),jt.w()/2,30,"black","center")
+jt.text("Repeat: "+jt.repeat("jump"),jt.w()/2,50,"black","center")
 jt.fontSize(12);
 jt.text("Left and Right to change volume: "+this.volume,jt.w()/2,100,"black","center")
 jt.text("P to Play/Pause",jt.w()/2,120,"black","center")
@@ -1362,7 +1364,7 @@ jt.text("Space to Stop then Play",jt.w()/2,180,"black","center")'>Test in editor
 					
 					<li class="name">
 						jt.stopAll()
-						<button class="editor__btn editor__add" id="playVal" name="jt.play(name)" value='
+						<button class="editor__btn editor__add" id="stopAll" name="jt.stopAll()" value='
 //Pressing R will set the sound to repeat or stop repeating
 if(this.volume==undefined){this.volume=1;}
 if(jt.keyPress("r")){
@@ -1398,8 +1400,9 @@ if(jt.keyPress("space")){
 
 //Show contols
 jt.fontSize(14);
-jt.text("Paused: "+jt.sounds()["jump"].paused,jt.w()/2,10,"black","center")
-jt.text("Repeat: "+jt.repeat("jump"),jt.w()/2,40,"black","center")
+jt.text("Playing: "+jt.playing("jump"),jt.w()/2,10,"black","center")
+jt.text("Paused: "+jt.paused("jump"),jt.w()/2,30,"black","center")
+jt.text("Repeat: "+jt.repeat("jump"),jt.w()/2,50,"black","center")
 jt.fontSize(12);
 jt.text("Left and Right to change volume: "+this.volume,jt.w()/2,100,"black","center")
 jt.text("P to Play/Pause",jt.w()/2,120,"black","center")
@@ -1424,6 +1427,22 @@ jt.text("Space to Stop then Play",jt.w()/2,180,"black","center")'>Test in editor
 						<button class="editor__btn editor__add" valueId='playVal'>Test in editor</button>
 					</li>
 					<li class="desc">Get or set a sound to repeat</li>
+					
+					
+					
+					<li class="name">
+						jt.playing(name)
+						<button class="editor__btn editor__add" valueId='playVal'>Test in editor</button>
+					</li>
+					<li class="desc">Check if a sound is playing (returns true or false)</li>
+					
+					
+					
+					<li class="name">
+						jt.paused(name)
+						<button class="editor__btn editor__add" valueId='playVal'>Test in editor</button>
+					</li>
+					<li class="desc">Check if a sound is paused (returns true or false)</li>
 
 
 
