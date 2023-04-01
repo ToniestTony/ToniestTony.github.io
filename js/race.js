@@ -7,6 +7,30 @@ var app3={
 	lines:[],
 	checkpoints:[],
 	races:[
+	
+{
+"w":1200,
+"h":600,
+"lines":[[[400,200],[1200,200],[1200,600],[400,600],[400,200]],[[1200,350],[750,350],[750,200],[1200,200],[1200,350]],[[750,450],[1050,450],[1050,500],[750,500],[750,450]],[],[[650,600],[650,300],[500,300],[500,500],[600,500],[600,600],[650,600]],[],[],[],[],[],[]],
+"checkpoints":[{"x":780,"y":350,"w":40,"h":100},{"x":950,"y":350,"w":50,"h":100},{"x":1050,"y":450,"w":150,"h":50},{"x":950,"y":500,"w":50,"h":100},{"x":750,"y":500,"w":50,"h":100},{"x":650,"y":450,"w":100,"h":50},{"x":650,"y":350,"w":100,"h":50},{"x":650,"y":250,"w":100,"h":50},{"x":550,"y":200,"w":50,"h":100},{"x":400,"y":300,"w":100,"h":50},{"x":400,"y":400,"w":100,"h":50},{"x":550,"y":500,"w":50,"h":100},{"x":400,"y":500,"w":50,"h":100},{"x":400,"y":400,"w":100,"h":50},{"x":400,"y":300,"w":100,"h":50},{"x":550,"y":200,"w":50,"h":100},{"x":650,"y":300,"w":100,"h":50},{"x":750,"y":350,"w":30,"h":100},{"x":780,"y":350,"w":40,"h":100}],
+"name":"Tutorial 1",
+"completed":false,
+"bg":"white",
+"c":"black",
+},
+
+{
+"w":1200,
+"h":600,
+"lines":[[[400,200],[1200,200],[1200,600],[400,600],[400,200]],[[750,300],[750,350],[850,350],[850,300],[750,300]],[[750,450],[750,500],[850,500],[850,450],[750,450]],[[1150,250],[1150,550],[1100,550],[1100,250],[1150,250]],[[450,250],[500,250],[500,550],[450,550],[450,250]],[[700,250],[700,300],[550,300],[550,250],[700,250]],[[900,250],[900,300],[1050,300],[1050,250],[900,250]],[[1050,550],[900,550],[900,500],[1050,500],[1050,550]],[[550,500],[550,550],[700,550],[700,500],[550,500]],[],[]],
+"checkpoints":[{"x":780,"y":350,"w":40,"h":100},{"x":1590,"y":0,"w":10,"h":10}],
+"name":"Tutorial 2",
+"completed":false,
+"bg":"white",
+"c":"black",
+},
+	
+	
 	{
 		lines:[
 		[
@@ -78,7 +102,7 @@ stars:[1850,1650,1250],
 {
 "w":650,
 "h":250,
-"lines":[[[-100,0],[550,0],[550,250],[-100,250],[-100,0]],[[150,50],[450,50],[510,150],[450,220],[370,100],[260,100],[200,200],[130,100],[60,200],[-10,100],[0,50],[150,50]],[[400,250],[350,150],[290,150],[230,250],[160,250],[130,190],[80,250]],[[-70,150],[-20,150],[-20,220],[-70,220],[-70,150]],[[260,10],[270,10],[270,20],[260,20],[260,10]],[[290,30],[300,30],[300,20],[290,20],[290,30]],[[330,40],[340,40],[340,30],[330,30],[330,40]],[[360,10],[360,20],[370,20],[370,10],[360,10]],[],[],[]],
+"lines":[[[-100,0],[550,0],[550,250],[-100,250],[-100,0]],[[150,50],[450,50],[510,150],[450,220],[370,100],[260,100],[200,200],[130,100],[60,200],[-10,100],[0,50],[150,50]],[[400,250],[350,150],[290,150],[230,250],[160,250],[130,190],[80,250]],[[-70,150],[-20,150],[-20,220],[-70,220],[-70,150]],[[260,10],[270,10],[270,20],[260,20],[260,10]],[[330,40],[340,40],[340,30],[330,30],[330,40]],[[360,10],[360,20],[370,20],[370,10],[360,10]],[],[],[],[]],
 "checkpoints":[{"x":150,"y":0,"w":50,"h":50},{"x":450,"y":-10,"w":110,"h":70},{"x":280,"y":90,"w":80,"h":70},{"x":-30,"y":140,"w":100,"h":110}],
 "name":"JAY's Race",
 stars:[2650,2400,2050],
@@ -122,8 +146,8 @@ stars:[3550,3350,2850],
 
 	{},{},{},{},{},
 	],
-	
-	customIndex:6,
+	tutorialIndex:2,
+	customIndex:9,
 	lastState:"",
 	maker:0,
 	makingX1:0,
@@ -305,10 +329,16 @@ stars:[3550,3350,2850],
 	camRot:false,
 	camRotSpd:0.25,
 	backwardsRev:false,
+	keyDown:false,
+	tutorial:0,
+	tutorialMessage:["Touch all green zones and finish one lap!","Do 10 boosts"],
+	boosts:0,
+	boostsMax:10,
 	//setup is called when the game has finished loading
 	setup:function(){
-		//jt.fullscreen(false);
+		//jt3.fullscreen(false);
 		jt3.debug(true);
+		//jt3.mute(true)
 		
 		//sounds change
 		jt3.volume(0.5,"choose");
@@ -354,6 +384,7 @@ stars:[3550,3350,2850],
 		return m+":"+s+":"+f;
 	},
 	startRace:function(){
+		jt3.stopPlay("music");
 		this.state="racing";
 		this.racing="start";
 		this.timer=this.timerMax;
@@ -431,17 +462,146 @@ stars:[3550,3350,2850],
 	//update is called every frame
 	update:function(){
 		if(this.state=="menu"){
+			jt3.stop("music");
 			jt3.camActive(false);
 			jt3.bg([255,255,255,0.25])
+			
+			jt3.alpha(0.1);
+			var size=20;
+			for(var y=-1;y<jt3.h()/size;y++){
+				for(var x=-1;x<jt3.w()/size;x++){
+					if((x+y)%2==0){
+						var xx=x*size;
+						var yy=y*size;
+						var offset=jt3.waveX()*size;
+						jt3.rect(xx+offset,yy+offset,size,size,"black")
+					}
+				}
+			}
+			
+			//add cars
+			var originX=-32;
+			var originY=jt3.random(100,jt3.h()-100);
+			var vX=jt3.random(2,5,0.2);
+			var vY=0;
+			var r=90;
+			
+			var dirX=1;
+			var dirY=0;
+			
+			var keyDown=false;
+			
+			if(jt3.kCheck("left")){
+				originX=jt3.w();
+				vX=-vX;
+				r=270;
+				keyDown=true;
+				dirX=-1;
+			}else if(jt3.kCheck("down")){
+				originX=jt3.random(16,jt3.w()-32);
+				originY=-32;
+				vX=0;
+				vY=jt3.random(2,5,0.2);
+				r=180;
+				keyDown=true;
+				dirY=1;
+				dirX=0;
+			}else if(jt3.kCheck("up")){
+				originX=jt3.random(16,jt3.w()-32);
+				originY=jt3.h();
+				vX=0;
+				vY=-jt3.random(2,5,0.2);
+				r=0;
+				keyDown=true;
+				dirX=0;
+				dirY=-1;
+			}
+			
+			jt3.alpha(1);
+			if(jt3.frame()==0){
+				var img=app3.cars[jt3.random(app3.cars.length-2)];
+				if(img!="carRainbow"){
+					var part={
+						x:originX,
+						y:originY,
+						w:16,
+						h:32,
+						image:img,
+						frames:1000,
+						alphaRate:-0.001,
+						vX:vX,
+						vY:vY,
+						r:r,
+						id:"car",
+					}
+				}else{
+					var part={
+						x:originX,
+						y:originY,
+						w:16,
+						h:32,
+						anim:img,
+						frames:1000,
+						alphaRate:-0.001,
+						vX:vX,
+						vY:vY,
+						r:r,
+						id:"car",
+					}
+				}
+				jt3.addPart(part);
+				
+			}
+			
+			var parts=jt3.parts();
+			for(var i=0;i<parts.length;i++){
+				if(parts[i].id=="car"){
+					var car=parts[i];
+					if(keyDown || app3.keyDown!=keyDown){
+						if(car.vX!=0){
+							car.vX=car.vX*jt3.sign(car.vX)*dirX;
+						}else if(dirX!=0){
+							car.vX=vX*dirX;
+						}
+						if(car.vY!=0){
+							car.vY=car.vY*jt3.sign(car.vY)*dirY;
+						}else if(dirY!=0){
+							car.vY=vY*dirY;
+						}
+						car.r=r;
+					}
+					var part={
+						x:car.x+jt3.random(-2,2,0.5)-1-16*jt3.sign(car.vX),
+						y:car.y+jt3.random(-2,2,0.5)-1-16*jt3.sign(car.vY),
+						w:2,
+						wRate:0.4,
+						h:0,
+						hRate:0,
+						c:"grey",
+						alpha:1,
+						alphaRate:-0.05,
+						frames:20,
+						o:undefined,
+					}
+					jt3.addPart(part);
+				}
+			}
+			
+			app3.keyDown=keyDown;
+			
+			//draw cars
+			jt3.drawPart();
+			
+			jt3.alpha(1);
 		
 			jt3.fontSize(72);
-			jt3.text("SPEEDY CARS",jt3.w()/2,5+jt3.waveYPos()*30,"black","center");
+			jt3.text("SPEEDY CAR",jt3.w()/2,5+jt3.waveYPos()*30,"black","center");
 			
-			jt3.fontSize(24);
+			/*jt3.fontSize(24);
 			jt3.text("Press Up and Down to drive forward and backwards",jt3.w()/2,jt3.h()/2-50,"black","center")
 			jt3.text("Press Left and Right to turn",jt3.w()/2,jt3.h()/2-20,"black","center")
 			jt3.text("Hold Space to charge and release to boost",jt3.w()/2,jt3.h()/2+10,"black","center")
-			jt3.text("(You can also use a gamepad)",jt3.w()/2,jt3.h()/2+40,"black","center")
+			jt3.text("(You can also use a gamepad)",jt3.w()/2,jt3.h()/2+40,"black","center")*/
 			
 			jt3.fontSize(24);
 			if(jt3.frame()<=40){
@@ -455,19 +615,26 @@ stars:[3550,3350,2850],
 			}
 			
 		}else if(this.state=="mode"){
+			jt3.clearPart();
+			jt3.stop("music");
 			jt3.camActive(false);
 			if(jt3.kPress("left") || jt3.pDirPress("left")){this.mode--;jt3.waveX(0);jt3.stopPlay("change");}
 			if(jt3.kPress("right") || jt3.pDirPress("right")){this.mode++;jt3.waveX(0);jt3.stopPlay("change");}
-			this.mode=jt3.wrapIndex(this.mode,0,2);
+			this.mode=jt3.wrapIndex(this.mode,0,3);
 			
 			if(jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a")){
 				jt3.stopPlay("choose");
 				if(this.mode==0){
-					this.state="race"
+					this.state="tutorial";
+					this.player=undefined
+					this.tutorial=0;
 				}else if(this.mode==1){
+					this.state="race"
+					this.race=this.tutorialIndex;
+				}else if(this.mode==2){
 					this.state="maker"
 					this.maker=this.customIndex;
-				}else if(this.mode==2){
+				}else if(this.mode==3){
 					this.state="settings"
 				}
 				;
@@ -490,14 +657,19 @@ stars:[3550,3350,2850],
 			jt3.text("Choose with Space/Enter",jt3.w()/2,jt3.h()-30,"black","center");
 			
 			var ys=[0,0,0,0]
-			var images=["watch","hammer","settings"];
-			var texts=["Time trials","Race maker","Settings"];
-			for(var i=0;i<3;i++){
+			var images=["wheel","watch","hammer","settings"];
+			var texts=["Tutorial","Time trials","Race maker","Settings"];
+			
+			var w=150;
+			var offsetX=25;
+			var spacingX=50;
+			
+			for(var i=0;i<4;i++){
 				if(this.mode==i){ys[i]=jt3.waveYPos()*20;}
 				
-				var x=75+(150+100)*i;
+				var x=offsetX+(w+spacingX)*i;
 				var y=125;
-				var w=150;
+				var w=w;
 				jt3.rectB(x,125+ys[i],w,w,"black",0,3);
 				jt3.image(images[i],x+25,w-10+ys[i],w-50,w-50);
 				jt3.text(texts[i],x+w/2,y*2+ys[i],"black","center")
@@ -509,6 +681,7 @@ stars:[3550,3350,2850],
 			
 			
 		}else if(this.state=="race"){
+			jt3.stop("music");
 			jt3.camActive(false);
 			if(jt3.kPress("left") || jt3.pDirPress("left")){this.race--;jt3.waveX(0);jt3.stopPlay("change");}
 			if(jt3.kPress("right") || jt3.pDirPress("right")){this.race++;jt3.waveX(0);jt3.stopPlay("change");}
@@ -518,7 +691,7 @@ stars:[3550,3350,2850],
 					len++;
 				}
 			}
-			this.race=jt3.wrapIndex(this.race,0,len-1);
+			this.race=jt3.wrapIndex(this.race,this.tutorialIndex,len-1)
 			
 			var completed=true;
 			var unlocked=true;
@@ -532,7 +705,7 @@ stars:[3550,3350,2850],
 			if(this.races[this.race].unlocked!=undefined){
 				if(!this.races[this.race].unlocked){
 					var beatenAll=true;
-					for(var i=0;i<this.race;i++){
+					for(var i=this.tutorialIndex;i<this.race;i++){
 						if(this.races[i].time==undefined){
 							beatenAll=false;
 						}
@@ -689,7 +862,7 @@ stars:[3550,3350,2850],
 			
 			if(jt3.kPress("left") || jt3.pDirPress("left")){this.maker--;jt3.waveX(0);jt3.stopPlay("change");}
 			if(jt3.kPress("right") || jt3.pDirPress("right")){this.maker++;jt3.waveX(0);jt3.stopPlay("change");}
-			this.maker=jt3.wrapIndex(this.maker,this.customIndex,this.races.length-1);
+			this.maker=jt3.wrapIndex(this.maker,this.customIndex,this.customIndex+4);
 			
 			if(jt3.kCheck("backspace")){
 				if(jt3.kPress("backspace")){
@@ -803,7 +976,7 @@ stars:[3550,3350,2850],
 				
 				if(this.deleteTimer>=0 && this.maker-this.customIndex==raceIndex){
 					var ratio=this.deleteTimer/this.deleteTimerMax;
-					jt3.text("Deleting: "+(100-jt.round(ratio*100,0))+"%",startX+squareW/2,startY+squareW+5,"red","center")
+					jt3.text("Deleting: "+(100-jt3.round(ratio*100,0))+"%",startX+squareW/2,startY+squareW+5,"red","center")
 					jt3.alpha(ratio);
 				}
 				
@@ -855,7 +1028,7 @@ stars:[3550,3350,2850],
 						this.addLines(curr,0,0,1,1,lineC);
 					}
 					
-					var squareH=(squareW-jt.fontSize()*2);
+					var squareH=(squareW-jt3.fontSize()*2);
 					var squareY=startY+(squareH-(squareH*(2/3)))/2;
 					
 					for(var i=0;i<this.lines.length;i++){
@@ -1469,7 +1642,12 @@ stars:[3550,3350,2850],
 		}else if(this.state=="racing"){
 			if(this.racing!="finish" && (jt3.kPress("backspace") || jt3.pPress(this.exitBtn))){
 				jt3.stopPlay("cancel");
-				this.state=this.lastState;
+				if(this.tutorial>0){
+					this.state="mode";
+				}else{
+					this.state=this.lastState;
+				}
+				
 			}
 			
 			//Update
@@ -1489,7 +1667,15 @@ stars:[3550,3350,2850],
 			this.addCheckpoints(this.races[this.race].checkpoints);
 			
 			if(this.racing=="racing"){
+				
 				this.player.update();
+				
+				if(this.tutorial==2 && this.boosts>=this.boostsMax){
+					this.laps--;
+					this.racing="finish";
+					jt3.stop("music");
+					jt3.stopPlay("win");
+				}
 				
 				//Collisions
 				var circleX=this.player.x;
@@ -1509,9 +1695,17 @@ stars:[3550,3350,2850],
 						this.checkpoint=0;
 						this.laps++;
 						
+						if(this.tutorial==1){
+							this.laps--;
+							this.racing="finish";
+							jt3.stop("music");
+							jt3.stopPlay("win");
+						}
+						
 						if(this.laps>this.lapsMax){
 							this.laps--;
 							this.racing="finish";
+							jt3.stop("music");
 							jt3.stopPlay("win");
 						}else{
 							jt3.stopPlay("powerup",0.67);
@@ -1614,6 +1808,17 @@ stars:[3550,3350,2850],
 			
 			
 			//draw start/finish line
+			
+			//Draw tutorial checkpoint
+			if(this.tutorial>0){
+				var nextCheckpoint=this.checkpoint;
+				nextCheckpoint=jt3.stay(nextCheckpoint,0,race.checkpoints.length-1);
+				
+				var check=race.checkpoints[nextCheckpoint];
+				jt3.rect(check.x,check.y,check.w,check.h,[0,255,0,0.5])
+			}
+			
+			
 			var checkpoint=race.checkpoints[0];
 			var size=5;
 			for(var y=checkpoint.y;y<checkpoint.y+checkpoint.h;y+=size){
@@ -1640,8 +1845,26 @@ stars:[3550,3350,2850],
 			jt3.rect(0,0,jt3.w(),50,[255,255,255,0.5])
 			jt3.text(this.toTime(this.time),jt3.w()/2,10,"black","center");
 			jt3.text(this.time,jt3.w()/2,30,"black","center");
-			jt3.text("Laps: "+this.laps+"/3",jt3.w()*(3/4),10,"black","center");
+			if(this.tutorial>0){
+				jt3.text("Laps: "+this.laps+"/1",jt3.w()*(3/4),10,"black","center");
+			}else{
+				jt3.text("Laps: "+this.laps+"/3",jt3.w()*(3/4),10,"black","center");
+			}
+			
 			jt3.text("Speed: "+jt3.round(this.player.speed,1),jt3.w()/4,10,"black","center");
+			
+			if(this.tutorial>0){
+				var h=30;
+				jt3.rect(0,jt3.h()-h,jt3.w(),h,[0,0,0,0.5])
+				jt3.fontsize(24);
+				if(this.tutorial==1){
+					jt3.text(this.tutorialMessage[this.tutorial-1],jt3.w()/2,jt3.h()-27,"white","center");
+				}else if(this.tutorial==2){
+					jt3.text(this.tutorialMessage[this.tutorial-1]+" ("+this.boosts+"/"+this.boostsMax+")",jt3.w()/2,jt3.h()-27,"white","center");
+				}
+				
+			}
+			
 			if(this.racing=="start"){
 				if(jt3.kPress("space") || jt3.kPress("enter") || jt3.pPress("a")){
 					this.racing="racing";
@@ -1685,7 +1908,7 @@ stars:[3550,3350,2850],
 					jt3.text(text,jt3.w()/2,jt3.h()/2-jt3.fontSize()/2,"black","center");
 					jt3.alpha(1);
 					jt3.fontSize(14);
-					jt3.text("Space to skip",jt3.w()/2,jt3.h()-25,"black","center")
+					jt3.text("Space to skip",jt3.w()/2,jt3.h()-45,"black","center")
 				}
 			}else if(this.racing=="finish"){
 				jt3.rect(0,0,jt3.w(),jt3.h(),[255,255,255,0.25])
@@ -1704,11 +1927,16 @@ stars:[3550,3350,2850],
 				if(jt3.checkAlarm("finish")){
 					jt3.delAlarm("finish");
 					this.racing="start";
-					if(this.lastState=="making"){
-						this.races[this.race].completed=true;
-						this.state="maker";
+					if(this.tutorial>0){
+						this.player=undefined;
+						this.state="tutorial";
 					}else{
-						this.state=this.lastState;
+						if(this.lastState=="making"){
+							this.races[this.race].completed=true;
+							this.state="maker";
+						}else{
+							this.state=this.lastState;
+						}
 					}
 				}
 			}else{
@@ -1940,6 +2168,172 @@ stars:[3550,3350,2850],
 			var height=(jt3.h()-130);
 			var offset=2;
 			jt3.rect(jt3.w()-20+offset,60+firstElementVisible*(height/this.settings.length)+offset,20-offset*2,ratio*height-offset*2,"white");
+		}else if(this.state=="tutorial"){
+			jt3.clearPart();
+			jt3.stop("music");
+			jt3.camActive(false);
+			
+			if(jt3.kPress("backspace") || jt3.pPress(this.exitBtn)){
+				jt3.stopPlay("cancel");
+				this.state="mode";
+			}
+			
+			if(jt3.kPress("enter") || jt3.pPress("a")){
+				if(this.tutorial<2){
+					jt3.stopPlay("choose");
+					this.tutorial++;
+					this.boosts=0;
+					this.state="racing";
+					this.race=this.tutorial-1;
+					this.startRace();
+				}else{
+					this.tutorial=0;
+					this.state="mode";
+					
+				}
+				
+			}
+			
+			var x=0;
+			var y=0;
+			
+			if(this.player==undefined){
+				this.player=new Racer();
+				this.player.x=jt3.w()/2-2
+				this.player.y=jt3.h()/2-4
+				this.player.r=0;
+				this.player.w=6;
+				this.player.h=10;
+				
+				x=this.player.x;
+				y=this.player.y;
+				
+				jt3.cam().x=jt3.w()/2-100;
+				jt3.cam().y=jt3.h()/2-50;
+				jt3.cam().w=200;
+				jt3.cam().h=100;
+				jt3.camActive(false)
+			}else{
+				x=this.player.x;
+				y=this.player.y;
+				
+				
+			}
+			
+			this.player.update();
+			jt3.stopShake();
+			
+			//Collisions
+			var circleX=this.player.x;
+			var circleY=(this.player.y+this.player.h/2)-this.player.w/2;
+			var circle={x:circleX,y:circleY,d:this.player.w};
+			var cX=circle.x+circle.d/2;
+			var cY=circle.y+circle.d/2;
+			var cD=circle.d/2;
+			
+			
+			this.lines=[
+				{x1:0,x2:jt3.w(),y1:150,y2:150},
+				{x1:0,x2:jt3.w(),y1:250,y2:250},
+				{x1:300,x2:300,y1:0,y2:jt3.h()},
+				{x1:500,x2:500,y1:0,y2:jt3.h()},
+			]
+			
+			for(var i=0;i<this.lines.length;i++){
+				var line=this.lines[i];
+				if(cX+cD<this.lines[i].x1 && cX+cD<this.lines[i].x2 ||
+				   cX-cD>this.lines[i].x1 && cX-cD>this.lines[i].x2 ||
+				   cY+cD<this.lines[i].y1 && cY+cD<this.lines[i].y2 ||
+				   cY-cD>this.lines[i].y1 && cY-cD>this.lines[i].y2){
+					continue;
+				}
+				
+				if(jt3.cCircleLine(circle,line)){
+					if(!jt3.shaking()){
+						jt3.shake(3);
+						jt3.stopPlay("hurt",0.8);
+					}
+					
+					//reverse speed
+					this.player.speed=-this.player.speed;
+					
+					var modX=0;
+					var modY=0;
+					var mult=this.player.speed;
+					if(this.player.drift>0){
+						modX=(this.player.driftX*mult)/2+(jt3.angleX(this.player.r)*mult)/2;
+						modY=(this.player.driftY*mult)/2+(jt3.angleY(this.player.r)*mult)/2;
+					}else{
+						modX=jt3.angleX(this.player.r)*mult;
+						modY=jt3.angleY(this.player.r)*mult;
+					}
+					
+					this.player.x+=modX;
+					this.player.y+=modY;
+					
+					if(this.player.speed!=0){
+						this.player.control=this.player.controlMax;
+					}
+					break;
+				}
+			}
+			
+			//this.player.x=x;
+			//this.player.y=y;
+			
+			//draw
+			jt3.bg("white")
+			
+			
+			if(this.tutorial==0){
+				jt3.camActive(true)
+				jt3.drawParts();
+				this.player.draw();
+				jt3.camActive(false)
+				
+				jt3.fontsize(16);
+				jt3.text("Press Up to drive",jt3.w()/2,100,"black","center");
+				jt3.text("Press Left to turn anti-clockwise",jt3.w()/4,200,"black","center");
+				jt3.text("Press Right to turn clockwise",jt3.w()*(3/4),200,"black","center");
+				jt3.text("Press Down to go backwards",jt3.w()/2,300,"black","center");
+				
+				
+			}else if(this.tutorial==1){
+				jt3.camActive(true)
+				jt3.drawParts();
+				this.player.draw();
+				jt3.camActive(false)
+				
+				jt3.fontsize(16);
+				jt3.text("Hold Space to charge your boost...",jt3.w()/2,100,"black","center");
+				jt3.text("And release when it's green to get a speed boost!",jt3.w()/2,300,"black","center");
+				jt3.text("(Holding Space also turns faster, which helps for sharp turns)",jt3.w()/2,320,"black","center");
+				
+				
+			}else if(this.tutorial==2){
+				jt3.camActive(true)
+				jt3.drawParts();
+				this.player.draw();
+				jt3.camActive(false)
+				
+				jt3.fontsize(16);
+				jt3.text("You completed the tutorial!",jt3.w()/2,100,"black","center");
+				jt3.text("Try to beat other player's time by using boosts and doing sharp turns!",jt3.w()/2,300,"black","center");
+				
+			}
+			
+			jt3.fontSize(48);
+			jt3.text("Tutorial",jt3.w()/2,5,"black","center");
+			
+			
+			jt3.fontSize(24);
+			if(jt3.frame()<40){
+				jt3.text("Test it out with Enter",jt3.w()/2,jt3.h()-30,"black","center");
+			}
+			
+			
+			
+			
 		}
 		if(this.state!="menu" && this.state!="making"){
 			jt3.fontSize(16);
@@ -2054,6 +2448,7 @@ Racer.prototype.update=function(){
 			}
 			this.speed=speed;
 			jt3.stopPlay("jump",1);
+			app3.boosts++;
 		}
 	}
 	
@@ -2164,9 +2559,6 @@ Racer.prototype.draw=function(){
 	//jt3.rect(this.x+1,this.y,this.w-2,this.h-6,"black")
 	jt3.rotate(-this.r,this.x,this.y,this.w,this.h)
 }
-
-//define the jt object on a global scale
-var jt3=undefined;
 
 var races=[
 	{

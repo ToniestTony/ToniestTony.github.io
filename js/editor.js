@@ -132,6 +132,9 @@ if(jt.mPress(btn)){
 	jt.stopPlay("jump")
 }
 
+//Activate camera so the shaking works
+jt.camActive(true)
+
 jt.rect(btn.x,btn.y,btn.w,btn.h,btn.c);
 jt.fontSize(16);
 jt.text("Click to shake!",btn.x+btn.w/2,btn.y+btn.h/2-8,"black","center")`
@@ -303,8 +306,13 @@ function resetApp(){
 	app.resizeW=undefined;
 	app.autoResize=undefined;
 	app.additionalH=undefined;
+	app.once=undefined;
 
 	app.text=undefined;
+	app.timer=undefined;
+	app.playing=undefined;
+	jt.delAlarm();
+	jt.playAlarm();
 	jt.comboLength(8);
 	jt.comboTimer(30);
 	jt.fps(60);

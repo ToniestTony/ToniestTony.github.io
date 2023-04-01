@@ -29,6 +29,7 @@ window.onload = function(){
 	
 	jt3=new JT("can3",app3.w,app3.h,60,'setup','update','app3',0);
 	
+	jt3.loadImage(path+"wheel.png","wheel");
 	jt3.loadImage(path+"biceps.png","biceps");
 	jt3.loadImage(path+"vs.png","vs");
 	jt3.loadImage(path+"hammer.png","hammer");
@@ -55,6 +56,7 @@ window.onload = function(){
 	jt3.loadSound(path+"hit.mp3","hit");
 	jt3.loadSound(path+"powerup.mp3","powerup");
 	jt3.loadSound(path+"jump.mp3","jump");
+	jt3.loadSound(path+"music.mp3","music");
 	
 	
 	//jt.loadSound("sound.mp3","name")
