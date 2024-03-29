@@ -7,12 +7,17 @@
         <link rel="stylesheet" type="text/css" href="css/editor-styles.css">
     </head>
     <body>
+	
+	<button class="back-to-top hidden">
+            <span>Back to top</span>
+          </button>
 
         <header>
 			<ul class="nav">
 				<a href="./index.html"><li><h2>Home page</h2></li></a>
-				<a href="#"><li class="current"><h2>JT documentation</h2></li></a>
 				<a href="./examples.html"><li><h2>JT examples</h2></li></a>
+				<a href="#"><li class="current"><h2>JT documentation</h2></li></a>
+				<a href="./tutorials.html"><li><h2>JT tutorials</h2></li></a>
 			</ul>
         </header>
 
@@ -20,58 +25,6 @@
             <div id="main">
 
 			<h2>JT library documentation</h2>
-			<br>
-			<p>This is the <a href="https://github.com/ToniestTony/jt_lib">JT library</a>, used to make HTML5 2D games with the canvas much easier/faster!</p>
-			<br>
-			<p>You can test it out in the editor below (simulates the update function only):</p>
-			<!--<button id="last">Last</button>-->
-			<div class="editor">
-				<div class="editor__wrapper">
-					<div class="editor__body">
-						<div id="editorCode" class="editor__code"></div>
-					</div>
-					<div class="editor__footer">
-						<div class="editor__footer--left">
-							<button class="editor__btn editor__run">Run ></button>
-							<button class="editor__btn editor__reset">Blank ></button>
-							<button class="editor__btn editor__test">Default ></button>
-							<br>
-							<p class="small">Basic examples:</p>
-
-							<button class="editor__btn editor__test2">Mouse test ></button>
-							<button class="editor__btn editor__test3">Collision test ></button>
-						</div>
-						<div class="editor__footer--right">
-							<div id="canDiv" class="editor__console">
-								<canvas id="can"></canvas>
-								<ul class="editor__console-logs"></ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--<br>
-			<h2>Try these interactive examples:</h2>
-			<ul class="table">
-				<li>
-				<p class="name">
-						jt.ratio()
-						<button class="editor__btn editor__add" value='
-//Resize canvas dynamically each frame with a jt.waveY() and reset the camera
-jt.resize(400+jt.waveY()*200,200,true);
-
-//Show ratio with jt.ratio()
-jt.fontSize(18);
-jt.text("Width/Height ratio:",jt.w()/2,jt.h()/2-10,"black","center")
-jt.text(jt.round(jt.ratio(),2),jt.w()/2,jt.h()/2+10,"black","center")'>Test in editor</button>
-					</p>
-					<p class="desc inv">Get the width/height ratio of the canvas</p>
-				</li>
-			</ul>-->
-			<br>
-			<p>Play a lot of my games made with the JT library and JT Engine at <a href="http://ynotplay.ca/">Ynotplay.ca</a></p>
-			<br>
-			<p>Want to make your own standalone games or apps? Start <a href="https://github.com/ToniestTony/jt_lib">here</a>!</p>
 			<br>
 			<p><b>To find a specific function just use Ctrl+F and use keywords (each function has a description)</b></p>
 			<br>
@@ -112,7 +65,7 @@ jt.text(jt.round(jt.ratio(),2),jt.w()/2,jt.h()/2+10,"black","center")'>Test in e
           <li><a href="#drawgeneral">General</a></li>
           <li><a href="#shapes">Shapes</a></li>
           <li><a href="#text">Text</a></li>
-          <li><a href="#assets">Assets</a></li>
+          <li><a href="#drawAssets">Assets</a></li>
           <li><a href="#clipping">Clipping</a></li>
           <li><a href="#filters">Filters</a></li>
           <li><a href="#transform">Transform</a></li>
@@ -163,6 +116,61 @@ jt.text(jt.round(jt.ratio(),2),jt.w()/2,jt.h()/2+10,"black","center")'>Test in e
 
 		<li><a href="#compatibility">Backward compatibility</a></li>
 		<li><a href="#jte">JTE (Only works in JT Engine)</a></li>
+			
+			<br>
+			<p>This is the <a href="https://github.com/ToniestTony/jt_lib">JT library</a>, used to make HTML5 2D games with the canvas much easier/faster!</p>
+			<br>
+			<p>You can test it out in the editor below (simulates the update function only):</p>
+			<!--<button id="last">Last</button>-->
+			<div id="editor" class="editor">
+				<div class="editor__wrapper">
+					<div class="editor__body">
+						<div id="editorCode" class="editor__code"></div>
+					</div>
+					<div class="editor__footer">
+						<div class="editor__footer--left">
+							<button class="editor__btn editor__run">Run ></button>
+							<button class="editor__btn editor__reset">Blank ></button>
+							<button class="editor__btn editor__test">Default ></button>
+							<br>
+							<p class="small">Basic examples:</p>
+
+							<button class="editor__btn editor__test2">Mouse test ></button>
+							<button class="editor__btn editor__test3">Collision test ></button>
+						</div>
+						<div class="editor__footer--right">
+							<div id="canDiv" class="editor__console">
+								<canvas id="can"></canvas>
+								<ul class="editor__console-logs"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--<br>
+			<h2>Try these interactive examples:</h2>
+			<ul class="table">
+				<li>
+				<p class="name">
+						jt.ratio()
+						<button class="editor__btn editor__add" value='
+//Resize canvas dynamically each frame with a jt.waveY() and reset the camera
+jt.resize(400+jt.waveY()*200,200,true);
+
+//Show ratio with jt.ratio()
+jt.fontSize(18);
+jt.text("Width/Height ratio:",jt.w()/2,jt.h()/2-10,"black","center")
+jt.text(jt.round(jt.ratio(),2),jt.w()/2,jt.h()/2+10,"black","center")'>Test in editor</button>
+					</p>
+					<p class="desc inv">Get the width/height ratio of the canvas</p>
+				</li>
+			</ul>-->
+			<br>
+			<p>Play a lot of my games made with the JT library and JT Engine at <a href="http://ynotplay.ca/">Ynotplay.ca</a></p>
+			<br>
+			<p>Want to make your own standalone games or apps? Start <a href="https://github.com/ToniestTony/jt_lib">here</a>!</p>
+			<br>
+			
 
 			<div class="anchor" id="canvas"><div id="resize"></div></div>
 
@@ -266,7 +274,7 @@ if(jt.fullscreen()){
 }
 jt.text("Press Space to "+text,jt.w()/2,5,"black","center")
 jt.text("or click the buttons",jt.w()/2,20,"black","center")
-jt.text("Fullscreen mode: "+jt.fullscreen(),jt.w()/2,jt.h()-20,"black","center")
+jt.text("Fake fullscreen mode: "+jt.fullscreen(),jt.w()/2,jt.h()-20,"black","center")
 jt.shape(btnGo)
 jt.shape(btnExit)
 jt.text("True fullscreen",btnGo.x+btnGo.w/2,btnGo.y+btnGo.h/2-jt.fontSize()/2,"black","center")
@@ -325,7 +333,7 @@ jt.text("Additional height: "+jt.addH(),jt.w()/2,25,"black","center")
 //Show controls in the additional height
 jt.text("Mobile controls here!",jt.w()/2,jt.h()+jt.addH()*0.4,"black","center")'>Test in editor</button>
           </li>
-          <li class="desc">Get or set the additional height to the canvas, it isn't part of the game and it is useful to ad mobile controls</li>
+          <li class="desc">Get or set the additional height to the canvas, it isn't part of the game, doesn't affect jt.height() and it is useful to add mobile controls</li>
 <div class="anchor" id="misc"></div>
 
 
@@ -523,6 +531,36 @@ jt.text("Style: auto",jt.w()/2,jt.h()/2,"black","center")
 jt.text("Style: crosshair",jt.w()*(5/6),jt.h()/2,"black","center")'>Test in editor</button>
 					</li>
 					<li class="desc">Change the current cursor style or use true/false (it will return false if the cursor style is none, otherwise it will return the cursor style as a string)</li>
+					
+					
+					
+					<li class="name">
+						jt.version
+						<button class="editor__btn editor__add" value='
+//Show which jt version it is
+jt.fontSize(14);
+jt.text("The current JT version is: "+jt.version,jt.w()/2,jt.h()/2-7,"black","center")'>Test in editor</button>
+					</li>
+					<li class="desc">Get the version (not a function)</li>
+										
+					
+					
+					<li class="name">
+						jt.focus
+						<button class="editor__btn editor__add" value='
+//Show if the canvas is focus (click anywhere except on the canvas to unfocus it)
+jt.fontSize(14);
+jt.text("The current focus state: "+jt.focus,jt.w()/2,25,"black","center");
+if(jt.focus){
+jt.text("Click anywhere else to unfocus it",jt.w()/2,jt.h()-25,"black","center")
+}else{
+jt.text("Click on the canvas to focus it",jt.w()/2,jt.h()-25,"black","center")
+}'>Test in editor</button>
+					</li>
+					<li class="desc">Get the focus state (if the user has clicked on the canvas and is focused on it, also not a function)</li>
+					
+					
+					
 				</ul>
 
 			</div>
@@ -537,24 +575,36 @@ jt.text("Style: crosshair",jt.w()*(5/6),jt.h()/2,"black","center")'>Test in edit
 
 
 					<li class="name">
-							jt.alarm(name,time)
+							jt.alarm(name,time,autoDelete)
 							<button class="editor__btn editor__add" id="alarmVal" value='
 //Check if alarm exists and create if, if not
 if(!jt.isAlarm("red flash")){
-	jt.alarm("red flash",60);
+	jt.alarm("red flash",60,false);
+}
+
+//Pause/Play the alarm when clicking or pressing Space
+if(jt.mPress() || jt.keyPress("space")){
+    //Check if red flash is playing or if any alarm are not paused (same thing, just to show both functions)
+    if(jt.playingAlarm("red flash") || !jt.pausedAlarm()){
+        //pause all alarm
+        jt.pauseAlarm();
+    }else{
+        //play this specific alarm
+        jt.playAlarm("red flash",true);
+    }
 }
 
 //Check if alarm is done and if it is, delete it, start a new one and turn the background red
 if(jt.checkAlarm("red flash",false)){
 	jt.delAlarm("red flash");
-	jt.shake(10);
-	jt.alarm("red flash,60");
+	jt.alarm("red flash",60);
 	jt.bg("red")
 }
 
 //Show text
 jt.fontSize(14);
-jt.text("Flash and shakes every 60 frames",jt.w()/2,5,"black","center")
+jt.text("Click or press Space to pause/play the alarm",jt.w()/2,5,"black","center")
+jt.text("Flash every 60 frames",jt.w()/2,25,"black","center")
 var alarms=jt.alarms();
 jt.text("Alarms:",jt.w()/2,jt.h()/2,"black","center")
 for(var alarm in alarms){
@@ -563,7 +613,7 @@ for(var alarm in alarms){
     }
 }'>Test in editor</button>
 					</li>
-					<li class="desc">Add an alarm and how much time (in frames) until it's done</li>
+					<li class="desc">Add an alarm and how much time (in frames) until it's done, if time is not specified it makes it 1 second long, autoDelete specifies if the alarm should be destroyed once it gets lower than 0 (by default it is false)</li>
 
 
 
@@ -572,7 +622,7 @@ for(var alarm in alarms){
 							jt.checkAlarm(name,del)
 							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
 					</li>
-					<li class="desc">Check if an alarm is done and if you delete it</li>
+					<li class="desc">Check if an alarm is done and if you delete it (by default del is false so it won't delete)</li>
 
 
 
@@ -581,7 +631,7 @@ for(var alarm in alarms){
 							jt.delAlarm(name)
 							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
 					</li>
-					<li class="desc">Deletes an alarm</li>
+					<li class="desc">Deletes an alarm, return true if the alarm's time was below or equal to 0 or false if it was above 0, if no name is specified it will delete all alarms</li>
 
 
 
@@ -590,7 +640,7 @@ for(var alarm in alarms){
 							jt.isAlarm(name)
 							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
 					</li>
-					<li class="desc">Check if an alarm exists</li>
+					<li class="desc">Check if a specific alarm exists, if no name is specified it checks if at least one alarm exists</li>
                     
 
 
@@ -601,6 +651,38 @@ for(var alarm in alarms){
 							<button class="editor__btn editor__add" name='jt.getAlarm(name)' valueId='alarmVal'>Test in editor</button>
 					</li>
 					<li class="desc">Get the time remaining of an alarm, or undefined if it does not exist</li>
+					
+
+
+					<li class="name">
+							jt.pauseAlarm(name,pause)
+							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
+					</li>
+					<li class="desc">Set the pause of an alarm, if no name is specified it will pause all alarm (by default pause is true)</li>
+										
+
+
+					<li class="name">
+							jt.playAlarm(name,pause)
+							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
+					</li>
+					<li class="desc">Set the opposite of the pause (so if it is playing) of an alarm, if no name is specified it will play all alarm (by default play is true)</li>
+										
+
+
+					<li class="name">
+							jt.pausedAlarm(name)
+							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get the pause of an alarm, if no name is specified it will return true if they are all paused</li>
+										
+
+
+					<li class="name">
+							jt.playingAlarm(name)
+							<button class="editor__btn editor__add" valueId='alarmVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get the opposite of the pause (so if it is playing) of an alarm, if no name is specified it will return true if they are all playing</li>
 
 
 
@@ -612,6 +694,7 @@ for(var alarm in alarms){
 
 
 
+
           <div class="anchor" id="shake"></div>
           <h3>Shake: </h3>
 
@@ -619,7 +702,7 @@ for(var alarm in alarms){
 
 					<li class="name">
 							jt.shake(force,duration,reduce)
-							<button class="editor__btn editor__add" id="shake" value='
+							<button class="editor__btn editor__add" id="shakeExample" value='
 //Shake screen when clicking
 if(jt.mPress()){
 	jt.shake(10,10,1);
@@ -638,8 +721,10 @@ jt.text("The cam is not active on this text",jt.w()/2,jt.h()-25,"black","center"
 
 
 					<li class="name">
-							jt.shaking()
-							<button class="editor__btn editor__add" valueId='shake'>Test in editor</button>
+							jt.shaking()<br>
+							jt.isShaking()
+							jt.isShaking()
+							<button class="editor__btn editor__add" name="jt.shaking()" valueId='shakeExample'>Test in editor</button>
 					</li>
 					<li class="desc">Get true or false if the screen is shaking with jt.shake()</li>
 
@@ -858,45 +943,23 @@ jt.text(jt.frame(),jt.w()/2,jt.h()/2,"black","center")'>Test in editor</button>
 
 
           <div class="anchor" id="wave"></div>
-          <h3>Wave: </h3>
-
-
-
-					<li class="name">
-							jt.wavePi(num)<br>
-							jt.waveTau(num)
-							<button class="editor__btn editor__add" name="jt.wavePi(num)" value='
-//Click to pause for 2s
-if(jt.mousePress()){
-	jt.pauseJt(true);
-	setTimeout(function(){jt.pauseJt(false)},2000)
-}
-
-//Show wavePi rounded to 2 digits
-jt.fontSize(14);
-jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
-jt.text("jt.wavePi():",jt.w()/2,jt.h()/2-20,"black","center")
-jt.text(jt.round(jt.wavePi(),2),jt.w()/2,jt.h()/2,"black","center")
-
-//Draw a square moving to jt.wavePi() * 25
-jt.rect(jt.w()/2+jt.wavePi()*25,150,20,20,"blue")'>Test in editor</button>
-					</li>
-					<li class="desc">Get or set the wavePi number, which goes from 0 to Math.PI*2</li>
-
-
+          <h3>Waves: </h3>
+		  
+		  
 
 					<li class="name">
 							jt.waveX(num)
 							<button class="editor__btn editor__add" value='
-//Click to pause for 2s
+//Click to pause waveX at 0.5 for 2s
 if(jt.mousePress()){
+	jt.waveX(0.5);
 	jt.pauseJt(true);
 	setTimeout(function(){jt.pauseJt(false)},2000)
 }
 
 //Show waveX rounded to 2 digits
 jt.fontSize(14);
-jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
+jt.text("Click to pause waveX at 0.5 for 2s",jt.w()/2,5,"black","center")
 jt.text("jt.waveX():",jt.w()/2,jt.h()/2-20,"black","center")
 jt.text(jt.round(jt.waveX(),2),jt.w()/2,jt.h()/2,"black","center")
 
@@ -919,13 +982,26 @@ if(jt.mousePress()){
 //Show waveY rounded to 2 digits
 jt.fontSize(14);
 jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
-jt.text("jt.waveY():",jt.w()/2,jt.h()/2-20,"black","center")
-jt.text(jt.round(jt.waveY(),2),jt.w()/2,jt.h()/2,"black","center")
+//First square with no param
+jt.text("jt.waveY():",10,jt.h()*(4/10)-20,"black","left")
+jt.text(jt.round(jt.waveY(),2),10,jt.h()*(4/10),"black","left")
+jt.line(10,jt.h()*(4/10)+15,jt.w(),jt.h()*(4/10)+15,1,"black")
 
-//Draw a square moving to jt.waveY() * 50
-jt.rect(jt.w()/2+jt.waveY()*50,150,20,20,"blue")'>Test in editor</button>
+//Second square with 0.5
+jt.text("jt.waveY(0.5):",10,jt.h()*(6/10)-20,"black","left")
+jt.text(jt.round(jt.waveY(0.5),2),10,jt.h()*(6/10),"black","left")
+jt.line(10,jt.h()*(6/10)+15,jt.w(),jt.h()*(6/10)+15,1,"black")
+
+//Third square with waveX()+0.5
+jt.text("jt.waveY(jt.waveX()+0.5):",10,jt.h()*(8/10)-20,"black","left")
+jt.text(jt.round(jt.waveY(jt.waveX()+0.5),2),10,jt.h()*(8/10),"black","left")
+
+//Draw squares moving to jt.waveY() * 25
+jt.rect(jt.w()/2+jt.waveY()*50,jt.h()*(4/10)-5,20,20,"blue")
+jt.rect(jt.w()/2+jt.waveY(0.5)*50,jt.h()*(6/10)-5,20,20,"blue")
+jt.rect(jt.w()/2+jt.waveY(jt.waveX()+0.5)*50,jt.h()*(8/10)-5,20,20,"blue")'>Test in editor</button>
 					</li>
-					<li class="desc">Get or set the waveY number, which goes from -1 to 1 then back to -1 in 1 second</li>
+					<li class="desc">Get the waveY number, which goes from -1 to 1 then back to -1, all in 1 second. If you put a number, it will be a temporary waveX that will wrap from 0 to 1.</li>
 
 
 
@@ -938,16 +1014,29 @@ if(jt.mousePress()){
 	setTimeout(function(){jt.pauseJt(false)},2000)
 }
 
-//Show waveY rounded to 2 digits
+//Show waveYPos rounded to 2 digits
 jt.fontSize(14);
 jt.text("Click to pause for 2s",jt.w()/2,5,"black","center")
-jt.text("jt.waveYPos():",jt.w()/2,jt.h()/2-20,"black","center")
-jt.text(jt.round(jt.waveYPos(),2),jt.w()/2,jt.h()/2,"black","center")
+//First square with no param
+jt.text("jt.waveYPos():",10,jt.h()*(4/10)-20,"black","left")
+jt.text(jt.round(jt.waveYPos(),2),10,jt.h()*(4/10),"black","left")
+jt.line(10,jt.h()*(4/10)+15,jt.w(),jt.h()*(4/10)+15,1,"black")
 
-//Draw a square moving to waveYPos() * 100
-jt.rect(jt.w()/2+jt.waveYPos()*100,150,20,20,"blue")'>Test in editor</button>
+//Second square with 0.5
+jt.text("jt.waveYPos(0.5):",10,jt.h()*(6/10)-20,"black","left")
+jt.text(jt.round(jt.waveYPos(0.5),2),10,jt.h()*(6/10),"black","left")
+jt.line(10,jt.h()*(6/10)+15,jt.w(),jt.h()*(6/10)+15,1,"black")
+
+//Third square with waveX()+0.5
+jt.text("jt.waveYPos(jt.waveX()+0.5):",10,jt.h()*(8/10)-20,"black","left")
+jt.text(jt.round(jt.waveYPos(jt.waveX()+0.5),2),10,jt.h()*(8/10),"black","left")
+
+//Draw squares moving to jt.waveYPos() * 25
+jt.rect(jt.w()/2+jt.waveYPos()*50,jt.h()*(4/10)-5,20,20,"blue")
+jt.rect(jt.w()/2+jt.waveYPos(0.5)*50,jt.h()*(6/10)-5,20,20,"blue")
+jt.rect(jt.w()/2+jt.waveYPos(jt.waveX()+0.5)*50,jt.h()*(8/10)-5,20,20,"blue")'>Test in editor</button>
 					</li>
-					<li class="desc">Get or set the waveY number, which goes from 0 to 1 then back to 0 in 1 second</li>
+					<li class="desc">Get or set the waveY number, which goes from 0 to 1 then back to 0 in 1 second. If you put a number, it will be a temporary waveX that will wrap from 0 to 1.</li>
 
 
 
@@ -989,6 +1078,7 @@ if(jt.keyPress("backspace")){
 jt.fontSize(14);
 jt.text("Press Space to turn on or off the debug mode",jt.w()/2,5,"black","center")
 jt.text("When in debug, click to show a debug square",jt.w()/2,20,"black","center")
+jt.text("Press Backspace to delete all debug objects",jt.w()/2,35,"black","center")
 jt.text("Debug: "+jt.debug(),jt.w()/2,jt.h()/2-6,"black","center")'>Test in editor</button>
 					</li>
 					<li class="desc">Get or set the debug mode, which shows debug objects to quickly help in development</li>
@@ -1434,7 +1524,7 @@ jt.text("Space to Stop then Play",jt.w()/2,180,"black","center")'>Test in editor
 						jt.playing(name)
 						<button class="editor__btn editor__add" valueId='playVal'>Test in editor</button>
 					</li>
-					<li class="desc">Check if a sound is playing (returns true or false)</li>
+					<li class="desc">Check if a sound is playing (returns true or false), if name is not specified it returns if all sounds are playing</li>
 					
 					
 					
@@ -1442,7 +1532,7 @@ jt.text("Space to Stop then Play",jt.w()/2,180,"black","center")'>Test in editor
 						jt.paused(name)
 						<button class="editor__btn editor__add" valueId='playVal'>Test in editor</button>
 					</li>
-					<li class="desc">Check if a sound is paused (returns true or false)</li>
+					<li class="desc">Check if a sound is paused (returns true or false), if name is not specified it returns if all sounds are paused</li>
 
 
 
@@ -1608,16 +1698,16 @@ var cornerX1=jt.w()-10;
 var cornerY1=0;
 var cornerX2=jt.w();
 var cornerY2=10;
-var cornerCamX=jt.xCam(cornerX1);
-var cornerCamY=jt.yCam(cornerY1);
+var cornerCamX=jt.xToCam(cornerX1);
+var cornerCamY=jt.yToCam(cornerY1);
 if(jt.keyCheck("space")){
 	jt.camActive(true);
-	cornerX1=jt.camX(cornerX1)
-	cornerY1=jt.camY(cornerY1)
-	cornerX2=jt.camX(cornerX2)
-	cornerY2=jt.camY(cornerY2)
-	cornerCamX=jt.xCam(cornerX1);
-    cornerCamY=jt.yCam(cornerY1);
+	cornerX1=jt.camToX(cornerX1)
+	cornerY1=jt.camToY(cornerY1)
+	cornerX2=jt.camToX(cornerX2)
+	cornerY2=jt.camToY(cornerY2)
+	cornerCamX=jt.xToCam(cornerX1);
+    cornerCamY=jt.yToCam(cornerY1);
 }
 jt.cam().x=-100;
 jt.cam().y=-200;
@@ -1947,9 +2037,13 @@ jt.circleB(300,75,50,"black",5);
 //Show controls
 jt.fontSize(14);
 jt.text("Move the mouse around to clear part of the canvas",jt.w()/2,5,"black","center")
+jt.text("The ellipse is not erased since it is drawn after",jt.w()/2,jt.h()-20,"black","center")
 
 //Clear at the mouse position
 jt.clear(jt.mX()-20,jt.mY()-20,40,40);
+
+//Draw the ellipse after
+jt.ellipse(160,140,80,30,[227,227,0]);
 '>Test in editor</button>
 					</li>
 					<li class="desc">Clear a part of the canvas (if there's no parameters, it will clear the entire canvas)</li>
@@ -2208,7 +2302,7 @@ if(jt.keyPress("down")){
 fontSize=jt.stay(fontSize,1,50);
 
 //Show font size
-jt.resize(600,200,true);
+jt.resize(400,200,true);
 jt.font("Consolas",fontSize);
 jt.text("Up and Down to set size",jt.w()/2,20-fontSize/2,"black","center")
 jt.text("Font size: "+fontSize,jt.w()/2,jt.h()/2-fontSize/2,"black","center")'>Test in editor</button>
@@ -2319,7 +2413,7 @@ jt.align(aligns[this.align]);
 jt.baseLine(baseLines[this.baseLine]);
 
 //Show text and controls
-jt.resize(600,200,true);
+jt.resize(600,300,true);
 jt.font("Consolas",14);
 jt.line(0,100,jt.w(),100,1,"red");
 jt.line(jt.w()/2,80,jt.w()/2,120,1,"red");
@@ -2341,7 +2435,7 @@ jt.text("Press Up and Down to change text baseLine",jt.w()/2,180,"black","center
 
 
 
-          <div class="anchor" id="assets"></div>
+          <div class="anchor" id="drawAssets"></div>
           <h3>Assets: </h3>
 
 
@@ -2752,7 +2846,7 @@ jt.text("Move the mouse around to change the clip position",jt.w()/2,jt.h()-20,"
             <button class="editor__btn editor__add" id="filter" name="jt.filter(css,override)" value='
 //Hold Space to activate jt.filter()
 if(jt.kCheck("space")){
-    jt.filter("sepia(100%)")
+    jt.filter("sepia(100%) brightness(2)")
 }
 
 //Show a rainbow rectangle
@@ -2767,7 +2861,7 @@ jt.resetFilter();
 jt.fontSize(14);
 jt.text("Hold Space to activate jt.filter()",jt.w()/2,jt.h()-20,"black","center");'>Test in editor</button>
           </li>
-          <li class="desc">Add a custom css filter to the canvas (override is optional and it is used to add or override previous filters, by default it is true)</li>
+          <li class="desc">Add a custom css filter to the canvas, add a space between filters to multiple of them, for a list of all the possible filters, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/filter">click here</a> (override is optional and it is used to add or override previous filters, by default it is true)</li>
 
 
 
@@ -3256,7 +3350,7 @@ jt.text("0",jt.w()/4,jt.h()/2,"black","center")
 jt.text("Maximum",jt.w()/4*3,jt.h()/2-25,"black","center")
 jt.text("100",jt.w()/4*3,jt.h()/2,"black","center")'>Test in editor</button>
 					</li>
-					<li class="desc">Will return the number that wraps around a min and a max for numbers (numbers that changes by anything,so max+1 will give min+1)</li>
+					<li class="desc">Will return the number that wraps around a min and a max for numbers (numbers that changes by anything,so max+1 will give min+1 and max+0 will give min)</li>
 
 
 
@@ -5127,7 +5221,7 @@ if(jt.padConnected()){
     jt.rect(jt.w()*(3/4)+2,jt.h()/2-5,60,60,c)
 
     //Show controls
-    jt.text("Move both sticks around to move in the grid",jt.w()/2,25,"black","center")
+    jt.text("Move the left stick around to move in the grid",jt.w()/2,25,"black","center")
 }else{
     jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
 }'>Test in editor</button>
@@ -5138,7 +5232,9 @@ if(jt.padConnected()){
 
 					<li class="name">
 						jt.padDirReset(stick,controller)<br>
-						jt.pDirReset(stick,controller)
+						jt.pDirReset(stick,controller)<br>
+						jt.padDirRelease(stick,controller)<br>
+						jt.pDirRelease(stick,controller)
 						<button class="editor__btn editor__add" name="jt.padDirReset(stick,controller)" value='
 //Move both gamepad sticks to change the directions
 jt.fontSize(14)
@@ -5147,6 +5243,11 @@ if(jt.padConnected()){
 
     var leftStick=jt.pStick();
     var rightStick=jt.pStick(1);
+	
+	//reset direction when pressing a
+	if(jt.padPress("a")){
+		jt.padDirReset();
+	}
 
     //Show controls
     jt.text("Move both sticks around to change the directions",jt.w()/2,25,"black","center")
@@ -5354,7 +5455,7 @@ var btns=[btnLeft,btnRight,btnUp];
 for(var i=0;i<btns.length;i++){
     var btn=btns[i];
     //Check if the buttons are pressed
-    if(jt.mouseCheck(btn)){
+    if(jt.mouseCheck(btn) || jt.touchCheck(btn)){
         jt.simKeyDown(btn.key)
         btn.alpha=0.5;
     }else{
@@ -5397,7 +5498,7 @@ if(keysDown!=1){
 
 //Show controls
 jt.fontSize(14);
-jt.text("Press the buttons with the mouse to move",jt.w()/2,5,"black","center");
+jt.text("Click or touch the buttons with the mouse to move",jt.w()/2,5,"black","center");
 
 //Draw animation
 if(this.keyPos[1]==groundY){
@@ -6164,7 +6265,12 @@ jt.text("Click to enter your name!",btn.x+btn.w/2,btn.y+btn.h/2-8,"black","cente
 
 //Show controls
 jt.text("Press the button to open up the keyboard",jt.w()/2,5,"black","center")
-jt.text("Name: "+this.name,jt.w()/2,25,"black","center")'>Test in editor</button>
+jt.text("Name: "+this.name,jt.w()/2,25,"black","center")
+
+//Darken the main game when the keyboard is on
+if(keyboard.on){
+    jt.bg([0,0,0,0.5])    
+}'>Test in editor</button>
 					</li>
 					<li class="desc">Opens up the keyboard and pauses JT after this update, msg is the message that the user sees (by default "Write here..."), str is the message that the user writes (by default empty), lines is the number of lines of inputs (25 chars per line, 1 by default), size is the font size (24 by default)</li>
 			
@@ -6179,6 +6285,35 @@ jt.text("Name: "+this.name,jt.w()/2,25,"black","center")'>Test in editor</button
 				<h3>These are all functions that are only here to work with older JT version, but should not be used otherwise, because of they don't follow nomenclature or are not useful.</h3>
 				<br>
 				<ul>
+				this.xCam=function(x,num){
+		return this.drawing.xCam(x,num);
+	}
+	
+	this.camX=function(x,num){
+		return this.drawing.camX(x,num);
+	}
+	
+	this.yCam=function(y,num){
+		return this.drawing.yCam(y,num);
+	}
+	
+	this.camY=function(y,num){
+		return this.drawing.camY(y,num);
+	}
+	
+			<li class="name">jt.xCam(x,num)</li>
+          <li class="desc">Same as xToCam, it's more intuitive</li>
+		  
+		  <li class="name">jt.yCam(y,num)</li>
+          <li class="desc">Same as yToCam, it's more intuitive</li>
+		  
+		  <li class="name">jt.camX(x,num)</li>
+          <li class="desc">Same as camToX, it's more intuitive</li>
+		  
+		  <li class="name">jt.yCam(y,num)</li>
+          <li class="desc">Same as camToY, it's more intuitive</li>
+				
+				
           <li class="name">jt.pixelRate(rate)<br>jt.pR(rate)</li>
           <li class="desc">Changing the pixel rate of the canvas, but it changed too many factors</li>
 
@@ -6187,6 +6322,11 @@ jt.text("Name: "+this.name,jt.w()/2,25,"black","center")'>Test in editor</button
 
 					<li class="name">jt.addAlarm(name,time)</li>
 					<li class="desc">Same as jt.alarm(name,time)</li>
+					
+					<li class="name">
+							jt.wavePi(num)<br>
+							jt.waveTau(num)
+					<li class="desc">Get or set the wavePi number, which goes from 0 to Math.PI*2, but now waveX simply goes from 0 to 1</li>
 
 					<li class="name">jt.wrapVal(num,min,max)</li>
 					<li class="desc">Same as jt.wrap(num,min,max)</li>
@@ -6344,10 +6484,10 @@ jt.text("Name: "+this.name,jt.w()/2,25,"black","center")'>Test in editor</button
 				<h3>These functions can only be used in the JT Engine (All functions that have Object or View in their name is a JT Engine function)</h3>
 				<br>
 				<ul>
-					<li class="name">jte.getObject(name,view)<br>jt.getObject(name,view)</li>
+					<li class="name">jte.getObject(name,view)<br>jt.getObject(name,view)<br>jt.get(name,view)</li>
 					<li class="desc">Get an object by it's name (and only inside the view if it's specified)</li>
 
-					<li class="name">jte.getObjects(tags,view,and)<br>jt.getObjects(tags,view,and)</li>
+					<li class="name">jte.getObjects(tags,view,and)<br>jt.getObjects(tags,view,and)<br>jt.gets(name,view)</li>
 					<li class="desc">Get objects by their tags (and the view if it's specified, if and is true it will check if the objects have all the tags, otherwise it will return if the objects have 1 tag)</li>
 
 					<li class="name">jte.delObject(name,view)<br>jt.delObject(name,view)</li>
@@ -6396,8 +6536,9 @@ jt.text("Name: "+this.name,jt.w()/2,25,"black","center")'>Test in editor</button
 
 		<script src="js/editor.js"></script>
 
-		<script src="js/jt_lib20.js"></script>
+		<script src="js/jt_lib21.js"></script>
 		<script src="js/keyboard.js"></script>
+		<script src="js/backToTop.js"></script>
 
 
     </body>
