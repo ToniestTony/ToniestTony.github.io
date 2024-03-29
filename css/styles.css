@@ -121,15 +121,14 @@ body{
 main{
     margin: 20px;
 	margin-top:0;
-	padding-top:90px;
+	padding-top:20px;
 }
 
 header{
 	display: inline-block;
     background-color: #292929;
     color: white;
-	padding:2px;
-	position: fixed;
+	padding:2px 0;
 	width: 100%;
 	margin:none;
 	z-index:10;
@@ -140,10 +139,13 @@ footer{
     display: inline-block;
     background-color: #292929;
     color: white;
-    padding: 10px;
-	position: fixed;
+    padding: 10px 0;
     bottom: 0;
 	z-index:10;
+}
+
+footer small{
+	padding-left:20px;
 }
 
 a{color: #f02850;}
@@ -160,4 +162,87 @@ header h1{
 
 .inv{
 	display:none;
+}
+
+/* Tutorials page */
+
+.steps{
+	list-style: numbered;
+}
+
+.steps li{
+	padding: 2px;
+	max-width: 50%;
+}
+
+.section .big-steps{
+	list-style: numbered;
+	padding-left: 0;
+}
+
+.big-steps h2{
+	margin-top: 20px;
+}
+
+.big-steps li{
+	display: inline-block;
+	max-width: 50%;
+}
+
+.big-steps li p{
+	padding: 20px 0;
+}
+
+code{
+	background-color: #ccc;
+	white-space: break-spaces;
+	display: inline-block;
+	margin-bottom: 20px;
+}
+
+.editorLoad{
+	padding: 10px;
+}
+
+.showEditorContainer{
+	text-align: right;
+}
+.showEditor{
+	padding: 10px;
+}
+
+.editor__wrapper.tutorial{
+	display: none;
+}
+
+.editorTutorial{
+	position: fixed;
+	height: 60%;
+	top: 0%;
+	right: 1;
+}
+
+.editorTutorial .editor__wrapper{
+	height: 75%;
+}
+
+/* back to top button */
+.back-to-top {
+    display: block;
+    position: fixed;
+    right: 0;
+    bottom: 1rem;
+    font-size: black;
+    background: #111;
+    color: white;
+    padding: 1rem;
+    border: none;
+    cursor: pointer;
+    opacity: 100%;
+    transition: opacity 0.2s;
+    z-index: 100;
+}
+
+.back-to-top:hover {
+opacity: 50%;
 }
