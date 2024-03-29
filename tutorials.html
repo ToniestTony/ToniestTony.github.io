@@ -1,0 +1,1383 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>ToniestTony's Github</title>
+        
+
+        <link rel="stylesheet" type="text/css" href="css/editor-styles.css">
+		
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+    </head>
+    <body>
+	
+	<button class="back-to-top hidden">
+            <span>Back to top</span>
+          </button>
+
+        <header>
+			<ul class="nav">
+				<a href="./index.html"><li><h2>Home page</h2></li></a>
+				<a href="./examples.html"><li><h2>JT examples</h2></li></a>
+				<a href="./jt.html"><li><h2>JT documentation</h2></li></a>
+				<a href="#"><li class="current"><h2>JT tutorials</h2></li></a>
+			</ul>
+        </header>
+
+        <main>
+            <div id="main">
+
+			<h2>JT tutorials</h2>
+			<br>
+			<p>Here's an index of all available tutorials (more to come!):</p>
+			<ul class="table mainTable">
+
+				<li><a href="#start">Start up</a></li>
+				<li><a href="#pong">Simple pong</a></li>
+				<ul class="table">
+					<li><a href="#pong-drawbars">Draw the bars</a></li>
+					<li><a href="#pong-controlbars">Control the bars</a></li>
+					<li><a href="#pong-createball">Create the ball</a></li>
+					<li><a href="#pong-moveball">Move the ball</a></li>
+					<li><a href="#pong-collisions">Collisions</a></li>
+					<li><a href="#pong-minorfixes">Minor fixes</a></li>
+					<li><a href="#pong-score">Score</a></li>
+					<li><a href="#pong-sound">(Optional) Sounds</a></li>
+					<li><a href="#pong-polish">(Optional) Polish</a></li>
+				</ul>
+		
+		</ul>
+		
+		<div class="anchor" id="start"></div>
+
+		<div class="section">
+			<h2>Start up</h2>
+			<br>
+			<p>Here are some simple steps to get started</p>
+			<br>
+			<ul class="steps">
+				<li>Download the JT library <a href="https://github.com/ToniestTony/jt_lib">here</a>.</li>
+				<li>Create a new folder and put the jt_lib javascript file and the index HTML file inside of it.</li>
+				<li>Open the index.html file in your favorite text editor (I personally use Visual Studio Code dark theme)</li>
+				<li>Open the index.html file in your browser, if you see a small canvas centered with gray background, congratulations, you're all set up!</li>
+				<li>From here, simply choose a tutorial above and get creating!</li>
+			</ul>
+			
+		</div>
+		<br>
+
+		<div class="anchor" id="pong"></div>
+
+		<div class="section">
+			<h2>Pong</h2>
+			<br>
+			<p>Make you sure you're ready to <a href="#start">start</a></p>
+			<ul class="big-steps">
+				<li><div>
+<h2 id="pong-drawbars">Draw the bars</h2>
+<p>Create two bars objects before the app object with x, y, width, height and a color variables like so:</p>
+
+<code>//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}</code>
+					
+<p>Then inside the app.setup function, change their initial values so they both appear at the side of the screen like so:</p>
+
+<code>//Initialize position of the bars
+bar1.x=10;
+bar1.y=jt.h()/2;
+
+bar2.x=jt.w()-bar2.w-10;
+bar2.y=jt.h()/2;</code>
+
+<p>Finally draw them both by adding this at the end of the app.update function:</p>
+
+<code>jt.rect(bar1);
+jt.rect(bar2);</code>
+
+<p>Open the interactive editor to see if you got it right:
+<button
+code='//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}
+
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+		//Initialize position of the bars
+		bar1.x=10;
+		bar1.y=jt.h()/2;
+		
+		bar2.x=jt.w()-bar2.w-10;
+		bar2.y=jt.h()/2;
+	},
+	//update is called every frame
+	update:function(){
+		jt.bg("grey");
+		
+		jt.rect(bar1);
+		jt.rect(bar2);
+	}
+}' class="editorLoad">Load editor</button></p>
+
+
+<h2 id="pong-controlbars">Control the bars</h2>
+<p>Add up and down movement to the bars at the start of the app.update function:</p>
+
+<code>//Moving the bars
+var speed=4;
+if(jt.keyCheck("w")){
+	bar1.y-=speed;
+}
+if(jt.keyCheck("s")){
+	bar1.y+=speed;
+}
+if(jt.keyCheck("up")){
+	bar2.y-=speed;
+}
+if(jt.keyCheck("down")){
+	bar2.y+=speed;
+}
+</code>
+					
+<p>Don't allow the bars to go offscreen just after the previous code like so:</p>
+
+<code>//Bars stay onscreen
+bar1.y=jt.stay(bar1.y,0,jt.h()-bar1.h);
+bar2.y=jt.stay(bar2.y,0,jt.h()-bar2.h);</code>
+
+<p>Open the interactive editor to see if you got it right:
+<button
+code='//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}
+
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+		//Initialize position of the bars
+		bar1.x=10;
+		bar1.y=jt.h()/2;
+		
+		bar2.x=jt.w()-bar2.w-10;
+		bar2.y=jt.h()/2;
+	},
+	//update is called every frame
+	update:function(){
+		//Moving the bars
+		var speed=4;
+		if(jt.keyCheck("w")){
+			bar1.y-=speed;
+		}
+		if(jt.keyCheck("s")){
+			bar1.y+=speed;
+		}
+		if(jt.keyCheck("up")){
+			bar2.y-=speed;
+		}
+		if(jt.keyCheck("down")){
+			bar2.y+=speed;
+		}
+		
+		//Bars stay onscreen
+		bar1.y=jt.stay(bar1.y,0,jt.h()-bar1.h);
+		bar2.y=jt.stay(bar2.y,0,jt.h()-bar2.h);
+		
+		jt.bg("grey");
+		
+		jt.rect(bar1);
+		jt.rect(bar2);
+	}
+}' class="editorLoad">Load editor</button></p>
+
+
+<h2 id="pong-createball">Create the ball</h2>
+<p>Create a ball object  with x, y, width, height, velocities and color variables and add it right after the bars like so:</p>
+
+<code>var ball={
+	x:0,
+	y:0,
+	w:10,
+	h:10,
+	vX:0,
+	vY:0,
+	c:"blue"
+}
+</code>
+
+<p>Initialize the position of the ball in the middle and the velocities with either -1 or 1 with a respawn function, so we can use it later, put the function after the code above:</p>
+
+<code>function respawn(){
+	ball.x=jt.w()/2;
+	ball.y=jt.h()/2;
+	
+	ball.vX=jt.choose([-1,1]);
+	ball.vY=jt.choose([-1,1]);
+}</code>
+
+<p>Call the respawn function after initializing the bars in the app.setup function:</p>
+
+<code>respawn();
+</code>
+
+<p>Draw the ball right drawing the bars like so:</p>
+
+<code>jt.rect(ball);
+</code>
+
+
+<p>Open the interactive editor to see if you got it right:
+<button
+code='//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}
+
+var ball={
+	x:0,
+	y:0,
+	w:10,
+	h:10,
+	vX:0,
+	vY:0,
+	c:"blue"
+}
+
+function respawn(){
+	ball.x=jt.w()/2;
+	ball.y=jt.h()/2;
+	
+	ball.vX=jt.choose([-1,1]);
+	ball.vY=jt.choose([-1,1]);
+}
+
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+		//Initialize position of the bars
+		bar1.x=10;
+		bar1.y=jt.h()/2;
+		
+		bar2.x=jt.w()-bar2.w-10;
+		bar2.y=jt.h()/2;
+		
+		respawn();
+	},
+	//update is called every frame
+	update:function(){
+		//Moving the bars
+		var speed=4;
+		if(jt.keyCheck("w")){
+			bar1.y-=speed;
+		}
+		if(jt.keyCheck("s")){
+			bar1.y+=speed;
+		}
+		if(jt.keyCheck("up")){
+			bar2.y-=speed;
+		}
+		if(jt.keyCheck("down")){
+			bar2.y+=speed;
+		}
+		
+		//Bars stay onscreen
+		bar1.y=jt.stay(bar1.y,0,jt.h()-bar1.h);
+		bar2.y=jt.stay(bar2.y,0,jt.h()-bar2.h);
+		
+		jt.bg("grey");
+		
+		jt.rect(bar1);
+		jt.rect(bar2);
+		
+		jt.rect(ball);
+	}
+}' class="editorLoad">Load editor</button></p>
+			
+			
+<h2 id="pong-moveball">Move the ball</h2>
+<p>Move the ball in the app.update function after the bars control:</p>
+
+<code>//Move the ball
+ball.x+=ball.vX;
+ball.y+=ball.vY;
+</code>
+
+<p>Make the ball bounce and respawn right after:</p>
+
+<code>//Make the ball bounce
+if(!jt.between(ball.x,0,jt.w())){
+	ball.vX=ball.vX*-1;
+	respawn();
+}
+if(!jt.between(ball.y,0,jt.h())){
+	ball.vY=ball.vY*-1;
+	ball.y=jt.stay(ball.y,0,jt.h())
+}
+</code>
+
+
+<p>Let's make the ball faster by adding 2 new variables in the ball object right before the color:</p>
+
+<code>speed:2,
+initial:2,
+increment:0.25,
+</code>
+
+<p>Then multiply the velocities by that speed, when the lines where we move the ball in the app.update function:</p>
+<code>//Move the ball
+ball.x+=ball.vX*ball.speed;
+ball.y+=ball.vY*ball.speed;</code>
+
+
+<p>Open the interactive editor to see if you got it right:
+<button
+code='//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}
+
+var ball={
+	x:0,
+	y:0,
+	w:10,
+	h:10,
+	vX:0,
+	vY:0,
+	speed:2,
+	initial:2,
+	increment:0.25,
+	c:"blue"
+}
+
+function respawn(){
+	ball.x=jt.w()/2;
+	ball.y=jt.h()/2;
+	
+	ball.vX=jt.choose([-1,1]);
+	ball.vY=jt.choose([-1,1]);
+}
+
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+		//Initialize position of the bars
+		bar1.x=10;
+		bar1.y=jt.h()/2;
+		
+		bar2.x=jt.w()-bar2.w-10;
+		bar2.y=jt.h()/2;
+		
+		respawn();
+	},
+	//update is called every frame
+	update:function(){
+		//Moving the bars
+		var speed=4;
+		if(jt.keyCheck("w")){
+			bar1.y-=speed;
+		}
+		if(jt.keyCheck("s")){
+			bar1.y+=speed;
+		}
+		if(jt.keyCheck("up")){
+			bar2.y-=speed;
+		}
+		if(jt.keyCheck("down")){
+			bar2.y+=speed;
+		}
+		
+		//Move the ball
+		ball.x+=ball.vX*ball.speed;
+		ball.y+=ball.vY*ball.speed;
+		
+		//Make the ball bounce
+		if(!jt.between(ball.x,0,jt.w())){
+			ball.vX=ball.vX*-1;
+			respawn();
+		}
+		if(!jt.between(ball.y,0,jt.h())){
+			ball.vY=ball.vY*-1;
+			ball.y=jt.stay(ball.y,0,jt.h())
+		}
+		
+		//Bars stay onscreen
+		bar1.y=jt.stay(bar1.y,0,jt.h()-bar1.h);
+		bar2.y=jt.stay(bar2.y,0,jt.h()-bar2.h);
+		
+		jt.bg("grey");
+		
+		jt.rect(bar1);
+		jt.rect(bar2);
+		
+		jt.rect(ball);
+	}
+}' class="editorLoad">Load editor</button></p>
+			
+			
+<h2 id="pong-collisions">Collisions</h2>
+<p>Let's finally make the game playable by adding collisions between the bars and the ball. Since the bars and the ball are already an object with an x, a y, a width and a height, it'll be easier, so put the code right after all the movement in the app.update function:</p>
+
+<code>//Collisions
+if(jt.cRect(bar1,ball)){
+	ball.vX=1;
+}
+if(jt.cRect(bar2,ball)){
+	ball.vX=-1;
+}</code>
+
+<p>Let's make it more fun by making the ball go faster each time it's hit by a bar, in the same code, simply increment the speed by the increment:</p>
+
+<code>//Collisions
+if(jt.cRect(bar1,ball)){
+	ball.vX=1;
+	ball.speed+=ball.increment;
+}
+if(jt.cRect(bar2,ball)){
+	ball.vX=-1;
+	ball.speed+=ball.increment;
+}</code>
+
+<p>Let's also make the ball reset it's own speed when it respawns, so in the respawn function, simply put the ball's speed equal to it's initial speed:</p>
+
+<code>ball.speed=ball.initial;</code>
+
+
+<p>Open the interactive editor to see if you got it right:
+<button
+code='//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}
+
+var ball={
+	x:0,
+	y:0,
+	w:10,
+	h:10,
+	vX:0,
+	vY:0,
+	speed:2,
+	initial:2,
+	increment:0.25,
+	c:"blue"
+}
+
+function respawn(){
+	ball.x=jt.w()/2;
+	ball.y=jt.h()/2;
+	
+	ball.vX=jt.choose([-1,1]);
+	ball.vY=jt.choose([-1,1]);
+	
+	ball.speed=ball.initial;
+}
+
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+		//Initialize position of the bars
+		bar1.x=10;
+		bar1.y=jt.h()/2;
+		
+		bar2.x=jt.w()-bar2.w-10;
+		bar2.y=jt.h()/2;
+		
+		respawn();
+	},
+	//update is called every frame
+	update:function(){
+		//Moving the bars
+		var speed=4;
+		if(jt.keyCheck("w")){
+			bar1.y-=speed;
+		}
+		if(jt.keyCheck("s")){
+			bar1.y+=speed;
+		}
+		if(jt.keyCheck("up")){
+			bar2.y-=speed;
+		}
+		if(jt.keyCheck("down")){
+			bar2.y+=speed;
+		}
+		
+		//Move the ball
+		ball.x+=ball.vX*ball.speed;
+		ball.y+=ball.vY*ball.speed;
+		
+		//Make the ball bounce
+		if(!jt.between(ball.x,0,jt.w())){
+			ball.vX=ball.vX*-1;
+			respawn();
+		}
+		if(!jt.between(ball.y,0,jt.h())){
+			ball.vY=ball.vY*-1;
+			ball.y=jt.stay(ball.y,0,jt.h())
+		}
+		
+		//Collisions
+		if(jt.cRect(bar1,ball)){
+			ball.vX=1;
+			ball.speed+=ball.increment;
+		}
+		if(jt.cRect(bar2,ball)){
+			ball.vX=-1;
+			ball.speed+=ball.increment;
+		}
+		
+		//Bars stay onscreen
+		bar1.y=jt.stay(bar1.y,0,jt.h()-bar1.h);
+		bar2.y=jt.stay(bar2.y,0,jt.h()-bar2.h);
+		
+		jt.bg("grey");
+		
+		jt.rect(bar1);
+		jt.rect(bar2);
+		
+		jt.rect(ball);
+	}
+}' class="editorLoad">Load editor</button></p>
+
+
+<h2 id="pong-minorfixes">Minor fixes</h2>
+<p>When something is drawn in the canvas, it is always drawn from the top left corner, so everything is a bit off-center, let's fix the ball's respawn function so it spawns in the middle:</p>
+
+<code>ball.x=jt.w()/2-ball.w/2;
+ball.y=jt.h()/2-ball.h/2;</code>
+
+<p>Let's also fix the ball's collision so it never goes even a big offstage on the vertical, but always go a bit offstage before scoring on the horizontal, when we make the ball bounce, change these lines:</p>
+
+<code>//Make the ball bounce
+if(!jt.between(ball.x,-ball.w,jt.w())){
+	ball.vX=ball.vX*-1;
+	respawn();
+}
+if(!jt.between(ball.y,0,jt.h()-ball.h)){
+	ball.vY=ball.vY*-1;
+	ball.y=jt.stay(ball.y,0,jt.h()-ball.h)
+}</code>
+
+<p>Then, let's make it so that when the ball hits a bar, the ball will get teleported in the front of the bar, so it doesn't hit multiple collisions when hit from behind and gain lots of speed, add these lines in the collisions inside the app.update function:</p>
+
+<code>//Collisions
+if(jt.cRect(bar1,ball)){
+	ball.vX=1;
+	ball.x=bar1.x+bar1.w;
+	ball.speed+=ball.increment;
+}
+if(jt.cRect(bar2,ball)){
+	ball.vX=-1;
+	ball.x=bar2.x-ball.w;
+	ball.speed+=ball.increment;
+}</code>
+
+<p>Open the interactive editor to see if you got it right:
+<button
+code='//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}
+
+var ball={
+	x:0,
+	y:0,
+	w:10,
+	h:10,
+	vX:0,
+	vY:0,
+	speed:2,
+	initial:2,
+	increment:0.25,
+	c:"blue"
+}
+
+function respawn(){
+	ball.x=jt.w()/2-ball.w/2;
+	ball.y=jt.h()/2-ball.h/2;
+	
+	ball.vX=jt.choose([-1,1]);
+	ball.vY=jt.choose([-1,1]);
+	
+	ball.speed=ball.initial;
+}
+
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+		//Initialize position of the bars
+		bar1.x=10;
+		bar1.y=jt.h()/2;
+		
+		bar2.x=jt.w()-bar2.w-10;
+		bar2.y=jt.h()/2;
+		
+		respawn();
+	},
+	//update is called every frame
+	update:function(){
+		//Moving the bars
+		var speed=4;
+		if(jt.keyCheck("w")){
+			bar1.y-=speed;
+		}
+		if(jt.keyCheck("s")){
+			bar1.y+=speed;
+		}
+		if(jt.keyCheck("up")){
+			bar2.y-=speed;
+		}
+		if(jt.keyCheck("down")){
+			bar2.y+=speed;
+		}
+		
+		//Move the ball
+		ball.x+=ball.vX*ball.speed;
+		ball.y+=ball.vY*ball.speed;
+		
+		//Make the ball bounce
+		if(!jt.between(ball.x,-ball.w,jt.w())){
+			ball.vX=ball.vX*-1;
+			respawn();
+		}
+		if(!jt.between(ball.y,0,jt.h()-ball.h)){
+			ball.vY=ball.vY*-1;
+			ball.y=jt.stay(ball.y,0,jt.h()-ball.h)
+		}
+		
+		//Collisions
+		if(jt.cRect(bar1,ball)){
+			ball.vX=1;
+			ball.x=bar1.x+bar1.w;
+			ball.speed+=ball.increment;
+		}
+		if(jt.cRect(bar2,ball)){
+			ball.vX=-1;
+			ball.x=bar2.x-ball.w;
+			ball.speed+=ball.increment;
+		}
+		
+		//Bars stay onscreen
+		bar1.y=jt.stay(bar1.y,0,jt.h()-bar1.h);
+		bar2.y=jt.stay(bar2.y,0,jt.h()-bar2.h);
+		
+		jt.bg("grey");
+		
+		jt.rect(bar1);
+		jt.rect(bar2);
+		
+		jt.rect(ball);
+	}
+}' class="editorLoad">Load editor</button></p>
+<p>If you compare with the previous editor, it might not change like a lot, but it makes the game feel nicer</p>
+
+
+<h2 id="pong-score">Score</h2>
+<p>Let's a 2 variables to keep track of the score between players, add this before creating the bars:</p>
+
+<code>//Create score
+var score1=0;
+var score2=0;</code>
+
+<p>Then before the ball respawns, check if it's to the left or to the right and add 1 to the correct score, add this code just before the ball respawns in the app.update function:</p>
+
+<code>//Make the ball bounce
+if(!jt.between(ball.x,-ball.w,jt.w())){
+	if(ball.vX<0){
+		score2++;
+	}else if(ball.vX>0){
+		score1++;
+	}
+	ball.vX=ball.vX*-1;
+	respawn();
+}</code>
+
+<p>Set the text setting at the start of the app.setup function so we don't set these every frame:</p>
+
+<code>//Set the text settings
+jt.font("Consolas");
+jt.fontSize(24);
+jt.align("center");</code>
+
+<p>Finally draw the score after drawing everything else at the end of the app.update function:</p>
+
+<code>//draw the score
+jt.text(score1+" | "+score2,jt.w()/2,10,"black");</code>
+
+<p>Open the interactive editor to see if you got it right:
+<button
+code='//Create score
+var score1=0;
+var score2=0;
+
+//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}
+
+var ball={
+	x:0,
+	y:0,
+	w:10,
+	h:10,
+	vX:0,
+	vY:0,
+	speed:2,
+	initial:2,
+	increment:0.25,
+	c:"blue"
+}
+
+function respawn(){
+	ball.x=jt.w()/2-ball.w/2;
+	ball.y=jt.h()/2-ball.h/2;
+	
+	ball.vX=jt.choose([-1,1]);
+	ball.vY=jt.choose([-1,1]);
+	
+	ball.speed=ball.initial;
+}
+
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+		//Set the text settings
+		jt.font("Consolas");
+		jt.fontSize(24);
+		jt.align("center");
+		
+		//Initialize position of the bars
+		bar1.x=10;
+		bar1.y=jt.h()/2;
+		
+		bar2.x=jt.w()-bar2.w-10;
+		bar2.y=jt.h()/2;
+		
+		respawn();
+	},
+	//update is called every frame
+	update:function(){
+		//Moving the bars
+		var speed=4;
+		if(jt.keyCheck("w")){
+			bar1.y-=speed;
+		}
+		if(jt.keyCheck("s")){
+			bar1.y+=speed;
+		}
+		if(jt.keyCheck("up")){
+			bar2.y-=speed;
+		}
+		if(jt.keyCheck("down")){
+			bar2.y+=speed;
+		}
+		
+		//Move the ball
+		ball.x+=ball.vX*ball.speed;
+		ball.y+=ball.vY*ball.speed;
+		
+		//Make the ball bounce
+		if(!jt.between(ball.x,-ball.w,jt.w())){
+			if(ball.vX<0){
+				score2++;
+			}else if(ball.vX>0){
+				score1++;
+			}
+			ball.vX=ball.vX*-1;
+			respawn();
+		}
+		if(!jt.between(ball.y,0,jt.h()-ball.h)){
+			ball.vY=ball.vY*-1;
+			ball.y=jt.stay(ball.y,0,jt.h()-ball.h)
+		}
+		
+		//Collisions
+		if(jt.cRect(bar1,ball)){
+			ball.vX=1;
+			ball.x=bar1.x+bar1.w;
+			ball.speed+=ball.increment;
+		}
+		if(jt.cRect(bar2,ball)){
+			ball.vX=-1;
+			ball.x=bar2.x-ball.w;
+			ball.speed+=ball.increment;
+		}
+		
+		//Bars stay onscreen
+		bar1.y=jt.stay(bar1.y,0,jt.h()-bar1.h);
+		bar2.y=jt.stay(bar2.y,0,jt.h()-bar2.h);
+		
+		jt.bg("grey");
+		
+		jt.rect(bar1);
+		jt.rect(bar2);
+		
+		jt.rect(ball);
+		
+		//draw the score
+		jt.text(score1+" | "+score2,jt.w()/2,10,"black");
+	}
+}' class="editorLoad">Load editor</button></p>
+<p>Congratulations, you finished the tutorial! There is an additionnal section if you want to make the game a lot of more polished.</p>
+
+			
+<h2 id="pong-sound">(Optional) Sounds</h2>
+<p>We can make the game a lot nicer with some easy to add effects, let's start with sounds, first of all we need to load a mp3 file, on this site it is already loading but in your folder you need to put a mp3 file, then link it right at the end of your index.html like this:</p>
+
+<code>jt=new JT("can",app.w,app.h,60,'setup','update','app',false);
+jt.loadSound("assets/change.mp3","hitBar");
+jt.loadSound("assets/walk.mp3","hitWall");
+jt.loadSound("assets/hurt.mp3","goal");</code>
+
+<p>The first parameter is the path of the file and the second is the name we're gonna use in the JT library, so change the path to your file and the names for "hit" and "goal", then play "hit" when the ball collides with a bar:</p>
+		
+<code>//Collisions
+if(jt.cRect(bar1,ball)){
+	ball.vX=1;
+	ball.x=bar1.x+bar1.w;
+	ball.speed+=ball.increment;
+	jt.stopPlay("hitBar");
+}
+if(jt.cRect(bar2,ball)){
+	ball.vX=-1;
+	ball.x=bar2.x-ball.w;
+	ball.speed+=ball.increment;
+	jt.stopPlay("hitBar");
+}</code>
+
+<p>Then let's play another sound when the ball hits the screen border:</p>
+		
+<code>if(!jt.between(ball.y,0,jt.h()-ball.h)){
+	ball.vY=ball.vY*-1;
+	ball.y=jt.stay(ball.y,0,jt.h()-ball.h)
+	jt.stopPlay("hitWall");
+}</code>
+
+<p>Now let's play the last sound when someones score a point:</p>
+		
+<code>//Make the ball bounce
+if(!jt.between(ball.x,-ball.w,jt.w())){
+	if(ball.vX<0){
+		score2++;
+	}else if(ball.vX>0){
+		score1++;
+	}
+	ball.vX=ball.vX*-1;
+	respawn();
+	jt.stopPlay("goal");
+}</code>
+		
+		
+<p>Open the interactive editor to see if you got it right:
+<button
+code='//Create score
+var score1=0;
+var score2=0;
+
+//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}
+
+var ball={
+	x:0,
+	y:0,
+	w:10,
+	h:10,
+	vX:0,
+	vY:0,
+	speed:2,
+	initial:2,
+	increment:0.25,
+	c:"blue"
+}
+
+function respawn(){
+	ball.x=jt.w()/2-ball.w/2;
+	ball.y=jt.h()/2-ball.h/2;
+	
+	ball.vX=jt.choose([-1,1]);
+	ball.vY=jt.choose([-1,1]);
+	
+	ball.speed=ball.initial;
+}
+
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+		//Set the text settings
+		jt.font("Consolas");
+		jt.fontSize(24);
+		jt.align("center");
+		
+		//Initialize position of the bars
+		bar1.x=10;
+		bar1.y=jt.h()/2;
+		
+		bar2.x=jt.w()-bar2.w-10;
+		bar2.y=jt.h()/2;
+		
+		respawn();
+	},
+	//update is called every frame
+	update:function(){
+		//Moving the bars
+		var speed=4;
+		if(jt.keyCheck("w")){
+			bar1.y-=speed;
+		}
+		if(jt.keyCheck("s")){
+			bar1.y+=speed;
+		}
+		if(jt.keyCheck("up")){
+			bar2.y-=speed;
+		}
+		if(jt.keyCheck("down")){
+			bar2.y+=speed;
+		}
+		
+		//Move the ball
+		ball.x+=ball.vX*ball.speed;
+		ball.y+=ball.vY*ball.speed;
+		
+		//Make the ball bounce
+		if(!jt.between(ball.x,-ball.w,jt.w())){
+			if(ball.vX<0){
+				score2++;
+			}else if(ball.vX>0){
+				score1++;
+			}
+			ball.vX=ball.vX*-1;
+			respawn();
+			jt.stopPlay("goal");
+		}
+		if(!jt.between(ball.y,0,jt.h()-ball.h)){
+			ball.vY=ball.vY*-1;
+			ball.y=jt.stay(ball.y,0,jt.h()-ball.h)
+			jt.stopPlay("hitWall");
+		}
+		
+		//Collisions
+		if(jt.cRect(bar1,ball)){
+			ball.vX=1;
+			ball.x=bar1.x+bar1.w;
+			ball.speed+=ball.increment;
+			jt.stopPlay("hitBar");
+		}
+		if(jt.cRect(bar2,ball)){
+			ball.vX=-1;
+			ball.x=bar2.x-ball.w;
+			ball.speed+=ball.increment;
+			jt.stopPlay("hitBar");
+		}
+		
+		//Bars stay onscreen
+		bar1.y=jt.stay(bar1.y,0,jt.h()-bar1.h);
+		bar2.y=jt.stay(bar2.y,0,jt.h()-bar2.h);
+		
+		jt.bg("grey");
+		
+		jt.rect(bar1);
+		jt.rect(bar2);
+		
+		jt.rect(ball);
+		
+		//draw the score
+		jt.text(score1+" | "+score2,jt.w()/2,10,"black");
+	}
+}' class="editorLoad">Load editor</button></p>
+
+
+<h2 id="pong-polish">(Optional) Ploish</h2>
+<p>We can make the game a lot nicer with some easy to add effects, let's initialize the camera to add some screen shake, at the end of the app.setup function add this:</p>
+
+<code>//Activate the camera
+jt.camActive(true);</code>
+
+
+<p>We can make the game a lot nicer with some easy to add effects, let's add some screen shake when someone scores a goal, so right when the ball scores, add this:</p>
+
+<code>//Make the ball bounce
+if(!jt.between(ball.x,-ball.w,jt.w())){
+	if(ball.vX<0){
+		score2++;
+	}else if(ball.vX>0){
+		score1++;
+	}
+	ball.vX=ball.vX*-1;
+	jt.shake(20);
+	respawn();
+	jt.stopPlay("goal");
+};</code>
+
+<p>Let's also make it so that when the ball hits a bar, depending on where it hits the bar it will go in that direction, so let's add some code to the bar collision in the app.update function. It will calculate the angle from both object's middle and then transform that into a value between -1 and 1:</p>
+
+<code>//Collisions
+if(jt.cRect(bar1,ball)){
+	ball.vX=1;
+	var barMiddle={x:bar1.x+bar1.w/2,y:bar1.y+bar1.h/2};
+	var ballMiddle={x:ball.x+ball.w/2,y:ball.y+ball.h/2};
+	var angle=jt.angle(barMiddle,ballMiddle);
+	ball.vY=jt.ratioY(angle);
+	ball.x=bar1.x+bar1.w;
+	ball.speed+=ball.increment;
+	jt.stopPlay("hitBar");
+}
+if(jt.cRect(bar2,ball)){
+	ball.vX=-1;
+	var barMiddle={x:bar2.x+bar2.w/2,y:bar2.y+bar2.h/2};
+	var ballMiddle={x:ball.x+ball.w/2,y:ball.y+ball.h/2};
+	var angle=jt.angle(barMiddle,ballMiddle);
+	ball.vY=jt.ratioY(angle);
+	ball.x=bar2.x-ball.w;
+	ball.speed+=ball.increment;
+	jt.stopPlay("hitBar");
+}</code>
+
+
+<p>Open the interactive editor to see if you got it right:
+<button
+code='//Create score
+var score1=0;
+var score2=0;
+
+//Create both bars
+var bar1={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"green"
+}
+var bar2={
+	x:0,
+	y:0,
+	w:20,
+	h:60,
+	c:"red"
+}
+
+var ball={
+	x:0,
+	y:0,
+	w:10,
+	h:10,
+	vX:0,
+	vY:0,
+	speed:2,
+	initial:2,
+	increment:0.25,
+	c:"blue"
+}
+
+function respawn(){
+	ball.x=jt.w()/2-ball.w/2;
+	ball.y=jt.h()/2-ball.h/2;
+	
+	ball.vX=jt.choose([-1,1]);
+	ball.vY=jt.choose([-1,1]);
+	
+	ball.speed=ball.initial;
+}
+
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+		//Set the text settings
+		jt.font("Consolas");
+		jt.fontSize(24);
+		jt.align("center");
+		
+		//Initialize position of the bars
+		bar1.x=10;
+		bar1.y=jt.h()/2;
+		
+		bar2.x=jt.w()-bar2.w-10;
+		bar2.y=jt.h()/2;
+		
+		respawn();
+		
+		//Activate the camera
+		jt.camActive(true);
+	},
+	//update is called every frame
+	update:function(){
+		//Moving the bars
+		var speed=4;
+		if(jt.keyCheck("w")){
+			bar1.y-=speed;
+		}
+		if(jt.keyCheck("s")){
+			bar1.y+=speed;
+		}
+		if(jt.keyCheck("up")){
+			bar2.y-=speed;
+		}
+		if(jt.keyCheck("down")){
+			bar2.y+=speed;
+		}
+		
+		//Move the ball
+		ball.x+=ball.vX*ball.speed;
+		ball.y+=ball.vY*ball.speed;
+		
+		//Make the ball bounce
+		if(!jt.between(ball.x,-ball.w,jt.w())){
+			if(ball.vX<0){
+				score2++;
+			}else if(ball.vX>0){
+				score1++;
+			}
+			ball.vX=ball.vX*-1;
+			jt.shake(20);
+			respawn();
+			jt.stopPlay("goal");
+		}
+		if(!jt.between(ball.y,0,jt.h()-ball.h)){
+			ball.vY=ball.vY*-1;
+			ball.y=jt.stay(ball.y,0,jt.h()-ball.h)
+			jt.stopPlay("hitWall");
+		}
+		
+		//Collisions
+		if(jt.cRect(bar1,ball)){
+			ball.vX=1;
+			var barMiddle={x:bar1.x+bar1.w/2,y:bar1.y+bar1.h/2};
+			var ballMiddle={x:ball.x+ball.w/2,y:ball.y+ball.h/2};
+			var angle=jt.angle(barMiddle,ballMiddle);
+			ball.vY=jt.ratioY(angle);
+			ball.x=bar1.x+bar1.w;
+			ball.speed+=ball.increment;
+			jt.stopPlay("hitBar");
+		}
+		if(jt.cRect(bar2,ball)){
+			ball.vX=-1;
+			var barMiddle={x:bar2.x+bar2.w/2,y:bar2.y+bar2.h/2};
+			var ballMiddle={x:ball.x+ball.w/2,y:ball.y+ball.h/2};
+			var angle=jt.angle(barMiddle,ballMiddle);
+			ball.vY=jt.ratioY(angle);
+			ball.x=bar2.x-ball.w;
+			ball.speed+=ball.increment;
+			jt.stopPlay("hitBar");
+		}
+		
+		//Bars stay onscreen
+		bar1.y=jt.stay(bar1.y,0,jt.h()-bar1.h);
+		bar2.y=jt.stay(bar2.y,0,jt.h()-bar2.h);
+		
+		jt.bg("grey");
+		
+		jt.rect(bar1);
+		jt.rect(bar2);
+		
+		jt.rect(ball);
+		
+		//draw the score
+		jt.text(score1+" | "+score2,jt.w()/2,10,"black");
+	}
+}' class="editorLoad">Load editor</button></p>
+<p>Hope you enjoyed this additionnal polish tutorial! I basically kept adding polish to a basic pong game to make my game "Xtreme Pong", you can play it <a href="http://ynotplay.ca/jeu.html?id=pong">here</a>.</p>
+		
+				</div</li>
+			</ul>
+			
+		</div>
+		
+		
+		<div class="anchor" id="last"></div>
+		<br>
+		
+		
+		<div class="editorTutorial">
+		<div class="showEditorContainer">
+		<button class="showEditor" onclick="toggleEditor()">Show editor</button>
+		</div>
+				<div class="editor__wrapper tutorial">
+					<div class="editor__body">
+						<div id="editorCode0" class="editor__code"
+code='
+var app={
+	w:600,
+	h:400,
+	//setup is called when the game has finished loading
+	setup:function(){
+		//jt.fullscreen(false);
+	},
+	//update is called every frame
+	update:function(){
+		jt.bg("grey");
+	}
+}
+'></div>
+		</div>
+		<div class="editor__footer">
+			<div class="editor__footer--left">
+				<button class="editor__btn editor__run">Run code ></button>
+				<button class="editor__btn editor__pause">Pause</button>
+				<button class="editor__btn editor__reset">Blank code</button>
+			</div>
+			<div class="editor__footer--right">
+				<div id="canDiv" class="editor__console">
+					<canvas id="can0"></canvas>
+					<ul class="editor__console-logs"></ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+        </main>
+
+        <footer class="footerTutorial>
+            <small>
+                ToniestTony's Github page , <a href="https://github.com/ToniestTony">See the github</a> or <a href = "mailto: antoine30@outlook.com">contact me</a>
+            </small>
+        </footer>
+		
+		<!-- Required Ace Libraries -->
+		<script src="js/ace-editor/src-min/ace.js"></script>
+		<script src="js/ace-editor/src-min/mode-javascript.js"></script>
+		<script src="js/ace-editor/src-min/ext-language_tools.js"></script>
+
+		<!-- Custom Scripts -->
+		<script src="js/jquery-3.2.1.min.js"></script>
+		
+		<script src="js/editorTutorial.js"></script>
+
+		<script src="js/jt_lib21.js"></script>
+		<script src="js/keyboard.js"></script>
+		<script src="js/backToTop.js"></script>
+		
+		
+
+
+    </body>
+</html>
