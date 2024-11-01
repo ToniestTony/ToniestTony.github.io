@@ -577,9 +577,10 @@ jt.text("Click on the canvas to focus it",jt.w()/2,jt.h()-25,"black","center")
 					<li class="name">
 							jt.alarm(name,time,autoDelete)
 							<button class="editor__btn editor__add" id="alarmVal" value='
+if(this.redFlashTimeMax==undefined){this.redFlashTimeMax=60;}
 //Check if alarm exists and create if, if not
 if(!jt.isAlarm("red flash")){
-	jt.alarm("red flash",60,false);
+	jt.alarm("red flash",this.redFlashTimeMax,false);
 }
 
 //Pause/Play the alarm when clicking or pressing Space
@@ -594,22 +595,30 @@ if(jt.mPress() || jt.keyPress("space")){
     }
 }
 
+//Left and right to change the max duration
+if(jt.keyCheck("left")){
+	this.redFlashTimeMax=jt.stay(this.redFlashTimeMax-1,1,120);
+}
+if(jt.keyCheck("right")){
+	this.redFlashTimeMax=jt.stay(this.redFlashTimeMax+1,1,120);
+}
+
 //Check if alarm is done and if it is, delete it, start a new one and turn the background red
 if(jt.checkAlarm("red flash",false)){
 	jt.delAlarm("red flash");
-	jt.alarm("red flash",60);
+	jt.alarm("red flash",this.redFlashTimeMax);
 	jt.bg("red")
 }
 
 //Show text
 jt.fontSize(14);
 jt.text("Click or press Space to pause/play the alarm",jt.w()/2,5,"black","center")
-jt.text("Flash every 60 frames",jt.w()/2,25,"black","center")
+jt.text("Flash every "+this.redFlashTimeMax+" frames (change with left and right)",jt.w()/2,25,"black","center")
 var alarms=jt.alarms();
 jt.text("Alarms:",jt.w()/2,jt.h()/2,"black","center")
 for(var alarm in alarms){
     if(jt.isAlarm(alarm)!=undefined){
-        jt.text("-"+alarm+" "+jt.getAlarm(alarm),jt.w()/2,120,"black","center")
+        jt.text("-"+alarm+" "+jt.getAlarm(alarm)+"/"+jt.getAlarmDuration("red flash"),jt.w()/2,120,"black","center")
     }
 }'>Test in editor</button>
 					</li>
@@ -651,6 +660,17 @@ for(var alarm in alarms){
 							<button class="editor__btn editor__add" name='jt.getAlarm(name)' valueId='alarmVal'>Test in editor</button>
 					</li>
 					<li class="desc">Get the time remaining of an alarm, or undefined if it does not exist</li>
+					
+					
+					
+					<li class="name">
+							jt.getAlarmDuration(name)<br>
+							jt.getAlarmDur(name)<br>
+							jt.getAlarmMax(name)<br>
+							jt.getTimeMax(name)
+							<button class="editor__btn editor__add" name='jt.getAlarmDuration(name)' valueId='alarmVal'>Test in editor</button>
+					</li>
+					<li class="desc">Get the original duration of an alarm (how much time (in frames) until it's done), or undefined if it does not exist</li>
 					
 
 
@@ -5021,6 +5041,43 @@ if(jt.padConnected()){
 }'>Test in editor</button>
 					</li>
 					<li class="desc">Return an array of all the gamepads info</li>
+					
+					<li class="name">
+						jt.buttonName(button)
+						<button class="editor__btn editor__add" id="buttonName" name="jt.buttonName(button)" value='
+//Show the first button pressed
+jt.fontSize(14)
+if(jt.padConnected()){
+    //Show instructions
+    jt.text("Press any gamepad buttons",jt.w()/2,5,"black","center",jt.fontSize(),0,50,20)
+    
+    //Get all buttons down
+    var buttons=jt.getButtons(0)
+    if(buttons.length>=1){
+        var button=buttons[0];
+		var c="black";
+        if(button.press){
+            c="red";
+        }
+		//Draw the button name using jt.buttonName() (draw them red if they are pressed, so during 1 frame)
+        jt.text("Pressing "+jt.buttonName(button.button)+" !",jt.w()/2,jt.h()/2-jt.fontSize()/2,c,"center",jt.fontSize(),0,50,20)
+    }
+    
+}else{
+    jt.text("Connect a gamepad and press anything to start",jt.w()/2,5,"black","center")
+}
+'>Test in editor</button>
+					</li>
+					<li class="desc">Return the button name for a button's number</li>
+					
+					
+					
+					<li class="name">
+						jt.getButtons(controller)
+						<button class="editor__btn editor__add" name="jt.getButtons(controller)" valueId='buttonName'>Test in editor</button>
+					</li>
+					<li class="desc">Return all the buttons down for a controller</li>
+					
 
 
 
@@ -5326,8 +5383,8 @@ if(jt.padConnected()){
 }'>Test in editor</button>
 					</li>
 					<li class="desc">Get or set with val the threshold for a direction (left,right,up,down or all), this only affects jt.padDirCheck() and jt.padDirPress() (stick is 0 by default which is the left stick and 1 is for the right stick, val is optional and used for setting a threshold and should be between 0 and 1 which by default is 0.5)</li>
-
-
+					
+					
 
 				</ul>
 			</div>
