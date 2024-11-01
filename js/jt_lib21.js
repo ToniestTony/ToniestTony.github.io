@@ -477,6 +477,11 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 			for(var key in this.context.keyboard.keys){
 				this.context.keyboard.keysName[this.context.keyboard.keys[key]]=key;
 			}
+			
+			this.context.gamepad.buttonsName=this.context.math.arr(17,"undefined");
+			for(var key in this.context.gamepad.buttons){
+				this.context.gamepad.buttonsName[this.context.gamepad.buttons[key]]=key;
+			}
 
             this.context.mouse.drawing=this.context.drawing;
             this.context.mouse.canvas.w=this.context.canvas.w;
@@ -1135,6 +1140,7 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 			}
 			this.alarms[name]={};
 			this.alarms[name].time=tim;
+			this.alarms[name].timeMax=tim;
 			this.alarms[name].pause=false;
 			this.alarms[name].del=del;
         },
@@ -1189,6 +1195,13 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
 				return undefined;
 			}else{
 				return this.alarms[name].time;
+			}
+		},
+		getAlarmDuration:function(name){
+			if(this.alarms[name]==undefined){
+				return undefined;
+			}else{
+				return this.alarms[name].timeMax;
 			}
 		},
 		pauseAlarm:function(name,pause){
@@ -5304,6 +5317,27 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
             return this.connected[controller];
         },
         buttonsdown:[],
+		
+		getButtons:function(controller){
+			if(controller==undefined){
+                controller=0;
+            }
+			var arr=[];
+			for(button in this.gamepads[controller].buttons){
+				if(this.gamepads[controller].buttons[button].value==1){
+					var pressed=false;
+					if(this.gamepads[controller].buttons[button].pressed<=1){
+						pressed=true;
+					}
+					arr.push({number:button,button:button,press:pressed});
+				}
+			}
+			return arr;
+		},
+		
+		buttonName:function(button){
+			return this.buttonsName[button];
+		},
 
         axes:function(axes,controller){
             if(axes==undefined){
@@ -6853,6 +6887,22 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
     this.getAlarm=function(name){
 		return this.loop.getAlarm(name);
     }
+	
+	this.getAlarmDuration=function(name){
+		return this.loop.getAlarmDuration(name);
+	}
+	
+	this.getAlarmDur=function(name){
+		return this.loop.getAlarmDuration(name);
+	}
+	
+	this.getAlarmMax=function(name){
+		return this.loop.getAlarmDuration(name);
+	}
+	
+	this.getTimeMax=function(name){
+		return this.loop.getAlarmDuration(name);
+	}
 
 	this.alarms=function(alarms){
 		if(alarms!=undefined){
@@ -8107,6 +8157,14 @@ function JT(id,w,h,fps,setupName,updateName,objName,fullScreenBtn,compatibility)
     this.pads=function(){
         return this.gamepad.gamepads;
     }
+	
+	this.buttonName=function(button){
+        return this.gamepad.buttonName(button);
+    }
+	
+	this.getButtons=function(controller){
+		return this.gamepad.getButtons(controller);
+	}
 
     this.gamepads=function(){
         return this.gamepad.gamepads;
